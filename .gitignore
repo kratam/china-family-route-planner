@@ -1,0 +1,8 @@
+node_modules/
+.next/
+out/
+coverage/
+output/
+.playwright-cli/
+.DS_Store
+*.tsbuildinfo

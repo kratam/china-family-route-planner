@@ -16,7 +16,7 @@ export const sources = {
   flightSanya: { label: "SZX–SYX közvetlen járatok (2026. aug.)", url: "https://www.directflights.com/SZX-SYX" },
   flightHANBUD: { label: "HAN–BUD egyátszállásos útvonalak", url: "https://www.flightconnections.com/flights-from-han-to-bud" },
   climateHK: { label: "Hong Kong Observatory – klímanormálok", url: "https://www.weather.gov.hk/en/cis/normal.htm" },
-  climateDanang: { label: "Vietnam turisztikai hivatal – Da Nang klíma", url: "https://vietnamtourism.vn/en/index.php/about/items/2533" },
+  climateDanang: { label: "Vietnam turisztikai hivatal – Da Nang", url: "https://vietnam.travel/places-to-go/central-vietnam/da-nang" },
   climateSanya: { label: "Sanya októberi klíma (Copernicus/ERA5)", url: "https://monthlyclimate.com/china/sanya/october/" },
   climateHanoi: { label: "Hanoi 1991–2020 klímanormál", url: "https://liveearthviewer.com/weather/climate/hanoi" },
   climateSiem: { label: "Visit Siem Reap – időjárás", url: "https://visitsiemreap.com.kh/weather/" },

@@ -117,7 +117,7 @@ export const destinations: Destination[] = [
     why: ["Közvetlen budapesti hazautazási kapu", "Chen Clan Hall + Shamian", "Canton Tower", "Chimelong Safari Park – teljes napos családi csúcspont"],
     attractions: [
       a("Chen Clan Ancestral Hall", "Kantoni faragások és építészet sűrített formában.", "történelem", 4, "2 óra", trip("Chen Clan Ancestral Hall")),
-      a("Canton Tower", "Színes torony és extrém kilátóélmények.", "kilátó", 5, "2–3 óra", "https://www.cantontower.com/en/"),
+      a("Canton Tower", "Színes torony és extrém kilátóélmények.", "kilátó", 5, "2–3 óra", klook("Canton Tower Guangzhou")),
       a("Chimelong Safari Park", "Óriáspandák, szafari-vonat és gyalogos állatpark.", "állatpark", 5, "egész nap", "https://www.chimelong.com/gz/safaripark/"),
       a("Chimelong Water Park", "Nagy csúszdapark; szezonális nyitás.", "vízi park", 5, "egész nap", "https://www.chimelong.com/gz/waterpark/"),
     ],
@@ -221,7 +221,7 @@ export const destinations: Destination[] = [
     swimming: { realistic: "nem", water: "—", where: "folyami hajózás, nem strand" },
     why: ["UNESCO Global Geopark jellegű vörös sziklák", "Felvonó + kilátók", "Jinjiang folyami hajózás", "Rövid, de meredek túrák"],
     attractions: [
-      a("Danxia Mountain", "Vörös sziklafalak és panorámaösvények.", "túra", 4, "egész nap", "https://www.unesco.org/en/iggp/geoparks/danxiashan"),
+      a("Danxia Mountain", "Vörös sziklafalak és panorámaösvények.", "túra", 4, "egész nap", "https://whc.unesco.org/en/list/1335/"),
       a("Zhanglao Peak", "Felvonóval rövidíthető napfelkelte- és panorámaút.", "felvonó/túra", 3, "fél nap", trip("Zhanglao Peak Danxia")),
       a("Jinjiang River boat", "A vörös falak alulnézetből.", "hajó", 4, "1–2 óra", klook("Danxia Mountain boat")),
     ],
@@ -447,7 +447,7 @@ export const destinations: Destination[] = [
     swimming: { realistic: "hotelmedence/vízi park", water: "meleg", where: "szállodai medence; Siam Amazing Park" },
     why: ["Grand Palace + Wat Pho", "Chao Phraya hajó", "Piacok és street food", "Kiváló BUD-kapcsolatok"],
     attractions: [
-      a("Grand Palace", "Thaiföld történelmi és vallási szíve.", "történelem", 4, "3 óra", "https://www.royalgrandpalace.th/en/home"),
+      a("Grand Palace", "Thaiföld történelmi és vallási szíve.", "történelem", 4, "3 óra", "https://www.royalgrandpalace.th/"),
       a("Chao Phraya river boat", "A város legélvezetesebb közlekedése.", "hajó", 5, "2–3 óra", "https://www.chaophrayaexpressboat.com/"),
       a("Ancient City Muang Boran", "Kerékpározható szabadtéri mini-Thaiföld.", "kultúra/bicikli", 5, "egész nap", klook("Ancient City Bangkok")),
     ],
