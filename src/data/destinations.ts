@@ -283,7 +283,7 @@ export const destinations: Destination[] = [
     swimming: { realistic: "nem releváns", water: "—", where: "hoteles medence" },
     why: ["Terracotta Army – történelmi wow", "Ancient City Wall biciklivel", "Muslim Quarter", "Tang-dinasztia esti show-k"],
     attractions: [
-      a("Terracotta Army", "Több ezer egyedi agyagkatona három csarnokban.", "történelem", 5, "fél–egész nap", "http://www.bmy.com.cn/"),
+      a("Terracotta Army", "Több ezer egyedi agyagkatona három csarnokban.", "történelem", 5, "fél–egész nap", "https://www.bmy.com.cn/"),
       a("Xi’an City Wall", "Teljes falgyűrű, kerékpárkölcsönzéssel.", "bicikli/történelem", 5, "3 óra", klook("Xian City Wall bike")),
       a("Muslim Quarter", "Esti ételkóstoló és nyüzsgő utcák.", "gasztronómia", 5, "2–3 óra", trip("Muslim Quarter Xian")),
       a("Tang Paradise / show", "Látványos esti Tang-kori díszlet és előadás.", "show", 4, "3 óra", klook("Tang Dynasty show Xian")),

@@ -3,6 +3,7 @@ import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import { destinations } from "./destinations";
 import { itineraries } from "./itineraries";
+import { travelogues } from "./travelogues";
 
 describe("published travel data invariants", () => {
   it("uses unique destination ids and bounded scores", () => {
@@ -47,5 +48,16 @@ describe("published travel data invariants", () => {
   it("counts hotel changes rather than hotel bases", () => {
     const expected = { "classic-guilin": 3, "ninh-binh": 4, xiamen: 3, chaozhou: 4, xian: 3, sanya: 3, angkor: 3, danang: 4, zhangjiajie: 3 };
     for (const itinerary of itineraries) expect(itinerary.changes).toBe(expected[itinerary.id as keyof typeof expected]);
+  });
+
+  it("has one transparent, family-aware travelogue for every destination", () => {
+    expect(Object.keys(travelogues).sort()).toEqual(destinations.map((item) => item.id).sort());
+    for (const travelogue of Object.values(travelogues)) {
+      expect(travelogue.url).toMatch(/^https:\/\//);
+      expect(["nagyon pozitív", "pozitív", "vegyes"]).toContain(travelogue.sentiment);
+      expect(["magas", "közepes"]).toContain(travelogue.familyRelevance);
+      expect(travelogue.note.length).toBeGreaterThan(20);
+    }
+    expect(travelogues.zhaoqing.url).toContain("/moments/detail/zhaoqing-");
   });
 });

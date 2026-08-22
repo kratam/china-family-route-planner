@@ -31,6 +31,15 @@ export type Attraction = {
   url: string;
 };
 
+export type Travelogue = {
+  title: string;
+  publisher: string;
+  url: string;
+  sentiment: "nagyon pozitív" | "pozitív" | "vegyes";
+  familyRelevance: "magas" | "közepes";
+  note: string;
+};
+
 export type Hotel = {
   name: string;
   tier: "ár/érték" | "magasabb kategória" | "legjobb lokáció";

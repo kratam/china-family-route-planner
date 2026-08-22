@@ -1,5 +1,7 @@
 import { Clock3, ExternalLink, MapPin, Plane, TrainFront, Waves } from "lucide-react";
 import type { Destination } from "@/data/types";
+import { travelogues } from "@/data/travelogues";
+import { buildProgramLinks } from "@/lib/programLinks";
 import { SourceLink } from "./SourceLink";
 
 const Stars = ({ value }: { value: number }) => <span className="stars big" aria-label={`${value} az 5-ből`}>{"★".repeat(value)}<i>{"★".repeat(5 - value)}</i></span>;
@@ -26,7 +28,26 @@ export function DestinationCard({ destination: d, index }: { destination: Destin
     <details className="destination-details" open={index < 3}>
       <summary>Programok, fürdés, időjárás és szállások <span>+</span></summary>
       <div className="details-body">
-        <section className="attractions"><h4>Legjobb programok</h4><div className="attraction-list">{d.attractions.map((item) => <a className="attraction" href={item.url} target="_blank" rel="noreferrer" key={item.name}><div><span className="type">{item.type}</span><h5>{item.name}</h5><p>{item.description}</p></div><div className="attraction-meta"><span>Gyerek {item.kidScore}/5</span><span><Clock3 size={13} /> {item.duration}</span>{item.price && <span>{item.price}</span>}<ExternalLink size={14} /></div></a>)}</div></section>
+        <section className="attractions"><h4>Legjobb programok</h4><p className="link-guide">Minden programhoz négy út vezet: az elsőnél látod, hogy hivatalos oldal vagy foglalóplatform; utána családos beszámoló, célzott Google-keresés és GetYourGuide következik.</p><div className="attraction-list">{d.attractions.map((item) => {
+          const links = buildProgramLinks(item, d, travelogues[d.id]);
+          return <article className="attraction" key={item.name}>
+            <div className="attraction-copy"><span className="type">{item.type}</span><h5>{item.name}</h5><p>{item.description}</p><div className="attraction-meta"><span>Gyerek {item.kidScore}/5</span><span><Clock3 size={13} /> {item.duration}</span>{item.price && <span>{item.price}</span>}</div></div>
+            <nav className="attraction-links" aria-label={`${item.name} hasznos linkjei`}><ol>
+              {links.map((link, linkIndex) => <li key={link.kind}><a className={`program-link ${link.kind}`} href={link.url} target="_blank" rel="noreferrer">
+                <span className="link-number">0{linkIndex + 1}</span>
+                <span className="link-content">
+                  <strong>{link.label}</strong>
+                  {link.kind === "source" && <small>Elsődleges programlink · {link.label === "Hivatalos oldal" || link.label.startsWith("Hivatalos") ? "közvetlen forrás" : "külső szolgáltató"}</small>}
+                  {link.travelogue && <><span className="travelogue-title">{link.travelogue.title}</span><span className="travelogue-badges"><i>{link.travelogue.sentiment}</i><i>családi relevancia: {link.travelogue.familyRelevance}</i></span><small>{link.travelogue.note}</small></>}
+                  {link.kind === "google" && <small>Angol, gyerekes keresőkifejezéssel előkészítve</small>}
+                  {link.kind === "getyourguide" && <small>Alternatív túrák és friss elérhetőség keresése</small>}
+                </span>
+                <span className="sr-only">Új lapon nyílik.</span>
+                <ExternalLink size={14} />
+              </a></li>)}
+            </ol></nav>
+          </article>;
+        })}</div></section>
         <section className="fact-panels">
           <div><h4><Waves size={18} /> Fürdés</h4><p><strong>{d.swimming.realistic}</strong></p><p>{d.swimming.where}</p><p>Víz: {d.swimming.water}</p></div>
           <div><h4>☀️ Október vége</h4><p><strong>{d.weather.air}</strong> · {d.weather.rain}</p><p>{d.weather.note}</p><SourceLink source={d.weather.source} /></div>
