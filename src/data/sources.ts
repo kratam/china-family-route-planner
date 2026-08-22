@@ -1,0 +1,25 @@
+import type { SourceRef } from "./types";
+
+export const sources = {
+  railHK: { label: "MTR High Speed Rail – 2026", url: "https://www.highspeed.mtr.com.hk/en/trip-planner.html" },
+  railSZHK: { label: "Shenzhen–Hongkong vasút (2026. júl.)", url: "https://www.travelchinaguide.com/china-trains/high-speed/shenzhen-hongkong.htm" },
+  railGuilinHK: { label: "Hongkong–Guilin HSR (2026. júl.)", url: "https://www.travelchinaguide.com/china-trains/high-speed/hongkong-guilin.htm" },
+  railGuilinSZ: { label: "Shenzhen–Guilin HSR (2026. ápr.)", url: "https://www.travelchinaguide.com/china-trains/high-speed/shenzhen-guilin.htm" },
+  railChaoshanSZ: { label: "Shenzhen–Chaoshan HSR (2026. máj.)", url: "https://www.travelchinaguide.com/china-trains/high-speed/shenzhen-chaoshan.htm" },
+  railXiamenHK: { label: "MTR Hongkong–Xiamen (2026. júl.)", url: "https://www.highspeed.mtr.com.hk/en/trip-planner.html?id=WEK2XIM&sortBy=EAT" },
+  railShaoguan: { label: "Hongkong–Shaoguan HSR (2026. júl.)", url: "https://www.travelchinaguide.com/china-trains/high-speed/hongkong-shaoguan.htm" },
+  flightSZXBUD: { label: "SZX–BUD aktuális közvetlen menetrend", url: "https://www.directflights.com/SZX-BUD" },
+  flightCANBUD: { label: "CAN–BUD aktuális közvetlen menetrend", url: "https://zbordirect.com/en/tools/schedule?arrival_city=BUD&departure_city=CAN" },
+  flightHKGHAN: { label: "HKG–HAN közvetlen járatok (2026. aug.)", url: "https://www.directflights.com/HKG-HAN" },
+  flightSZXHAN: { label: "SZX–HAN közvetlen járatok (2026. aug.)", url: "https://www.directflights.com/SZX-HAN" },
+  flightHKGDAD: { label: "HKG–DAD közvetlen járatok (2026. aug.)", url: "https://www.directflights.com/HKG-DAD" },
+  flightSanya: { label: "SZX–SYX közvetlen járatok (2026. aug.)", url: "https://www.directflights.com/SZX-SYX" },
+  flightHANBUD: { label: "HAN–BUD egyátszállásos útvonalak", url: "https://www.flightconnections.com/flights-from-han-to-bud" },
+  climateHK: { label: "Hong Kong Observatory – klímanormálok", url: "https://www.weather.gov.hk/en/cis/normal.htm" },
+  climateDanang: { label: "Vietnam turisztikai hivatal – Da Nang klíma", url: "https://vietnamtourism.vn/en/index.php/about/items/2533" },
+  climateSanya: { label: "Sanya októberi klíma (Copernicus/ERA5)", url: "https://monthlyclimate.com/china/sanya/october/" },
+  climateHanoi: { label: "Hanoi 1991–2020 klímanormál", url: "https://liveearthviewer.com/weather/climate/hanoi" },
+  climateSiem: { label: "Visit Siem Reap – időjárás", url: "https://visitsiemreap.com.kh/weather/" },
+  climatePhuQuoc: { label: "Phu Quoc októberi klíma", url: "https://www.weather2travel.com/vietnam/phu-quoc-island/october/" },
+  climateNhaTrang: { label: "Nha Trang 1991–2020 klímanormál", url: "https://monthlyclimate.com/vietnam/nha-trang/october/" },
+} satisfies Record<string, SourceRef>;
