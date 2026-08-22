@@ -43,4 +43,9 @@ describe("published travel data invariants", () => {
       expect(itinerary.sources.every((source) => source.url.startsWith("https://"))).toBe(true);
     }
   });
+
+  it("counts hotel changes rather than hotel bases", () => {
+    const expected = { "classic-guilin": 3, "ninh-binh": 4, xiamen: 3, chaozhou: 4, xian: 3, sanya: 3, angkor: 3, danang: 4, zhangjiajie: 3 };
+    for (const itinerary of itineraries) expect(itinerary.changes).toBe(expected[itinerary.id as keyof typeof expected]);
+  });
 });

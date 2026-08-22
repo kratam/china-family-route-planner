@@ -5,7 +5,7 @@ const routeData: Omit<Itinerary, "timeline" | "sources">[] = [
   {
     id: "classic-guilin", rank: 1, name: "A kínai tájkép – a legjobb összességében", dates: "2026. okt. 16–30.",
     route: ["Budapest", "Shenzhen + Dapeng", "Hongkong", "Guilin / Yangshuo", "Guangzhou", "Budapest"],
-    nights: ["Shenzhen 3 + Dapeng 1", "Hongkong 4", "Yangshuo 3", "Guangzhou: tranzit"], changes: 4,
+    nights: ["Shenzhen 3 + Dapeng 1", "Hongkong 4", "Yangshuo 3", "Guangzhou: tranzit"], changes: 3,
     trains: ["Shenzhen→Hongkong 14–33 perc", "Hongkong→Guilin West 3:02–3:16", "Yangshuo/Guilin→Guangzhou kb. 2–3 óra"],
     flights: ["BUD→SZX: a jelenlegi menetrend szerint közvetlen opció", "CAN→BUD okt. 29.: a jelenlegi menetrend szerint közvetlen"],
     regionalCost: "kb. ¥4 800–7 200 / 4 fő (HSR, helyi transzferek, Dapeng autó; becslés)", homeAirport: "Guangzhou CAN", homeTime: "kb. 15–17 óra hotel–BUD közvetlen járattal",
@@ -24,7 +24,7 @@ const routeData: Omit<Itinerary, "timeline" | "sources">[] = [
   {
     id: "xiamen", rank: 3, name: "Tengerparti Kína – csak vonattal", dates: "2026. okt. 16–30.",
     route: ["Budapest", "Shenzhen + Dapeng", "Hongkong", "Xiamen + Gulangyu", "Guangzhou", "Budapest"],
-    nights: ["Shenzhen 3 + Dapeng 1", "Hongkong 4", "Xiamen 3", "Guangzhou: tranzit"], changes: 4,
+    nights: ["Shenzhen 3 + Dapeng 1", "Hongkong 4", "Xiamen 3", "Guangzhou: tranzit"], changes: 3,
     trains: ["Shenzhen→Hongkong", "Hongkong→Xiamen kb. 4 óra", "Xiamen→Guangzhou kb. 4–5,5 óra"], flights: ["BUD→SZX", "CAN→BUD közvetlen"],
     regionalCost: "kb. ¥5 500–8 000 / 4 fő (HSR + helyi közlekedés; becslés)", homeAirport: "Guangzhou CAN", homeTime: "kb. 15–17 óra",
     advantage: "Nincs regionális repülés; történelem, autómentes sziget és több strand.", drawback: "A Xiamen→Guangzhou vonatnap hosszú, és természeti wow-ban elmarad Guilintől.", weatherRisk: "Közepes: késői tájfun a teljes partvidéket érintheti.",
@@ -51,7 +51,7 @@ const routeData: Omit<Itinerary, "timeline" | "sources">[] = [
   {
     id: "sanya", rank: 6, name: "Kínai trópusok", dates: "2026. okt. 16–30.",
     route: ["Budapest", "Shenzhen + Dapeng", "Hongkong", "Sanya", "Guangzhou", "Budapest"],
-    nights: ["Shenzhen 3 + Dapeng 1", "Hongkong 4", "Sanya 3", "Guangzhou: tranzit"], changes: 4,
+    nights: ["Shenzhen 3 + Dapeng 1", "Hongkong 4", "Sanya 3", "Guangzhou: tranzit"], changes: 3,
     trains: ["Shenzhen→Hongkong"], flights: ["HKG/SZX→Sanya", "Sanya→Guangzhou", "CAN→BUD"],
     regionalCost: "kb. ¥9 000–15 000 / 4 fő", homeAirport: "Guangzhou CAN", homeTime: "kb. 18–22 óra a Sanya→CAN szakasztól függően",
     advantage: "A legerősebb fürdés, resortpihenés és vízi park.", drawback: "Két regionális repülés; tájfun esetén pont a fő élmény esik ki.", weatherRisk: "Magas: meleg tenger, de októberi tájfun/eső valós kockázat.",
@@ -69,7 +69,7 @@ const routeData: Omit<Itinerary, "timeline" | "sources">[] = [
   {
     id: "danang", rank: 8, name: "Hoi An – csak időjárási fogadással", dates: "2026. okt. 16–30.",
     route: ["Budapest", "Shenzhen + Dapeng", "Hongkong", "Da Nang + Hoi An", "Hanoi", "Budapest"],
-    nights: ["Shenzhen 3 + Dapeng 1", "Hongkong 4", "Hoi An 3", "Hanoi 1"], changes: 5,
+    nights: ["Shenzhen 3 + Dapeng 1", "Hongkong 4", "Hoi An 3", "Hanoi 1"], changes: 4,
     trains: ["Shenzhen→Hongkong"], flights: ["HKG→DAD közvetlen", "DAD→HAN", "HAN→BUD egy átszállással"],
     regionalCost: "kb. ¥10 000–17 000 / 4 fő", homeAirport: "Hanoi HAN", homeTime: "kb. 18–22 óra",
     advantage: "Papíron tökéletes történelem + aktív + tenger kombináció.", drawback: "Öt szállás/átszállási pont és a legrosszabb októberi időjárási profil.", weatherRisk: "Nagyon magas: október Da Nang legcsapadékosabb hónapja, tájfun és Hoi An-i árvíz lehet.",
@@ -78,7 +78,7 @@ const routeData: Omit<Itinerary, "timeline" | "sources">[] = [
   {
     id: "zhangjiajie", rank: 9, name: "Avatar-hegyek – maximális kaland", dates: "2026. okt. 16–30.",
     route: ["Budapest", "Shenzhen + Dapeng", "Hongkong", "Zhangjiajie", "Guangzhou", "Budapest"],
-    nights: ["Shenzhen 3 + Dapeng 1", "Hongkong 4", "Zhangjiajie 3", "Guangzhou: tranzit"], changes: 4,
+    nights: ["Shenzhen 3 + Dapeng 1", "Hongkong 4", "Zhangjiajie 3", "Guangzhou: tranzit"], changes: 3,
     trains: ["Shenzhen→Hongkong", "HKG→Zhangjiajie West kb. 6,5 óra vagy repülős alternatíva"], flights: ["CAN→BUD"],
     regionalCost: "kb. ¥7 500–13 000 / 4 fő", homeAirport: "Guangzhou CAN", homeTime: "kb. 19–23 óra, csatlakozástól függően",
     advantage: "A legnagyobb természeti wow és ikonikus felvonók/liftek.", drawback: "Hosszú transzfer, sok sor és lépcső, nulla strand.", weatherRisk: "Közepes: a köd elrejtheti a panorámát.",
