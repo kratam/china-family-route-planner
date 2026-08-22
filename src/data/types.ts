@@ -38,7 +38,14 @@ export type Hotel = {
   url: string;
 };
 
-export type Photo = { src: string; alt: string; creditUrl: string };
+export type Photo = {
+  src: string;
+  alt: string;
+  creditUrl: string;
+  credit: string;
+  license: string;
+  licenseUrl: string;
+};
 
 export type Destination = {
   id: string;
@@ -85,5 +92,7 @@ export type Itinerary = {
   advantage: string;
   drawback: string;
   weatherRisk: string;
+  timeline: { dates: string; place: string; note: string; source?: SourceRef }[];
+  sources: SourceRef[];
   scores: ItineraryScores;
 };

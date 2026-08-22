@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from "@testing-library/react";
+import { fireEvent, render, screen, within } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 import { Planner } from "./Planner";
 
@@ -15,5 +15,12 @@ describe("Planner", () => {
     fireEvent.click(screen.getByRole("button", { name: "🏯 történelem" }));
     expect(screen.getByText("6 célpont látható")).toBeInTheDocument();
     expect(screen.queryByRole("heading", { name: "Sanya / Hainan" })).not.toBeInTheDocument();
+  });
+
+  it("derives the winning score from the itinerary data", () => {
+    render(<Planner />);
+    const verdict = document.querySelector(".verdict-stats");
+    expect(verdict).not.toBeNull();
+    expect(within(verdict as HTMLElement).getByText("4,5")).toBeInTheDocument();
   });
 });

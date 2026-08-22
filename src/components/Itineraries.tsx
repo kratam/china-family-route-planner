@@ -1,5 +1,6 @@
 import { itineraries } from "@/data/itineraries";
 import { scoreItinerary } from "@/lib/scoring";
+import { SourceLink } from "./SourceLink";
 
 const scoreLabels: Record<string, string> = {
   culture: "Kultúra",
@@ -33,7 +34,7 @@ export function Itineraries() {
                 <h3>{route.name}</h3>
               </div>
               <div className="total-score">
-                <strong>{scoreItinerary(route)}</strong>
+                <strong>{scoreItinerary(route).toLocaleString("hu-HU")}</strong>
                 <span>/ 5</span>
               </div>
             </header>
@@ -47,6 +48,10 @@ export function Itineraries() {
             </div>
             <div className="itinerary-grid">
               <div>
+                <h4>Dátumozott ritmus</h4>
+                {route.timeline.map((stage) => (
+                  <p key={`${stage.dates}-${stage.place}`}><strong>{stage.dates}</strong> {stage.place}<br /><small>{stage.note}</small>{stage.source && <><br /><SourceLink source={stage.source} /></>}</p>
+                ))}
                 <h4>Éjszakák</h4>
                 {route.nights.map((n) => (
                   <p key={n}>{n}</p>
@@ -70,6 +75,9 @@ export function Itineraries() {
                 <p>
                   {route.homeAirport} · {route.homeTime}
                 </p>
+                <div className="route-sources">
+                  {route.sources.map((source) => <SourceLink source={source} key={source.url} />)}
+                </div>
               </div>
             </div>
             <div className="pros-cons">

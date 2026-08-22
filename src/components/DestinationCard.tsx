@@ -12,7 +12,7 @@ export function DestinationCard({ destination: d, index }: { destination: Destin
       <div className={`risk ${d.weather.risk}`}>{d.weather.risk} időjárási kockázat</div>
     </div>
     <div className="photo-pair">
-      {d.photos.map((p, i) => <figure key={p.src} className={i === 0 ? "photo-primary" : "photo-secondary"}><img src={`.${p.src}`} alt={p.alt} loading="lazy" /><a href={p.creditUrl} target="_blank" rel="noreferrer">Wikimedia Commons <ExternalLink size={11} /></a></figure>)}
+      {d.photos.map((p, i) => <figure key={p.src} className={i === 0 ? "photo-primary" : "photo-secondary"}><img src={`.${p.src}`} alt={p.alt} loading="lazy" /><figcaption><a href={p.creditUrl} target="_blank" rel="noreferrer">{p.credit}</a><span> · </span><a href={p.licenseUrl} target="_blank" rel="noreferrer">{p.license} <ExternalLink size={11} /></a></figcaption></figure>)}
     </div>
     <div className="destination-intro">
       <div><div className="section-kicker">Milyen érzés?</div><p className="feeling">{d.feeling}</p></div>

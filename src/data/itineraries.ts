@@ -1,10 +1,11 @@
 import type { Itinerary } from "./types";
+import { sources } from "./sources";
 
-export const itineraries: Itinerary[] = [
+const routeData: Omit<Itinerary, "timeline" | "sources">[] = [
   {
     id: "classic-guilin", rank: 1, name: "A kínai tájkép – a legjobb összességében", dates: "2026. okt. 16–30.",
     route: ["Budapest", "Shenzhen + Dapeng", "Hongkong", "Guilin / Yangshuo", "Guangzhou", "Budapest"],
-    nights: ["Shenzhen 3 + Dapeng 1", "Hongkong 4", "Yangshuo 4", "Guangzhou 1"], changes: 4,
+    nights: ["Shenzhen 3 + Dapeng 1", "Hongkong 4", "Yangshuo 3", "Guangzhou: tranzit"], changes: 4,
     trains: ["Shenzhen→Hongkong 14–33 perc", "Hongkong→Guilin West 3:02–3:16", "Yangshuo/Guilin→Guangzhou kb. 2–3 óra"],
     flights: ["BUD→SZX: a jelenlegi menetrend szerint közvetlen opció", "CAN→BUD okt. 29.: a jelenlegi menetrend szerint közvetlen"],
     regionalCost: "kb. ¥4 800–7 200 / 4 fő (HSR, helyi transzferek, Dapeng autó; becslés)", homeAirport: "Guangzhou CAN", homeTime: "kb. 15–17 óra hotel–BUD közvetlen járattal",
@@ -14,7 +15,7 @@ export const itineraries: Itinerary[] = [
   {
     id: "ninh-binh", rank: 2, name: "Kína + Észak-Vietnám open-jaw", dates: "2026. okt. 16–30.",
     route: ["Budapest", "Shenzhen + Dapeng", "Hongkong", "Hanoi + Ninh Binh", "Budapest"],
-    nights: ["Shenzhen 3 + Dapeng 1", "Hongkong 4", "Ninh Binh 3 + Hanoi 2"], changes: 4,
+    nights: ["Shenzhen 3 + Dapeng 1", "Hongkong 4", "Ninh Binh 3 + Hanoi 1"], changes: 4,
     trains: ["Shenzhen→Hongkong HSR"], flights: ["BUD→SZX", "HKG→HAN közvetlen kb. 2 óra", "HAN→BUD egy átszállással"],
     regionalCost: "kb. ¥8 000–13 000 / 4 fő (repülő + Ninh Binh transzfer; dinamikus becslés)", homeAirport: "Hanoi HAN", homeTime: "kb. 16–20 óra hotel–BUD, egy átszállással",
     advantage: "Két ország, barlangokon átvezető csónak, vietnámi történelem és igazi open-jaw.", drawback: "Egy regionális repülés és hosszabb hazautazás; vízum/belépési szabály külön ellenőrzendő.", weatherRisk: "Közepes: Észak-Vietnám sokkal jobb, mint Da Nang, de zápor és késői trópusi rendszer lehet.",
@@ -23,7 +24,7 @@ export const itineraries: Itinerary[] = [
   {
     id: "xiamen", rank: 3, name: "Tengerparti Kína – csak vonattal", dates: "2026. okt. 16–30.",
     route: ["Budapest", "Shenzhen + Dapeng", "Hongkong", "Xiamen + Gulangyu", "Guangzhou", "Budapest"],
-    nights: ["Shenzhen 3 + Dapeng 1", "Hongkong 4", "Xiamen 3", "Guangzhou 2"], changes: 4,
+    nights: ["Shenzhen 3 + Dapeng 1", "Hongkong 4", "Xiamen 3", "Guangzhou: tranzit"], changes: 4,
     trains: ["Shenzhen→Hongkong", "Hongkong→Xiamen kb. 4 óra", "Xiamen→Guangzhou kb. 4–5,5 óra"], flights: ["BUD→SZX", "CAN→BUD közvetlen"],
     regionalCost: "kb. ¥5 500–8 000 / 4 fő (HSR + helyi közlekedés; becslés)", homeAirport: "Guangzhou CAN", homeTime: "kb. 15–17 óra",
     advantage: "Nincs regionális repülés; történelem, autómentes sziget és több strand.", drawback: "A Xiamen→Guangzhou vonatnap hosszú, és természeti wow-ban elmarad Guilintől.", weatherRisk: "Közepes: késői tájfun a teljes partvidéket érintheti.",
@@ -32,7 +33,7 @@ export const itineraries: Itinerary[] = [
   {
     id: "chaozhou", rank: 4, name: "Régi Kína, kevés logisztikával", dates: "2026. okt. 16–30.",
     route: ["Budapest", "Shenzhen + Dapeng", "Hongkong", "Chaozhou", "Guangzhou", "Budapest"],
-    nights: ["Shenzhen 4", "Dapeng 1", "Hongkong 4", "Chaozhou 2", "Guangzhou 2"], changes: 4,
+    nights: ["Shenzhen 3", "Dapeng 1", "Hongkong 4", "Chaozhou 2", "Guangzhou 1"], changes: 4,
     trains: ["Shenzhen→Hongkong", "Hongkong→Chaoshan kb. 2:23", "Chaoshan→Guangzhou kb. 2,5–3 óra"], flights: ["BUD→SZX", "CAN→BUD"],
     regionalCost: "kb. ¥4 500–7 000 / 4 fő", homeAirport: "Guangzhou CAN", homeTime: "kb. 15–17 óra",
     advantage: "A legjobb könnyen elérhető tradicionális város, erős gasztronómia, olcsó és vasutas.", drawback: "Kevesebb nagy természet; a keleti kitérő után Guangzhou felé részben visszafordul.", weatherRisk: "Alacsony–közepes.",
@@ -41,7 +42,7 @@ export const itineraries: Itinerary[] = [
   {
     id: "xian", rank: 5, name: "A nagy történelmi utazás", dates: "2026. okt. 16–30.",
     route: ["Budapest", "Shenzhen + Dapeng", "Hongkong", "Xi’an", "Budapest"],
-    nights: ["Shenzhen 3 + Dapeng 1", "Hongkong 4", "Xi’an 5"], changes: 3,
+    nights: ["Shenzhen 3 + Dapeng 1", "Hongkong 4", "Xi’an 4"], changes: 3,
     trains: ["Shenzhen→Hongkong"], flights: ["BUD→SZX", "HKG→XIY közvetlen, dátumra ellenőrizendő", "XIY→BUD egy átszállással"],
     regionalCost: "kb. ¥8 000–14 000 / 4 fő", homeAirport: "Xi’an XIY", homeTime: "kb. 17–21 óra",
     advantage: "Terracotta Army + városfal: Kína történelmi mélysége kompromisszum nélkül.", drawback: "Nincs valódi természeti főcél és kevés fürdés; két hosszabb repülős nap.", weatherRisk: "Alacsony; Xi’an hűvös lehet.",
@@ -50,7 +51,7 @@ export const itineraries: Itinerary[] = [
   {
     id: "sanya", rank: 6, name: "Kínai trópusok", dates: "2026. okt. 16–30.",
     route: ["Budapest", "Shenzhen + Dapeng", "Hongkong", "Sanya", "Guangzhou", "Budapest"],
-    nights: ["Shenzhen 3 + Dapeng 1", "Hongkong 4", "Sanya 4", "Guangzhou 1"], changes: 4,
+    nights: ["Shenzhen 3 + Dapeng 1", "Hongkong 4", "Sanya 3", "Guangzhou: tranzit"], changes: 4,
     trains: ["Shenzhen→Hongkong"], flights: ["HKG/SZX→Sanya", "Sanya→Guangzhou", "CAN→BUD"],
     regionalCost: "kb. ¥9 000–15 000 / 4 fő", homeAirport: "Guangzhou CAN", homeTime: "kb. 18–22 óra a Sanya→CAN szakasztól függően",
     advantage: "A legerősebb fürdés, resortpihenés és vízi park.", drawback: "Két regionális repülés; tájfun esetén pont a fő élmény esik ki.", weatherRisk: "Magas: meleg tenger, de októberi tájfun/eső valós kockázat.",
@@ -59,7 +60,7 @@ export const itineraries: Itinerary[] = [
   {
     id: "angkor", rank: 7, name: "Két civilizáció – Angkor", dates: "2026. okt. 16–30.",
     route: ["Budapest", "Shenzhen + Dapeng", "Hongkong", "Siem Reap / Angkor", "Budapest"],
-    nights: ["Shenzhen 3 + Dapeng 1", "Hongkong 4", "Siem Reap 5"], changes: 3,
+    nights: ["Shenzhen 3 + Dapeng 1", "Hongkong 4", "Siem Reap 4"], changes: 3,
     trains: ["Shenzhen→Hongkong"], flights: ["HKG→SAI egy átszállással", "SAI→BUD egy átszállással vagy BKK-n át"],
     regionalCost: "kb. ¥10 000–18 000 / 4 fő", homeAirport: "Siem Reap SAI", homeTime: "kb. 19–25 óra",
     advantage: "A legnagyobb történelmi wow és gyerekekkel is felfedezésnek érződik.", drawback: "2026-ban nincs stabil közvetlen HKG→SAI; a leggyengébb logisztika a shortlistben.", weatherRisk: "Közepes: esős évszak vége, délutáni zivatar és sár lehetséges.",
@@ -68,7 +69,7 @@ export const itineraries: Itinerary[] = [
   {
     id: "danang", rank: 8, name: "Hoi An – csak időjárási fogadással", dates: "2026. okt. 16–30.",
     route: ["Budapest", "Shenzhen + Dapeng", "Hongkong", "Da Nang + Hoi An", "Hanoi", "Budapest"],
-    nights: ["Shenzhen 3 + Dapeng 1", "Hongkong 4", "Hoi An 4", "Hanoi 1"], changes: 5,
+    nights: ["Shenzhen 3 + Dapeng 1", "Hongkong 4", "Hoi An 3", "Hanoi 1"], changes: 5,
     trains: ["Shenzhen→Hongkong"], flights: ["HKG→DAD közvetlen", "DAD→HAN", "HAN→BUD egy átszállással"],
     regionalCost: "kb. ¥10 000–17 000 / 4 fő", homeAirport: "Hanoi HAN", homeTime: "kb. 18–22 óra",
     advantage: "Papíron tökéletes történelem + aktív + tenger kombináció.", drawback: "Öt szállás/átszállási pont és a legrosszabb októberi időjárási profil.", weatherRisk: "Nagyon magas: október Da Nang legcsapadékosabb hónapja, tájfun és Hoi An-i árvíz lehet.",
@@ -77,13 +78,119 @@ export const itineraries: Itinerary[] = [
   {
     id: "zhangjiajie", rank: 9, name: "Avatar-hegyek – maximális kaland", dates: "2026. okt. 16–30.",
     route: ["Budapest", "Shenzhen + Dapeng", "Hongkong", "Zhangjiajie", "Guangzhou", "Budapest"],
-    nights: ["Shenzhen 3 + Dapeng 1", "Hongkong 4", "Zhangjiajie 4", "Guangzhou 1"], changes: 4,
+    nights: ["Shenzhen 3 + Dapeng 1", "Hongkong 4", "Zhangjiajie 3", "Guangzhou: tranzit"], changes: 4,
     trains: ["Shenzhen→Hongkong", "HKG→Zhangjiajie West kb. 6,5 óra vagy repülős alternatíva"], flights: ["CAN→BUD"],
     regionalCost: "kb. ¥7 500–13 000 / 4 fő", homeAirport: "Guangzhou CAN", homeTime: "kb. 19–23 óra, csatlakozástól függően",
     advantage: "A legnagyobb természeti wow és ikonikus felvonók/liftek.", drawback: "Hosszú transzfer, sok sor és lépcső, nulla strand.", weatherRisk: "Közepes: a köd elrejtheti a panorámát.",
     scores: { culture: 4, history: 2, nature: 5, active: 5, swimming: 2, family: 4, logistics: 3, value: 3, weather: 3, wow: 5 },
   },
 ];
+
+const routeEvidence: Record<string, Pick<Itinerary, "timeline" | "sources">> = {
+  "classic-guilin": {
+    timeline: [
+      { dates: "okt. 16–17.", place: "Budapest → Shenzhen", note: "Éjszakai hosszú távú utazás; a konkrét 2026-os jegy foglaláskor ellenőrzendő.", source: sources.flightBUDSZX },
+      { dates: "okt. 17–21.", place: "Shenzhen + Dapeng", note: "3 shenzheni és 1 dapengi éj." },
+      { dates: "okt. 21.", place: "Shenzhen → Hongkong", note: "Közvetlen HSR; utána 4 hongkongi éj.", source: sources.railSZHK },
+      { dates: "okt. 25.", place: "Hongkong → Guilin / Yangshuo", note: "Közvetlen HSR; utána 3 éj.", source: sources.railGuilinHK },
+      { dates: "okt. 28.", place: "Guilin → Guangzhou", note: "HSR-rel nyugat felől folytatjuk az útvonalat.", source: sources.railGuilinCAN },
+      { dates: "okt. 29.", place: "Guangzhou → Budapest", note: "A közvetlen járat jelenlegi menetrendi opció, még dátumra ellenőrizendő.", source: sources.flightCANBUD },
+      { dates: "okt. 29–30.", place: "Budapest", note: "Otthoni puffernap az iskola előtt." },
+    ],
+    sources: [sources.flightBUDSZX, sources.railSZHK, sources.railGuilinHK, sources.railGuilinCAN, sources.flightCANBUD],
+  },
+  "ninh-binh": {
+    timeline: [
+      { dates: "okt. 16–17.", place: "Budapest → Shenzhen", note: "Hosszú távú utazás.", source: sources.flightBUDSZX },
+      { dates: "okt. 17–21.", place: "Shenzhen + Dapeng", note: "3 + 1 éj." },
+      { dates: "okt. 21.", place: "Shenzhen → Hongkong", note: "HSR; utána 4 éj.", source: sources.railSZHK },
+      { dates: "okt. 25–28.", place: "Hongkong → Hanoi → Ninh Binh", note: "Közvetlen repülés, majd 2–3 órás közúti transzfer; 3 éj.", source: sources.flightHKGHAN },
+      { dates: "okt. 28–30.", place: "Hanoi → Budapest", note: "1 hanoi éj, majd egyátszállásos hazaút.", source: sources.flightHANBUD },
+    ],
+    sources: [sources.railSZHK, sources.flightHKGHAN, sources.flightHANBUD],
+  },
+  xiamen: {
+    timeline: [
+      { dates: "okt. 16–17.", place: "Budapest → Shenzhen", note: "Hosszú távú utazás.", source: sources.flightBUDSZX },
+      { dates: "okt. 17–21.", place: "Shenzhen + Dapeng", note: "3 + 1 éj." },
+      { dates: "okt. 21.", place: "Shenzhen → Hongkong", note: "HSR; utána 4 éj.", source: sources.railSZHK },
+      { dates: "okt. 25.", place: "Hongkong → Xiamen", note: "Közvetlen HSR; utána 3 éj Xiamenben és Gulangyun.", source: sources.railXiamenHK },
+      { dates: "okt. 28.", place: "Xiamen → Guangzhou", note: "Hosszú HSR-nap.", source: sources.railXiamenCAN },
+      { dates: "okt. 29.", place: "Guangzhou → Budapest", note: "Közvetlen járat csak a dátum ellenőrzése után vállalható.", source: sources.flightCANBUD },
+      { dates: "okt. 29–30.", place: "Budapest", note: "Otthoni puffernap az iskola előtt." },
+    ],
+    sources: [sources.railSZHK, sources.railXiamenHK, sources.flightCANBUD],
+  },
+  chaozhou: {
+    timeline: [
+      { dates: "okt. 16–17.", place: "Budapest → Shenzhen", note: "Hosszú távú utazás.", source: sources.flightBUDSZX },
+      { dates: "okt. 17–21.", place: "Shenzhen + Dapeng", note: "3 + 1 éj." },
+      { dates: "okt. 21.", place: "Shenzhen → Hongkong", note: "HSR; utána 4 éj.", source: sources.railSZHK },
+      { dates: "okt. 25.", place: "Hongkong → Chaozhou", note: "HSR Chaoshan állomásig; utána 2 éj.", source: sources.railHK },
+      { dates: "okt. 27.", place: "Chaoshan → Guangzhou", note: "Vasút; utána 1 guangzhoui éj.", source: sources.railChaoshanCAN },
+      { dates: "okt. 29.", place: "Guangzhou → Budapest", note: "A jelenlegi menetrend szerinti közvetlen opció.", source: sources.flightCANBUD },
+      { dates: "okt. 29–30.", place: "Budapest", note: "Otthoni puffernap az iskola előtt." },
+    ],
+    sources: [sources.railSZHK, sources.railChaoshanSZ, sources.flightCANBUD],
+  },
+  xian: {
+    timeline: [
+      { dates: "okt. 16–17.", place: "Budapest → Shenzhen", note: "Hosszú távú utazás.", source: sources.flightBUDSZX },
+      { dates: "okt. 17–21.", place: "Shenzhen + Dapeng", note: "3 + 1 éj." },
+      { dates: "okt. 21.", place: "Shenzhen → Hongkong", note: "HSR; utána 4 éj.", source: sources.railSZHK },
+      { dates: "okt. 25–29.", place: "Hongkong → Xi’an", note: "Repülés dátumra ellenőrizendő; utána 4 éj.", source: { label: "HKG–XIY aktuális útvonalak", url: "https://www.flightconnections.com/flights-from-hkg-to-xiy" } },
+      { dates: "okt. 29–30.", place: "Xi’an → Budapest", note: "Egyátszállásos hazaút.", source: { label: "XIY–BUD aktuális útvonalak", url: "https://www.flightconnections.com/flights-from-xiy-to-bud" } },
+    ],
+    sources: [sources.railSZHK, { label: "HKG–XIY aktuális útvonalak", url: "https://www.flightconnections.com/flights-from-hkg-to-xiy" }, { label: "XIY–BUD aktuális útvonalak", url: "https://www.flightconnections.com/flights-from-xiy-to-bud" }],
+  },
+  sanya: {
+    timeline: [
+      { dates: "okt. 16–17.", place: "Budapest → Shenzhen", note: "Hosszú távú utazás.", source: sources.flightBUDSZX },
+      { dates: "okt. 17–21.", place: "Shenzhen + Dapeng", note: "3 + 1 éj." },
+      { dates: "okt. 21.", place: "Shenzhen → Hongkong", note: "HSR; utána 4 éj.", source: sources.railSZHK },
+      { dates: "okt. 25–28.", place: "Hongkong → Sanya", note: "Közvetlen regionális repülés; utána 3 éj.", source: sources.flightHKGSanya },
+      { dates: "okt. 28.", place: "Sanya → Guangzhou", note: "Pozicionáló járat; szorosabb, időjárás-érzékeny zárás.", source: sources.flightSYXCAN },
+      { dates: "okt. 29.", place: "Guangzhou → Budapest", note: "A jelenlegi menetrend szerinti közvetlen opció.", source: sources.flightCANBUD },
+      { dates: "okt. 29–30.", place: "Budapest", note: "Otthoni puffernap az iskola előtt." },
+    ],
+    sources: [sources.railSZHK, sources.flightSanya, sources.flightCANBUD, sources.climateSanya],
+  },
+  angkor: {
+    timeline: [
+      { dates: "okt. 16–17.", place: "Budapest → Shenzhen", note: "Hosszú távú utazás.", source: sources.flightBUDSZX },
+      { dates: "okt. 17–21.", place: "Shenzhen + Dapeng", note: "3 + 1 éj." },
+      { dates: "okt. 21.", place: "Shenzhen → Hongkong", note: "HSR; utána 4 éj.", source: sources.railSZHK },
+      { dates: "okt. 25–29.", place: "Hongkong → Siem Reap / Angkor", note: "Jelenleg átszállásos elérés a reális alap; utána 4 éj.", source: { label: "HKG–SAI aktuális útvonalak", url: "https://www.flightconnections.com/flights-from-hkg-to-sai" } },
+      { dates: "okt. 29–30.", place: "Siem Reap → Budapest", note: "Hosszú, egy- vagy kétátszállásos hazaút.", source: { label: "SAI–BUD aktuális útvonalak", url: "https://www.flightconnections.com/flights-from-sai-to-bud" } },
+    ],
+    sources: [{ label: "HKG–SAI aktuális útvonalak", url: "https://www.flightconnections.com/flights-from-hkg-to-sai" }, { label: "SAI–BUD aktuális útvonalak", url: "https://www.flightconnections.com/flights-from-sai-to-bud" }, sources.climateSiem],
+  },
+  danang: {
+    timeline: [
+      { dates: "okt. 16–17.", place: "Budapest → Shenzhen", note: "Hosszú távú utazás.", source: sources.flightBUDSZX },
+      { dates: "okt. 17–21.", place: "Shenzhen + Dapeng", note: "3 + 1 éj." },
+      { dates: "okt. 21.", place: "Shenzhen → Hongkong", note: "HSR; utána 4 éj.", source: sources.railSZHK },
+      { dates: "okt. 25–28.", place: "Hongkong → Da Nang + Hoi An", note: "Közvetlen repülés; 3 éj, csak lemondható programokkal.", source: sources.flightHKGDAD },
+      { dates: "okt. 28.", place: "Da Nang → Hanoi", note: "Közvetlen belföldi repülés; utána 1 hanoi éj.", source: sources.flightDADHAN },
+      { dates: "okt. 29–30.", place: "Hanoi → Budapest", note: "Egyátszállásos hazaút.", source: sources.flightHANBUD },
+    ],
+    sources: [sources.flightHKGDAD, sources.flightHANBUD, sources.climateDanang],
+  },
+  zhangjiajie: {
+    timeline: [
+      { dates: "okt. 16–17.", place: "Budapest → Shenzhen", note: "Hosszú távú utazás.", source: sources.flightBUDSZX },
+      { dates: "okt. 17–21.", place: "Shenzhen + Dapeng", note: "3 + 1 éj." },
+      { dates: "okt. 21.", place: "Shenzhen → Hongkong", note: "HSR; utána 4 éj.", source: sources.railSZHK },
+      { dates: "okt. 25–28.", place: "Hongkong → Zhangjiajie", note: "Hosszú közvetlen HSR vagy dátumfüggő repülés; utána 3 éj.", source: { label: "Hongkong–Zhangjiajie HSR", url: "https://www.travelchinaguide.com/china-trains/high-speed/hongkong-zhangjiajie.htm" } },
+      { dates: "okt. 28.", place: "Zhangjiajie → Guangzhou", note: "Csak kényelmes közvetlen járattal vállalnám.", source: sources.flightDYGCAN },
+      { dates: "okt. 29.", place: "Guangzhou → Budapest", note: "A jelenlegi menetrend szerinti közvetlen opció.", source: sources.flightCANBUD },
+      { dates: "okt. 29–30.", place: "Budapest", note: "Otthoni puffernap az iskola előtt." },
+    ],
+    sources: [{ label: "Hongkong–Zhangjiajie HSR", url: "https://www.travelchinaguide.com/china-trains/high-speed/hongkong-zhangjiajie.htm" }, sources.flightCANBUD],
+  },
+};
+
+export const itineraries: Itinerary[] = routeData.map((route) => ({ ...route, ...routeEvidence[route.id] }));
 
 export const rankingCategories = [
   ["🥇 Legjobb természet", "Guilin + Yangshuo", "A legtöbbféle karsztélmény: hajó, tutaj, bicikli, barlang és kilátó."],

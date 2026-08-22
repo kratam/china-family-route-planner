@@ -1,13 +1,13 @@
 import type { Attraction, Destination, Hotel, Photo, SourceRef, Transport } from "./types";
 import { sources } from "./sources";
+import photoCredits from "./photo-credits.json";
 
-const commons = "https://commons.wikimedia.org/wiki/Main_Page";
 const booking = (query: string) => `https://www.booking.com/searchresults.hu.html?ss=${encodeURIComponent(query)}`;
 const klook = (query: string) => `https://www.klook.com/en-US/search/?query=${encodeURIComponent(query)}`;
 const trip = (query: string) => `https://www.trip.com/travel-guide/search/?keyword=${encodeURIComponent(query)}`;
 const photo = (id: string, alt1: string, alt2: string): Photo[] => [
-  { src: `/photos/${id}-1.jpg`, alt: alt1, creditUrl: commons },
-  { src: `/photos/${id}-2.jpg`, alt: alt2, creditUrl: commons },
+  { src: `/photos/${id}-1.jpg`, alt: alt1, ...photoCredits[id as keyof typeof photoCredits][0] },
+  { src: `/photos/${id}-2.jpg`, alt: alt2, ...photoCredits[id as keyof typeof photoCredits][1] },
 ];
 const hotels = (city: string, value: string, premium: string, location: string): Hotel[] => [
   { name: value, tier: "ár/érték", note: `Családi szobához jó kiindulópont ${city} térségében; a 2026. októberi ár a foglalási oldalon ellenőrizendő.`, url: booking(`${value}, ${city}`) },
@@ -19,14 +19,16 @@ const t = (summary: string, direct: boolean, duration: string, doorToDoor: strin
 const climateSouth: SourceRef = { label: "Hongkongi 1991–2020 klímanormál – régiós támpont", url: "https://www.weather.gov.hk/en/cis/normal.htm" };
 const railGeneric: SourceRef = { label: "Trip.com vasúti kereső – aktuális menetrend", url: "https://www.trip.com/trains/china/" };
 const flightGeneric: SourceRef = { label: "FlightConnections – aktuális útvonalhálózat", url: "https://www.flightconnections.com/" };
+const dapengTransport: SourceRef = { label: "Dapeng-félsziget – aktuális program- és transzferkereső", url: "https://www.klook.com/en-US/search/?query=Dapeng%20Peninsula%20Shenzhen" };
+const macauTransport: SourceRef = { label: "Hongkong–Makaó híd shuttle busz – hivatalos oldal", url: "https://www.hzmbus.com/" };
 
 export const destinations: Destination[] = [
   {
     id: "shenzhen", name: "Shenzhen", country: "Kína", emoji: "🌆", region: "Gyöngy-folyó deltája",
     feeling: "Üvegfelhőkarcolók, elektronikai őrület és gondosan megtervezett tengerparti parkok: Shenzhen nem a régi Kína, hanem a jövő laboratóriuma.",
     editorial: "Biztos bázis, de 3–4 éjnél tovább csak akkor maradnék, ha családi vagy üzleti program is köt ide.",
-    tags: ["train", "history", "active", "swimming", "beach", "family", "good-weather", "open-jaw"], nights: { min: 3, ideal: 4 },
-    scores: { history: 2, nature: 3, active: 4, swimming: 3, family: 5, weather: 4, wow: 4 }, travelCost: "helyi közlekedés ¥20–80/nap", realisticTime: "biztos állomás",
+    tags: ["train", "history", "active", "swimming", "beach", "family", "good-weather"], nights: { min: 3, ideal: 4 },
+    scores: { history: 2, nature: 3, active: 4, swimming: 3, family: 5, weather: 4, wow: 4 }, travelCost: "helyben; nincs regionális odaút", realisticTime: "biztos állomás",
     fromShenzhen: t("Helyben", true, "—", "—", "¥0", sources.railSZHK),
     fromHongKong: t("Közvetlen HSR Futian/Shenzhen North felé", true, "14–33 perc", "1,5–2,5 óra határátlépéssel", "¥68–75 / felnőtt, jelenlegi árszint", sources.railSZHK),
     homeward: "A jelenlegi téli menetrendben a Hainan Airlines SZX→BUD közvetlen járata hétfőn és pénteken szerepel; 2026. okt. 30. péntek ezért különösen érdekes, de indulás 01:55 körül.",
@@ -48,7 +50,7 @@ export const destinations: Destination[] = [
     editorial: "Shenzhen részeként kezelném, de 1 éjszaka Jiaochangweiben sokkal jobb ritmust ad, mint a hosszú oda-vissza nap.",
     tags: ["history", "nature", "active", "swimming", "beach", "boat", "family"], nights: { min: 1, ideal: 1 },
     scores: { history: 3, nature: 4, active: 4, swimming: 4, family: 4, weather: 3, wow: 4 }, travelCost: "¥120–350/fő transzferrel", realisticTime: "2–3 óra Shenzhen központjából",
-    fromShenzhen: t("Metro/busz vagy privát transzfer; nincs közvetlen HSR", false, "2–3 óra", "2,5–3,5 óra", "¥15–30 tömegközlekedés; autó becslés ¥350–600/jármű", railGeneric),
+    fromShenzhen: t("Metro/busz vagy privát transzfer; nincs közvetlen HSR", false, "2–3 óra", "2,5–3,5 óra", "¥15–30 tömegközlekedés; autó becslés ¥350–600/jármű", dapengTransport),
     fromHongKong: t("Határátlépés + shenzheni transzfer", false, "3,5–5 óra", "4–5,5 óra", "kb. ¥100–300/fő, becslés", sources.railSZHK),
     homeward: "Vissza Shenzhenbe, vagy közúton közvetlenül HKG-re; önálló hazautazási kapu nincs.",
     weather: { air: "kb. 24–28 °C", rain: "változó", risk: "közepes", note: "A strand jó lehet, de szél/tájfun esetén a hajózás és vízi sport leáll.", source: climateSouth },
@@ -67,7 +69,7 @@ export const destinations: Destination[] = [
     feeling: "Felhőkarcolók és dzsungeles hegyek szorulnak ugyanarra a keskeny partsávra. Reggel emeletes villamos, délután túra és strand, este komp a fények között.",
     editorial: "A legjobb város + természet + strand + gyerekprogram kombináció; a fő útvonalban 3–4 éjet adnék neki.",
     tags: ["train", "history", "nature", "active", "swimming", "beach", "boat", "family", "good-weather", "open-jaw"], nights: { min: 3, ideal: 4 },
-    scores: { history: 3, nature: 5, active: 5, swimming: 4, family: 5, weather: 4, wow: 5 }, travelCost: "Shenzhenből ¥68–75; helyben HK$80–180/nap", realisticTime: "1,5–2,5 óra Shenzhen hoteltől HK hotelig",
+    scores: { history: 3, nature: 5, active: 5, swimming: 4, family: 5, weather: 4, wow: 5 }, travelCost: "Shenzhen→Hongkong HSR ¥68–75/fő", realisticTime: "1,5–2,5 óra Shenzhen hoteltől HK hotelig",
     fromShenzhen: t("Közvetlen HSR West Kowloonba", true, "14–33 perc", "1,5–2,5 óra", "¥68–75 / felnőtt", sources.railSZHK),
     fromHongKong: t("Helyben", true, "—", "—", "HK$0", sources.railHK),
     homeward: "HKG→BUD jó egyátszállásos opciókkal (Istanbul, Doha, Dubai, Helsinki/európai hubok); tipikusan kb. 15–19 óra teljes út, konkrét jegyet dátumra kell ellenőrizni.",
@@ -89,8 +91,8 @@ export const destinations: Destination[] = [
     editorial: "Egy éjszaka megéri, ha a történelmi központ fontos; a két hetes főút harmadik nagy bázisát nem erre használnám.",
     tags: ["history", "boat", "family", "open-jaw"], nights: { min: 1, ideal: 1 },
     scores: { history: 4, nature: 2, active: 2, swimming: 2, family: 3, weather: 4, wow: 4 }, travelCost: "HK$65–175/fő komp/busz, jelenlegi szint", realisticTime: "2–3 óra Hongkong belvárosából",
-    fromShenzhen: t("Shekou komp vagy közút Zhuhai felé", true, "1–2,5 óra", "2,5–4 óra", "kb. ¥150–300/fő, becslés", railGeneric),
-    fromHongKong: t("HZMB busz vagy komp", true, "40–60 perc járművön", "2–3 óra", "kb. HK$65–175/fő", railGeneric),
+    fromShenzhen: t("Shekou komp vagy közút Zhuhai felé", true, "1–2,5 óra", "2,5–4 óra", "kb. ¥150–300/fő, becslés", macauTransport),
+    fromHongKong: t("HZMB busz vagy komp", true, "40–60 perc járművön", "2–3 óra", "kb. HK$65–175/fő", macauTransport),
     homeward: "MFM-ről Budapestre nincs ésszerű közvetlen út; HKG vagy CAN felé folytatnám.",
     weather: { air: "kb. 24–28 °C", rain: "többnyire kedvező", risk: "közepes", note: "Hasonló Hongkonghoz, késői tájfun lehetséges.", source: climateSouth },
     swimming: { realistic: "nem ez a fő erősség", water: "kb. 26 °C", where: "Coloane strandjai / hoteles medencék" },
@@ -128,7 +130,7 @@ export const destinations: Destination[] = [
     id: "zhaoqing", name: "Zhaoqing", country: "Kína", emoji: "🪨", region: "Guangdong",
     feeling: "Tó fölé emelkedő mészkősziklák, barlangok és csónakok egy nyugodtabb kínai város közepén. Guilin hangulatából ad ízelítőt jóval közelebb.",
     editorial: "A legjobb 2 éjszakás közeli természetes kitérő, de nem valódi Guilin-helyettesítő: kisebb és kevésbé katartikus.",
-    tags: ["train", "history", "nature", "active", "cave", "boat", "family", "good-weather"], nights: { min: 1, ideal: 2 },
+    tags: ["train", "history", "nature", "active", "cave", "boat", "family", "good-weather", "open-jaw"], nights: { min: 1, ideal: 2 },
     scores: { history: 3, nature: 4, active: 4, swimming: 1, family: 4, weather: 4, wow: 3 }, travelCost: "kb. ¥120–220/fő, jelenlegi árszint", realisticTime: "3–4 óra Shenzhenből",
     fromShenzhen: t("Közvetlen D/G vonatok vagy Guangzhou South átszállás", true, "kb. 1,5–2,5 óra", "3–4 óra", "kb. ¥120–200/fő, becslés", railGeneric),
     fromHongKong: t("Egyes közvetlen vonatok / biztosabb Guangzhou South átszállással", false, "kb. 2–3 óra", "3,5–4,5 óra", "kb. HK$300–380/fő, becslés", sources.railHK),
@@ -170,7 +172,7 @@ export const destinations: Destination[] = [
     id: "chaozhou", name: "Chaozhou / Chaoshan", country: "Kína", emoji: "🏮", region: "Kelet-Guangdong",
     feeling: "Lámpásokkal teli kapuív-utca, működő templomok és a Han folyón szétnyitható különös híd. Este a teaházak és a chaoshan konyha viszi a főszerepet.",
     editorial: "A legjobb könnyen elérhető „régi kínai város”; 2 éjre kiváló, de természeti változatosságban nem versenyez Guilinnel.",
-    tags: ["train", "history", "bike", "family", "good-weather"], nights: { min: 2, ideal: 2 },
+    tags: ["train", "history", "bike", "family", "good-weather", "open-jaw"], nights: { min: 2, ideal: 2 },
     scores: { history: 5, nature: 2, active: 2, swimming: 1, family: 4, weather: 4, wow: 4 }, travelCost: "¥113–266 SZ-ből / HK$317 HK-ból", realisticTime: "3–4 óra hotel–hotelig",
     fromShenzhen: t("Sok közvetlen HSR Chaoshan állomásra + taxi", true, "1:28–3:14", "3–4 óra", "¥113–266/felnőtt 2. osztály", sources.railChaoshanSZ),
     fromHongKong: t("Napi több közvetlen HSR Chaoshan állomásra", true, "kb. 2:21–2:23", "3,5–4,5 óra", "HK$317/felnőtt, HK$159/gyerek – 2026. júliusi árszint", { label: "MTR Hongkong–Chaoshan (2026. júl.)", url: "https://www.highspeed.mtr.com.hk/en/trip-planner.html?id=WEK2CHS" }),
@@ -191,12 +193,12 @@ export const destinations: Destination[] = [
     id: "xiamen", name: "Xiamen + Gulangyu", country: "Kína", emoji: "🏝️", region: "Fujian",
     feeling: "Autómentes sziget villákkal, zongoraszóval és banyanfákkal; túloldalt hosszú tengerparti kerékpárút és modern, laza város.",
     editorial: "A legjobb vonatos történelem + tengerpart kombináció, ha Guilin helyett könnyebb, urbánusabb 3 éjszakát szeretnénk.",
-    tags: ["train", "history", "active", "swimming", "beach", "boat", "bike", "family", "good-weather"], nights: { min: 2, ideal: 3 },
+    tags: ["train", "history", "active", "swimming", "beach", "boat", "bike", "family", "good-weather", "open-jaw"], nights: { min: 2, ideal: 3 },
     scores: { history: 4, nature: 3, active: 4, swimming: 3, family: 5, weather: 4, wow: 4 }, travelCost: "kb. ¥250–375 SZ-ből / HK$429 HK-ból", realisticTime: "4–6 óra hotel–hotelig",
     fromShenzhen: t("Közvetlen parti HSR Xiamen/Xiamen North felé", true, "kb. 2,5–4 óra", "4–5 óra", "kb. ¥250–300/felnőtt, jelenlegi árszint", sources.railXiamenHK),
     fromHongKong: t("Közvetlen HSR Xiamenbe", true, "3:59 körül", "5–6 óra", "HK$429/felnőtt, HK$215/gyerek – 2026. júliusi árszint", sources.railXiamenHK),
     homeward: "Xiamenből BUD felé egy átszállás lehetséges, de családdal gyakran tisztább HSR Guangzhou felé és CAN→BUD; ez 5–6 órás szárazföldi nap.",
-    weather: { air: "kb. 22–28 °C", rain: "általában jó", risk: "közepes", note: "Kellemesebb időszak, de késői tájfun és hullámzás lehetséges.", source: climateSouth },
+    weather: { air: "kb. 22–28 °C", rain: "általában jó", risk: "közepes", note: "Kellemesebb időszak, de késői tájfun és hullámzás lehetséges.", source: { label: "Xiamen októberi időjárása", url: "https://www.chinahighlights.com/xiamen/weather/october.htm" } },
     swimming: { realistic: "jó időben igen", water: "kb. 25–27 °C", where: "Huangcuo/Baicheng; Gulangyu kisebb strandjai" },
     why: ["Gulangyu UNESCO világörökség", "Autómentes, sétálható sziget", "Tengerparti biciklizés", "Város + strand rossz logisztikai stressz nélkül"],
     attractions: [
@@ -212,12 +214,12 @@ export const destinations: Destination[] = [
     id: "shaoguan", name: "Shaoguan + Danxia-hegy", country: "Kína", emoji: "🧗", region: "Észak-Guangdong",
     feeling: "Vörös homokkőfalak, keskeny gerincek és folyókanyarok. Kevésbé álomszerű, mint Guilin, viszont sokkal inkább valódi hegyi kaland.",
     editorial: "Aktív családnak erős 2 éjszaka; Guilin látványosabb és változatosabb, Danxia fizikailag megterhelőbb és időjárásérzékenyebb.",
-    tags: ["train", "nature", "active", "boat", "family", "good-weather"], nights: { min: 2, ideal: 2 },
+    tags: ["train", "nature", "active", "boat", "family", "good-weather", "open-jaw"], nights: { min: 2, ideal: 2 },
     scores: { history: 2, nature: 5, active: 5, swimming: 1, family: 3, weather: 4, wow: 4 }, travelCost: "¥180–340/fő", realisticTime: "3–5 óra a park bejáratáig",
     fromShenzhen: t("Közvetlen HSR Shaoguanba", true, "1:19–2:14", "3,5–4,5 óra a parkig", "kb. ¥180–220/felnőtt", { label: "Shenzhen–Shaoguan vasút (2026. máj.)", url: "https://www.travelchinaguide.com/china-trains/shenzhen-shaoguan.htm" }),
     fromHongKong: t("Közvetlen HSR Shaoguanba", true, "kb. 2 óra", "4–5 óra a parkig", "¥321–340/felnőtt 2. osztály", sources.railShaoguan),
     homeward: "Shaoguan→Guangzhou South kb. 1 óra HSR, majd CAN→BUD: jó open-jaw lezárás.",
-    weather: { air: "kb. 17–26 °C", rain: "többnyire szárazabb", risk: "alacsony", note: "Jó túraidő, de nedves lépcsők csúszhatnak.", source: climateSouth },
+    weather: { air: "kb. 17–26 °C", rain: "többnyire szárazabb", risk: "alacsony", note: "Jó túraidő, de nedves lépcsők csúszhatnak.", source: { label: "Shaoguan havi klímája", url: "https://www.timeanddate.com/weather/china/shaoguan/climate" } },
     swimming: { realistic: "nem", water: "—", where: "folyami hajózás, nem strand" },
     why: ["UNESCO Global Geopark jellegű vörös sziklák", "Felvonó + kilátók", "Jinjiang folyami hajózás", "Rövid, de meredek túrák"],
     attractions: [
@@ -232,8 +234,8 @@ export const destinations: Destination[] = [
     id: "kaiping", name: "Kaiping Diaolou", country: "Kína", emoji: "🏰", region: "Guangdong vidéke",
     feeling: "Rizsföldekből kiemelkedő, európai–kínai őrtornyok mesélnek kivándorlásról, banditákról és hazatérő családokról. Vizuálisan különös, csendes vidék.",
     editorial: "Történelmileg izgalmas, de 8 és 11 évesekkel csak jó idegenvezetéssel működik; logisztikája gyengébb, mint Chaozhoué.",
-    tags: ["history", "bike", "family", "good-weather"], nights: { min: 1, ideal: 1 },
-    scores: { history: 5, nature: 3, active: 2, swimming: 1, family: 3, weather: 4, wow: 3 }, travelCost: "privát autóval kb. ¥700–1 200/jármű, becslés", realisticTime: "3,5–5 óra",
+    tags: ["history", "bike", "family", "good-weather", "open-jaw"], nights: { min: 1, ideal: 1 },
+    scores: { history: 5, nature: 3, active: 2, swimming: 1, family: 3, weather: 4, wow: 3 }, travelCost: "vasút + taxi kb. ¥180–300/fő, becslés", realisticTime: "3,5–5 óra",
     fromShenzhen: t("HSR Kaiping South felé átszállással vagy privát autó", false, "2–3 óra + helyi autó", "4–5 óra", "kb. ¥180–300/fő vasút+taxi, becslés", railGeneric),
     fromHongKong: t("HZMB/Zhuhai vagy Guangzhou irány + közúti transzfer", false, "3–4 óra", "4,5–6 óra", "kb. HK$350–600/fő, becslés", railGeneric),
     homeward: "Kaiping→Guangzhou/CAN közúton kb. 2 óra; ésszerű open-jaw, Shenzhenbe nem kell visszamenni.",
@@ -358,7 +360,7 @@ export const destinations: Destination[] = [
     feeling: "Hajón alszunk több száz zöld sziget között; reggel kajak, délután barlang, este naplemente a fedélzetről.",
     editorial: "1 éj rohanós, 2 éj adja meg az élményt. Ninh Binh aktívabb és olcsóbb; Ha Long különlegesebb az ottalvós hajó miatt.",
     tags: ["flight", "nature", "active", "swimming", "cave", "boat", "family", "open-jaw"], nights: { min: 1, ideal: 2 },
-    scores: { history: 1, nature: 5, active: 4, swimming: 3, family: 5, weather: 3, wow: 5 }, travelCost: "cruise + transzfer kb. €140–350/fő", realisticTime: "HAN-tól 3–4 óra",
+    scores: { history: 1, nature: 5, active: 4, swimming: 3, family: 5, weather: 3, wow: 5 }, travelCost: "HKG/SZX→HAN + kikötőtranszfer kb. ¥900–2 100/fő", realisticTime: "HAN-tól 3–4 óra",
     fromShenzhen: t("Közvetlen repülő Hanoiba + cruise transzfer", true, "2 óra repülés + 3 óra busz", "9–11 óra", "kb. ¥1 500–3 000/fő cruise-zal", sources.flightSZXHAN),
     fromHongKong: t("Közvetlen repülő Hanoiba + cruise transzfer", true, "2 óra repülés + 3 óra busz", "8–10 óra", "kb. HK$1 800–3 500/fő cruise-zal", sources.flightHKGHAN),
     homeward: "Cruise transzfer vissza HAN-ra, majd egy átszállással BUD; a hajó után érdemes Hanoi reptér mellett vagy belvárosban 1 éj puffert hagyni.",
@@ -411,7 +413,7 @@ export const destinations: Destination[] = [
       a("Po Nagar Cham Towers", "Kompakt történelmi cham templomegyüttes.", "történelem", 4, "1–2 óra", trip("Po Nagar Cham Towers")),
     ],
     hotels: hotels("Nha Trang", "Libra Nha Trang", "InterContinental Nha Trang", "Mia Resort Nha Trang"),
-    photos: photo("nha-trang", "Nha Trang városi strandja és szigetei", "VinWonders Nha Trang tenger feletti felvonója"),
+    photos: photo("nha-trang", "Po Nagar cham templomtornyai Nha Trangban", "VinWonders Nha Trang tenger feletti felvonója"),
   },
   {
     id: "siem-reap", name: "Siem Reap / Angkor", country: "Kambodzsa", emoji: "🛕", region: "Északnyugat-Kambodzsa",
