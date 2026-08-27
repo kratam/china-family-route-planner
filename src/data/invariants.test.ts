@@ -4,6 +4,7 @@ import { describe, expect, it } from "vitest";
 import { destinations } from "./destinations";
 import { itineraries } from "./itineraries";
 import { travelogues } from "./travelogues";
+import { homewardFares, longHaulFares, regionalFares } from "./flightPrices";
 
 describe("published travel data invariants", () => {
   it("uses unique destination ids and bounded scores", () => {
@@ -46,8 +47,40 @@ describe("published travel data invariants", () => {
   });
 
   it("counts hotel changes rather than hotel bases", () => {
-    const expected = { "classic-guilin": 3, "ninh-binh": 4, xiamen: 3, chaozhou: 4, xian: 3, sanya: 3, angkor: 3, danang: 4, zhangjiajie: 3 };
+    const expected = { "shenzhen-return": 4, "classic-guilin": 3, "ninh-binh": 4, xiamen: 3, chaozhou: 4, xian: 3, sanya: 3, angkor: 3, danang: 4, zhangjiajie: 3 };
     for (const itinerary of itineraries) expect(itinerary.changes).toBe(expected[itinerary.id as keyof typeof expected]);
+  });
+
+  it("prices every itinerary with a concrete, four-person flight budget", () => {
+    for (const itinerary of itineraries) {
+      expect(itinerary.flightBudget.totalEur).toBeGreaterThan(1000);
+      expect(itinerary.flightBudget.totalEur).toBeLessThan(10_000);
+      expect(itinerary.flightBudget.breakdown.length).toBeGreaterThan(20);
+      expect(itinerary.flightBudget.note.length).toBeGreaterThan(20);
+    }
+    const winner = itineraries.find((route) => route.rank === 1);
+    expect(winner?.id).toBe("shenzhen-return");
+    expect(winner?.flightBudget.allDirectLongHaul).toBe(true);
+    const cheapest = Math.min(...itineraries.map((route) => route.flightBudget.totalEur));
+    expect(winner?.flightBudget.totalEur).toBe(cheapest);
+    expect(new Set(itineraries.map((route) => route.rank)).size).toBe(itineraries.length);
+  });
+
+  it("keeps every quoted fare sourced and internally consistent", () => {
+    for (const fare of longHaulFares) {
+      expect(fare.eur).toBeGreaterThan(1000);
+      expect(fare.segments.length).toBeGreaterThanOrEqual(2);
+      expect(fare.allDirect).toBe(fare.segments.every((segment) => segment.nonstop));
+      expect(fare.source.url).toContain("google.com/travel/flights");
+      if (fare.agencyEur !== undefined) expect(fare.agencyName).toBeTruthy();
+    }
+    for (const fare of [...regionalFares, ...homewardFares]) {
+      expect(fare.eur).toBeGreaterThan(50);
+      expect(fare.source.url).toMatch(/^https:\/\//);
+      expect(fare.date).toMatch(/okt\./);
+    }
+    const cheapestLongHaulDirect = longHaulFares.filter((fare) => fare.allDirect).sort((a, b) => a.eur - b.eur)[0];
+    expect(cheapestLongHaulDirect.id).toBe("rt-szx");
   });
 
   it("has one transparent, family-aware travelogue for every destination", () => {

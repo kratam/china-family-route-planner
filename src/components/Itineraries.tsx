@@ -1,4 +1,5 @@
 import { itineraries } from "@/data/itineraries";
+import { grouped, priceCheck } from "@/data/flightPrices";
 import { scoreItinerary } from "@/lib/scoring";
 import { SourceLink } from "./SourceLink";
 
@@ -19,10 +20,13 @@ export function Itineraries() {
   return (
     <section className="editorial-section" id="utvonalak">
       <div className="section-kicker">2026. október 16–30.</div>
-      <h2>Kilenc teljes, open-jaw útvonal</h2>
+      <h2>Tíz teljes útvonal – konkrét repülőárral</h2>
       <p className="section-lead">
-        A regionális költségek négy főre szóló tervezési sávok, nem ajánlatok. A
-        nemzetközi BUD-jegyet nem tartalmazzák.
+        A <strong>repülőár minden kártyán konkrét, 2026. augusztus 27-én lekérdezett
+        ár</strong> a teljes négyfős társaságra (2 felnőtt + 2 gyerek, 8 és 10 év),
+        adókkal együtt. A régiós költségsáv ezen felül értendő, és továbbra is
+        tervezési becslés. A teljes összevetés a{" "}
+        <a href="./repuloarak/">repülőárak oldalon</a> van.
       </p>
       <div className="itinerary-list">
         {itineraries.map((route) => (
@@ -38,6 +42,19 @@ export function Itineraries() {
                 <span>/ 5</span>
               </div>
             </header>
+            <div className={`flight-price${route.flightBudget.allDirectLongHaul ? " is-direct" : ""}`}>
+              <div className="flight-price-figure">
+                <strong>{grouped(route.flightBudget.totalEur)} €</strong>
+                <span>repülő · 4 fő · ≈ {grouped(Math.round((route.flightBudget.totalEur * priceCheck.hufRate) / 1000) * 1000)} Ft</span>
+              </div>
+              <div className="flight-price-body">
+                <span className={`direct-flag${route.flightBudget.allDirectLongHaul ? " yes" : " no"}`}>
+                  {route.flightBudget.allDirectLongHaul ? "✓ oda és vissza is közvetlen" : "átszállásos hosszú távú szakasz"}
+                </span>
+                <p>{route.flightBudget.breakdown}</p>
+                <p className="flight-price-note">{route.flightBudget.note}</p>
+              </div>
+            </div>
             <div className="route-line">
               {route.route.map((place, i) => (
                 <span key={`${place}-${i}`}>

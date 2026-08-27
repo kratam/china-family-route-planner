@@ -85,6 +85,17 @@ export type ItineraryScores = {
   family: number; logistics: number; value: number; weather: number; wow: number;
 };
 
+export type FlightBudget = {
+  /** A teljes négyfős repülőköltség euróban, konkrét 2026. augusztusi lekérdezésből. */
+  totalEur: number;
+  /** Hogyan áll össze ez az összeg. */
+  breakdown: string;
+  /** Igaz, ha a hosszú távú oda- és hazaút is közvetlen. */
+  allDirectLongHaul: boolean;
+  /** Egy mondat arról, mit érdemes tudni erről az árról. */
+  note: string;
+};
+
 export type Itinerary = {
   id: string;
   rank: number;
@@ -96,6 +107,7 @@ export type Itinerary = {
   trains: string[];
   flights: string[];
   regionalCost: string;
+  flightBudget: FlightBudget;
   homeAirport: string;
   homeTime: string;
   advantage: string;

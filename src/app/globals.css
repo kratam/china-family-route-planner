@@ -32,3 +32,88 @@ footer{background:#102b23;color:white;padding:3rem 6vw;display:grid;grid-templat
 .link-guide{max-width:850px;margin:-.35rem 0 1.2rem;color:#66736c;font-size:.72rem;line-height:1.55}.attraction-list{grid-template-columns:1fr}.attraction{display:grid;grid-template-columns:minmax(210px,.72fr) minmax(0,1.28fr);gap:1.35rem;padding:1.25rem;background:#fff;transition:border-color .2s,transform .2s}.attraction-copy{padding:.2rem .3rem}.attraction-copy>p{line-height:1.55}.attraction-meta{flex-direction:row;flex-wrap:wrap;align-items:center;margin-top:1rem;min-width:0}.attraction-meta span{padding:.28rem .48rem;border-radius:999px;background:var(--sand)}.attraction-links ol{display:grid;gap:.45rem;list-style:none;margin:0;padding:0}.program-link{display:grid;grid-template-columns:27px minmax(0,1fr) auto;align-items:start;gap:.65rem;padding:.72rem .8rem;border:1px solid #e0e5e1;background:#f8faf8;transition:.18s}.program-link:hover{border-color:var(--gold);background:#fff;transform:translateX(2px)}.program-link.source{background:#eef4f0;border-left:3px solid var(--moss)}.program-link.travelogue{background:#fff8ea;border-left:3px solid var(--gold)}.program-link.google,.program-link.getyourguide{padding-block:.58rem}.link-number{font:700 .62rem/1.7 Georgia;color:#88968e;letter-spacing:.04em}.link-content{display:flex;flex-direction:column;min-width:0;gap:.18rem}.link-content strong{font-size:.72rem;color:#183c31;letter-spacing:.01em}.link-content small{font-size:.7rem;line-height:1.45;color:#68766e}.travelogue-title{font:600 .86rem/1.3 Georgia;color:#2b342f}.travelogue-badges{display:flex;flex-wrap:wrap;gap:.3rem;margin:.12rem 0}.travelogue-badges i{font-style:normal;font-size:.6rem;text-transform:uppercase;letter-spacing:.05em;font-weight:800;background:#ede2c9;color:#6d531f;padding:.22rem .38rem;border-radius:999px}.program-link>svg{margin-top:.15rem;color:#75847b}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 
 @media(max-width:700px){.attraction{grid-template-columns:1fr;padding:.9rem;gap:.8rem}.attraction-copy{padding:.1rem}.program-link{grid-template-columns:24px minmax(0,1fr) auto;padding:.68rem}.program-link:hover{transform:none}.link-content strong{font-size:.75rem}.link-content small{font-size:.72rem}.travelogue-title{font-size:.84rem}.travelogue-badges i{font-size:.62rem}}
+
+/* --- Konkrét repülőárak: főoldali kártya-sáv és a saját aloldal --- */
+.nav-cta{background:#e8cf9c;color:#17352c;padding:.32rem .7rem;font-weight:800;border-radius:999px}
+.verdict-cta{margin-top:1.1rem}.verdict-cta a{color:#e6c98f;text-decoration:underline;text-underline-offset:4px;font-weight:700;font-size:.85rem}
+.flight-price{display:grid;grid-template-columns:auto 1fr;gap:1.4rem;align-items:start;margin:1.4rem 0 0;padding:1.1rem 1.3rem;background:#f2f5f1;border-left:4px solid #b8c5bd}
+.flight-price.is-direct{background:#eef5ec;border-left-color:var(--gold)}
+.flight-price-figure{text-align:center;min-width:150px}
+.flight-price-figure strong{display:block;font:500 2rem Georgia;color:var(--forest);line-height:1.1}
+.flight-price-figure span{display:block;font-size:.58rem;text-transform:uppercase;letter-spacing:.06em;color:#6d7c73;margin-top:.25rem}
+.flight-price-body p{font-size:.74rem;margin:.4rem 0 0;color:#4d5a52}
+.flight-price-note{color:#6d7c73!important;font-size:.7rem!important}
+.direct-flag{display:inline-block;font-size:.6rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em;padding:.28rem .55rem;border-radius:999px}
+.direct-flag.yes{background:#dcebdc;color:#275634}
+.direct-flag.no{background:#f2e7c8;color:#765922}
+
+.fare-header{position:static;background:var(--forest);border-bottom:0}
+.fare-header nav a:not(.nav-cta){opacity:.85}
+.fare-hero{background:linear-gradient(160deg,#173f35,#0e2a22);color:#fff;padding:5rem 6vw 4rem}
+.fare-hero h1{font-size:clamp(2.6rem,6vw,5.4rem);margin:.4rem 0 1.2rem;max-width:900px}
+.fare-hero h1 em{color:#e6c98f;font-weight:400}
+.fare-hero>p{max-width:780px;color:#cfddd8;font-size:1rem}
+.fare-hero-stats{display:grid;grid-template-columns:repeat(3,max-content);gap:3rem;margin-top:2.5rem;padding-top:2rem;border-top:1px solid #ffffff30}
+.fare-hero-stats strong{display:block;font:500 2.4rem Georgia}
+.fare-hero-stats span{font-size:.65rem;color:#b9cbc4;display:block;max-width:190px;line-height:1.35}
+
+.finding-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+.finding-grid article{background:#fff;border:1px solid var(--line);border-top:4px solid var(--gold);padding:1.6rem}
+.finding-grid span{font-size:.62rem;text-transform:uppercase;letter-spacing:.09em;color:var(--red);font-weight:800}
+.finding-grid h3{font-size:1.35rem;margin:.7rem 0 .6rem}
+.finding-grid p{font-size:.8rem;color:#5c6962;margin:0}
+
+.fare-list{display:grid;gap:1.2rem}
+.fare-card{background:#fff;border:1px solid var(--line);padding:1.8rem}
+.fare-card.all-direct{border:2px solid var(--gold)}
+.fare-card>header{display:grid;grid-template-columns:1fr auto;gap:1.5rem;align-items:start;padding-bottom:1.1rem;border-bottom:1px solid var(--line)}
+.fare-dates{font-size:.62rem;text-transform:uppercase;letter-spacing:.08em;color:#718078;font-weight:800}
+.fare-card h3{font-size:clamp(1.25rem,2.3vw,1.9rem);margin:.35rem 0 .6rem}
+.fare-figure{text-align:right;min-width:170px}
+.fare-figure strong{display:block;font:500 2.2rem Georgia;color:var(--forest);line-height:1.1}
+.fare-figure span{font-size:.62rem;color:#6d7c73;display:block;margin-top:.2rem}
+.fare-figure em{display:block;font-style:normal;font-size:.66rem;color:var(--red);font-weight:700;margin-top:.35rem}
+.segment-list{list-style:none;margin:1.1rem 0;padding:0;display:grid;gap:.45rem}
+.segment-list li{display:flex;flex-wrap:wrap;gap:.35rem 1rem;align-items:baseline;padding:.6rem .8rem;background:#f6f8f5;border-left:3px solid #c3cdc5;font-size:.72rem}
+.segment-list li.nonstop{border-left-color:var(--gold);background:#f3f7f1}
+.segment-list b{font-size:.78rem;min-width:110px}
+.segment-list i{font-style:normal;margin-left:auto;font-size:.6rem;text-transform:uppercase;letter-spacing:.05em;font-weight:800;color:#6d7c73}
+.fare-comfort{font-size:.78rem;color:#4d5a52;margin:.6rem 0 .3rem}
+.fare-verdict{font-size:.82rem;background:#fff8ea;border-left:3px solid var(--gold);padding:.8rem 1rem;margin:.6rem 0}
+
+.fare-table-wrap{width:100%;overflow-x:auto;border:1px solid var(--line);background:#fff}
+.fare-table{border-collapse:collapse;width:100%;min-width:920px;font-size:.74rem}
+.fare-table th,.fare-table td{padding:.85rem .8rem;border-bottom:1px solid #e6e9e5;text-align:left;vertical-align:top}
+.fare-table thead th{background:var(--forest);color:#fff;font-size:.62rem;text-transform:uppercase;letter-spacing:.05em;white-space:nowrap}
+.fare-table tbody th{font-size:.8rem;font-weight:700;max-width:290px}
+.fare-table td.num{white-space:nowrap}
+.fare-table td.num strong{font:500 1.05rem Georgia;color:var(--forest)}
+.fare-table td.detail{color:#66736c;max-width:420px}
+.fare-table tbody tr.best{background:#f2f8ef}
+.fare-table tbody tr.best td.num strong{color:#1f6b3f}
+.fare-table tbody tr.indirect th{color:#7c5b2b}
+.fare-table tbody tr:hover{background:#f5f7f4}
+.sub-heading{font:500 1.7rem Georgia;margin:3rem 0 1rem}
+
+.schedule-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem}
+.schedule-grid article{background:#fff;border:1px solid var(--line);padding:1.5rem}
+.schedule-grid h3{font-size:1.3rem;margin:0 0 .4rem}
+.schedule-grid .days{display:inline-block;font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em;background:var(--sand);padding:.3rem .6rem;border-radius:999px;color:#5c5030}
+.schedule-grid p{font-size:.78rem;color:#5c6962;margin:.7rem 0 0}
+
+.method-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem}
+.method-grid article{background:var(--sand);padding:1.5rem}
+.method-grid h3{font-size:1.2rem;margin:0 0 .5rem}
+.method-grid p{font-size:.78rem;color:#54615a;margin:0}
+
+@media(max-width:900px){
+  .flight-price{grid-template-columns:1fr;gap:.8rem}
+  .flight-price-figure{text-align:left;min-width:0}
+  .finding-grid,.schedule-grid,.method-grid{grid-template-columns:1fr}
+  .fare-card>header{grid-template-columns:1fr}
+  .fare-figure{text-align:left}
+  .fare-hero-stats{grid-template-columns:1fr;gap:1.4rem}
+  .fare-header nav{display:flex;overflow-x:auto;gap:1rem}
+  .fare-header{height:auto;padding:.9rem 5vw;flex-wrap:wrap;gap:1rem}
+  .fare-header .verified{display:block;margin-left:0;width:100%}
+}
