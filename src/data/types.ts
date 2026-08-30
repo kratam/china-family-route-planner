@@ -1,6 +1,6 @@
 export type DestinationTag =
   | "train" | "flight" | "history" | "nature" | "active" | "swimming"
-  | "beach" | "cave" | "boat" | "bike" | "family" | "good-weather" | "open-jaw";
+  | "beach" | "cave" | "boat" | "bike" | "family" | "good-weather";
 
 export type FilterId = DestinationTag | "short-stay" | "long-stay";
 
@@ -108,6 +108,10 @@ export type Itinerary = {
   flights: string[];
   regionalCost: string;
   flightBudget: FlightBudget;
+  /** Hány nap jut ténylegesen fürdésre ezen az útvonalon. */
+  swimDays: string;
+  /** Az útvonal egy mondatos „ezért éri meg” kiemelése: barlang, hajó, strand. */
+  highlight: string;
   homeAirport: string;
   homeTime: string;
   advantage: string;

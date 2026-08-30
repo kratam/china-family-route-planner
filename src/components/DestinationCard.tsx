@@ -51,7 +51,7 @@ export function DestinationCard({ destination: d, index }: { destination: Destin
         <section className="fact-panels">
           <div><h4><Waves size={18} /> Fürdés</h4><p><strong>{d.swimming.realistic}</strong></p><p>{d.swimming.where}</p><p>Víz: {d.swimming.water}</p></div>
           <div><h4>☀️ Október vége</h4><p><strong>{d.weather.air}</strong> · {d.weather.rain}</p><p>{d.weather.note}</p><SourceLink source={d.weather.source} /></div>
-          <div><h4>↗ Hazautazás</h4><p>{d.homeward}</p></div>
+          <div><h4>↩ Vissza Shenzhenbe</h4><p>{d.homeward}</p></div>
           <div><h4>🛏️ Mennyi idő?</h4><p>Minimum: <strong>{d.nights.min} éj</strong><br />Ideális: <strong>{d.nights.ideal} éj</strong></p></div>
         </section>
         <section><h4>Hol aludnánk?</h4><div className="hotel-grid">{d.hotels.map((hotel) => <a href={hotel.url} target="_blank" rel="noreferrer" key={hotel.name}><span>{hotel.tier}</span><strong>{hotel.name}</strong><p>{hotel.note}</p><ExternalLink size={14} /></a>)}</div></section>

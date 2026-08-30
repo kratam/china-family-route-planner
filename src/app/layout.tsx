@@ -3,7 +3,7 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Mit nézzünk meg Shenzhen mellett? | Családi útvonaltervező",
-  description: "Kína és Délkelet-Ázsia 8 és 10 éves gyerekkel – 22 célpont, 10 teljes útvonal konkrét, lekérdezett repülőárral és friss 2026-os kutatás.",
+  description: "Shenzhen oda-vissza 2026. okt. 16–30., 8 és 10 éves gyerekkel: hova mehetünk a shenzheni és hongkongi bázisról vonattal vagy repülővel – fürdés, barlang, hajózás a városnézés mellé.",
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) { return <html lang="hu"><body>{children}</body></html>; }

@@ -9,6 +9,7 @@ import type { SourceRef } from "./types";
  */
 export const priceCheck = {
   checkedOn: "2026. augusztus 27.",
+  regionalCheckedOn: "2026. augusztus 30.",
   passengers: "2 felnőtt + 2 gyerek (8 és 10 év)",
   cabin: "turista osztály",
   currency: "EUR",
@@ -19,6 +20,19 @@ export const priceCheck = {
 /** Magyar számcsoportosítás ezresenként, nem törő szóközzel. */
 export const grouped = (value: number) =>
   String(Math.round(value)).replace(/\B(?=(\d{3})+(?!\d))/g, "\u00a0");
+
+/** A megvett keret: a döntés 2026. augusztus 30-án megszületett. */
+export const decision = {
+  headline: "Budapest ↔ Shenzhen, oda-vissza, közvetlenül",
+  out: "okt. 16., Hainan HU 762, 11:50 → 04:50+1 (11 óra)",
+  back: "okt. 30., Hainan HU 761, 01:55 → 07:15 (12 óra 20 perc)",
+  price: 3016,
+  agencyPrice: 2816,
+  agencyName: "lastminute.com",
+  baggage: "fejenként 1 kézipoggyász és 1 feladott bőrönd az árban",
+  ground: "13 éjszaka Kínában, okt. 17. hajnalától okt. 29. estéig",
+  why: "Ez volt egyszerre a legolcsóbb és az egyetlen mindkét irányban közvetlen megoldás; a nyitott szárú változatok mind drágábbak vagy átszállásosak voltak.",
+} as const;
 
 export type FlightSegment = {
   code: string;
@@ -32,6 +46,8 @@ export type FlightSegment = {
 
 export type Fare = {
   id: string;
+  /** "választott" a megvett jegy, "elvetett" a mérés során kizárt alternatíva. */
+  status: "választott" | "elvetett";
   label: string;
   dates: string;
   ticketing: "egy jegy" | "két külön jegy";
@@ -48,10 +64,11 @@ export type Fare = {
 
 const gf = (label: string, url: string): SourceRef => ({ label, url });
 
-/** Hosszú távú (Budapest ↔ Ázsia) alapok. */
+/** Hosszú távú (Budapest ↔ Ázsia) alapok: a választott jegy és a mérés során elvetett alternatívák. */
 export const longHaulFares: Fare[] = [
   {
     id: "rt-szx",
+    status: "választott",
     label: "Budapest ↔ Shenzhen oda-vissza (Kínán belül csak vonat)",
     dates: "okt. 16. → okt. 30.",
     ticketing: "egy jegy",
@@ -70,6 +87,7 @@ export const longHaulFares: Fare[] = [
   },
   {
     id: "oj-szx-xiy",
+    status: "elvetett",
     label: "Open-jaw: Shenzhen be / Xi’an ki",
     dates: "okt. 16. / okt. 29.",
     ticketing: "egy jegy",
@@ -88,6 +106,7 @@ export const longHaulFares: Fare[] = [
   },
   {
     id: "oj-szx-can-one",
+    status: "elvetett",
     label: "Open-jaw: Shenzhen be / Guangzhou ki – EGY jegyen",
     dates: "okt. 16. / okt. 29.",
     ticketing: "egy jegy",
@@ -106,6 +125,7 @@ export const longHaulFares: Fare[] = [
   },
   {
     id: "oj-szx-can-two",
+    status: "elvetett",
     label: "Open-jaw: Shenzhen be / Guangzhou ki – KÉT külön jegyen, mindkettő közvetlen",
     dates: "okt. 16. / okt. 29.",
     ticketing: "két külön jegy",
@@ -124,6 +144,7 @@ export const longHaulFares: Fare[] = [
   },
   {
     id: "oj-szx-han",
+    status: "elvetett",
     label: "Open-jaw: Shenzhen be / Hanoi ki – egy jegyen",
     dates: "okt. 16. / okt. 29.",
     ticketing: "egy jegy",
@@ -140,6 +161,7 @@ export const longHaulFares: Fare[] = [
   },
   {
     id: "oj-szx-sai",
+    status: "elvetett",
     label: "Open-jaw: Shenzhen be / Siem Reap ki",
     dates: "okt. 16. / okt. 29.",
     ticketing: "egy jegy",
@@ -168,34 +190,28 @@ export type RegionalFare = {
   source: SourceRef;
 };
 
-/** Regionális szakaszok – mind a négy főre, egy irányra. */
+/**
+ * Repülős kitérők a shenzheni / hongkongi bázisról – mind a négy főre.
+ * Mivel Shenzhenbe térünk vissza, minden kitérő oda-vissza értendő.
+ */
 export const regionalFares: RegionalFare[] = [
-  { route: "Hongkong → Hanoi", date: "okt. 25.", eur: 507, airline: "Sun PhuQuoc Airways / HK Express (524 €)", code: "UO 540", duration: "2 óra 5 perc", nonstop: true, source: gf("Google Flights HKG→HAN", "https://www.google.com/travel/flights/search?tfs=GhwSCjIwMjYtMTAtMjUoAGoFEgNIS0dyBRIDSEFOQgQBAQICSAGYAQI=&hl=en&curr=EUR") },
-  { route: "Shenzhen → Hanoi", date: "okt. 25.", eur: 515, airline: "Shenzhen Airlines", duration: "2 óra 5 perc", nonstop: true, source: gf("Google Flights SZX→HAN", "https://www.google.com/travel/flights/search?tfs=GhwSCjIwMjYtMTAtMjUoAGoFEgNTWlhyBRIDSEFOQgQBAQICSAGYAQI=&hl=en&curr=EUR") },
-  { route: "Hongkong → Sanya", date: "okt. 25.", eur: 287, airline: "HK Express", code: "UO 250", duration: "1 óra 45 perc", nonstop: true, note: "A shortlist legolcsóbb regionális repülése.", source: gf("Google Flights HKG→SYX", "https://www.google.com/travel/flights/search?tfs=GhwSCjIwMjYtMTAtMjUoAGoFEgNIS0dyBRIDU1lYQgQBAQICSAGYAQI=&hl=en&curr=EUR") },
-  { route: "Sanya → Shenzhen", date: "okt. 28.", eur: 522, airline: "China Southern", duration: "1 óra 45 perc", nonstop: true, note: "Napi több járat; ezzel Sanya beköthető a shenzheni oda-visszába.", source: gf("Google Flights SYX→SZX", "https://www.google.com/travel/flights/search?tfs=GhwSCjIwMjYtMTAtMjgoAGoFEgNTWVhyBRIDU1pYQgQBAQICSAGYAQI=&hl=en&curr=EUR") },
-  { route: "Sanya → Guangzhou", date: "okt. 28.", eur: 714, airline: "China Southern", duration: "1 óra 35 perc", nonstop: true, source: gf("Google Flights SYX→CAN", "https://www.google.com/travel/flights/search?tfs=GhwSCjIwMjYtMTAtMjgoAGoFEgNTWVhyBRIDQ0FOQgQBAQICSAGYAQI=&hl=en&curr=EUR") },
-  { route: "Hongkong → Da Nang", date: "okt. 25.", eur: 349, airline: "HK Express", code: "UO 552 / 556 / 558", duration: "1 óra 55 perc", nonstop: true, source: gf("Google Flights HKG→DAD", "https://www.google.com/travel/flights/search?tfs=GhwSCjIwMjYtMTAtMjUoAGoFEgNIS0dyBRIDREFEQgQBAQICSAGYAQI=&hl=en&curr=EUR") },
-  { route: "Da Nang → Hanoi", date: "okt. 28.", eur: 114, airline: "Pacific Airlines / Vietjet (118 €)", duration: "1 óra 25 perc", nonstop: true, note: "A legolcsóbb szakasz az egész tervben.", source: gf("Google Flights DAD→HAN", "https://www.google.com/travel/flights/search?tfs=GhwSCjIwMjYtMTAtMjgoAGoFEgNEQURyBRIDSEFOQgQBAQICSAGYAQI=&hl=en&curr=EUR") },
-  { route: "Hongkong → Xi’an", date: "okt. 25.", eur: 826, airline: "Cathay Pacific", duration: "3 óra 35 perc", nonstop: true, source: gf("Google Flights HKG→XIY", "https://www.google.com/travel/flights/search?tfs=GhwSCjIwMjYtMTAtMjUoAGoFEgNIS0dyBRIDWElZQgQBAQICSAGYAQI=&hl=en&curr=EUR") },
-  { route: "Shenzhen → Xi’an", date: "okt. 25.", eur: 271, airline: "Spring Airlines", code: "9C 8753", duration: "2 óra 40 perc", nonstop: true, note: "Háromszor olcsóbb, mint Hongkongból – ha Xi’an kell, Shenzhenből induljunk.", source: gf("Google Flights SZX→XIY", "https://www.google.com/travel/flights/search?tfs=GhwSCjIwMjYtMTAtMjUoAGoFEgNTWlhyBRIDWElZQgQBAQICSAGYAQI=&hl=en&curr=EUR") },
-  { route: "Hongkong → Siem Reap", date: "okt. 25.", eur: 827, airline: "THAI + Bangkok Airways (Bangkokon át)", duration: "11 óra 50 perc, 1 átszállás", nonstop: false, note: "Nincs közvetlen járat. A 768 eurós legolcsóbb ajánlat 22 órás – gyerekekkel nem reális.", source: gf("Google Flights HKG→SAI", "https://www.google.com/travel/flights/search?tfs=GhoSCjIwMjYtMTAtMjVqBRIDSEtHcgUSA1NBSUIEAQECAkgBmAEC&hl=en&curr=EUR") },
-  { route: "Hongkong → Zhangjiajie", date: "okt. 25.", eur: 1572, airline: "Chongqing Airlines + China Southern", duration: "44 óra 25 perc, 2 átszállás", nonstop: false, note: "Nincs használható repülő – az Avatar-hegyekhez a 6,5 órás közvetlen gyorsvonat az egyetlen ésszerű út.", source: gf("Google Flights HKG→DYG", "https://www.google.com/travel/flights/search?tfs=GhoSCjIwMjYtMTAtMjVqBRIDSEtHcgUSA0RZR0IEAQECAkgBmAEC&hl=en&curr=EUR") },
-];
-
-/** Egyirányú hazautak, ha nem egy jegyen vesszük az open-jaw-t. */
-export const homewardFares: RegionalFare[] = [
-  { route: "Guangzhou → Budapest", date: "okt. 29.", eur: 1689, airline: "China Southern", code: "CZ 649", duration: "12 óra 40 perc", nonstop: true, note: "Kedd / csütörtök / szombat közlekedik; okt. 29. csütörtök, 01:30-kor indul.", source: gf("Google Flights CAN→BUD közvetlen", "https://www.google.com/travel/flights/search?tfs=GhwSCjIwMjYtMTAtMjkoAGoFEgNDQU5yBRIDQlVEQgQBAQICSAGYAQI=&hl=en&curr=EUR") },
-  { route: "Hanoi → Budapest", date: "okt. 29.", eur: 1336, airline: "Qatar Airways", duration: "13 óra 5 perc, 1 átszállás Dohában", nonstop: false, source: gf("Google Flights HAN→BUD", "https://www.google.com/travel/flights/search?tfs=GhoSCjIwMjYtMTAtMjlqBRIDSEFOcgUSA0JVREIEAQECAkgBmAEC&hl=en&curr=EUR") },
-  { route: "Xi’an → Budapest", date: "okt. 29.", eur: 978, airline: "Hainan Airlines", duration: "15 óra 20 perc, 1 átszállás Shenzhenben", nonstop: false, source: gf("Google Flights XIY→BUD", "https://www.google.com/travel/flights/search?tfs=GhoSCjIwMjYtMTAtMjlqBRIDWElZcgUSA0JVREIEAQECAkgBmAEC&hl=en&curr=EUR") },
-  { route: "Siem Reap → Budapest", date: "okt. 29.", eur: 1951, airline: "Bangkok Airways + Finnair", duration: "19 óra 10 perc, 2 átszállás", nonstop: false, source: gf("Google Flights SAI→BUD", "https://www.google.com/travel/flights/search?tfs=GhoSCjIwMjYtMTAtMjlqBRIDU0FJcgUSA0JVREIEAQECAkgBmAEC&hl=en&curr=EUR") },
+  { route: "Hongkong ↔ Sanya, oda-vissza", date: "okt. 25. → okt. 29.", eur: 524, airline: "HK Express", code: "UO 250", duration: "1 óra 45 perc oda, 1 óra 35 perc vissza", nonstop: true, note: "A terv legjobb ár/érték aránya: négy fő trópusi tengerhez oda-vissza 524 €-ért. Cserébe kell egy hongkongi éj a hazaút előtt.", source: gf("Google Flights HKG↔SYX oda-vissza", "https://www.google.com/travel/flights/search?tfs=GhwSCjIwMjYtMTAtMjUoAGoFEgNIS0dyBRIDU1lYGhwSCjIwMjYtMTAtMjkoAGoFEgNTWVhyBRIDSEtHQgQBAQICSAGYAQE=&hl=en&curr=EUR") },
+  { route: "Hongkong → Sanya, egy irányba", date: "okt. 25.", eur: 287, airline: "HK Express", code: "UO 250", duration: "1 óra 45 perc", nonstop: true, note: "Ha Sanyából egyenesen Shenzhenbe repülünk vissza, ez az odaút ára.", source: gf("Google Flights HKG→SYX", "https://www.google.com/travel/flights/search?tfs=GhwSCjIwMjYtMTAtMjUoAGoFEgNIS0dyBRIDU1lYQgQBAQICSAGYAQI=&hl=en&curr=EUR") },
+  { route: "Sanya → Shenzhen, egy irányba", date: "okt. 28.", eur: 522, airline: "China Southern", duration: "1 óra 45 perc", nonstop: true, note: "Ezzel a hazaút napján már a bázison vagyunk – biztonságosabb, mint Hongkongon át visszajönni.", source: gf("Google Flights SYX→SZX", "https://www.google.com/travel/flights/search?tfs=GhwSCjIwMjYtMTAtMjgoAGoFEgNTWVhyBRIDU1pYQgQBAQICSAGYAQI=&hl=en&curr=EUR") },
+  { route: "Shenzhen ↔ Sanya, oda-vissza", date: "okt. 25. → okt. 29.", eur: 1045, airline: "China Southern", duration: "1 óra 50 perc irányonként", nonstop: true, note: "Kényelmesebb, de kétszer annyi, mint Hongkongból. Csak akkor éri meg, ha nem akarunk hongkongi éjszakát.", source: gf("Google Flights SZX↔SYX oda-vissza", "https://www.google.com/travel/flights/search?tfs=GhwSCjIwMjYtMTAtMjUoAGoFEgNTWlhyBRIDU1lYGhwSCjIwMjYtMTAtMjkoAGoFEgNTWVhyBRIDU1pYQgQBAQICSAGYAQE=&hl=en&curr=EUR") },
+  { route: "Shenzhen ↔ Hanoi, oda-vissza", date: "okt. 24. → okt. 28.", eur: 935, airline: "Shenzhen Airlines", duration: "2 óra 5 perc irányonként", nonstop: true, note: "A legolcsóbb vietnámi kitérő, és nem kell hozzá Hongkongba menni.", source: gf("Google Flights SZX↔HAN oda-vissza", "https://www.google.com/travel/flights/search?tfs=GhwSCjIwMjYtMTAtMjQoAGoFEgNTWlhyBRIDSEFOGhwSCjIwMjYtMTAtMjgoAGoFEgNIQU5yBRIDU1pYQgQBAQICSAGYAQE=&hl=en&curr=EUR") },
+  { route: "Hongkong ↔ Hanoi, oda-vissza", date: "okt. 24. → okt. 28.", eur: 970, airline: "HK Express", duration: "2 óra 10 perc oda, 2 óra vissza", nonstop: true, note: "Kényelmes időpontok: 07:40-kor indul és 12:35-kor ér vissza Hongkongba.", source: gf("Google Flights HKG↔HAN oda-vissza", "https://www.google.com/travel/flights/search?tfs=GhwSCjIwMjYtMTAtMjQoAGoFEgNIS0dyBRIDSEFOGhwSCjIwMjYtMTAtMjgoAGoFEgNIQU5yBRIDSEtHQgQBAQICSAGYAQE=&hl=en&curr=EUR") },
+  { route: "Shenzhen → Xi’an, egy irányba", date: "okt. 25.", eur: 271, airline: "Spring Airlines", code: "9C 8753", duration: "2 óra 40 perc", nonstop: true, note: "Háromszor olcsóbb, mint Hongkongból (826 €). Ha Xi’an kell, Shenzhenből induljunk.", source: gf("Google Flights SZX→XIY", "https://www.google.com/travel/flights/search?tfs=GhwSCjIwMjYtMTAtMjUoAGoFEgNTWlhyBRIDWElZQgQBAQICSAGYAQI=&hl=en&curr=EUR") },
+  { route: "Hongkong → Da Nang, egy irányba", date: "okt. 25.", eur: 349, airline: "HK Express", code: "UO 552 / 556 / 558", duration: "1 óra 55 perc", nonstop: true, note: "Olcsó, de október Da Nang legcsapadékosabb hónapja – ezért nincs a szűk listán.", source: gf("Google Flights HKG→DAD", "https://www.google.com/travel/flights/search?tfs=GhwSCjIwMjYtMTAtMjUoAGoFEgNIS0dyBRIDREFEQgQBAQICSAGYAQI=&hl=en&curr=EUR") },
+  { route: "Hongkong → Siem Reap, egy irányba", date: "okt. 25.", eur: 827, airline: "THAI + Bangkok Airways (Bangkokon át)", duration: "11 óra 50 perc, 1 átszállás", nonstop: false, note: "Nincs közvetlen járat, és oda-vissza kb. két teljes utazónapot visz el. Angkor emiatt esett ki.", source: gf("Google Flights HKG→SAI", "https://www.google.com/travel/flights/search?tfs=GhoSCjIwMjYtMTAtMjVqBRIDSEtHcgUSA1NBSUIEAQECAkgBmAEC&hl=en&curr=EUR") },
+  { route: "Hongkong → Zhangjiajie, egy irányba", date: "okt. 25.", eur: 1572, airline: "Chongqing Airlines + China Southern", duration: "44 óra 25 perc, 2 átszállás", nonstop: false, note: "Nincs használható repülő – az Avatar-hegyekhez a 6,5 órás közvetlen gyorsvonat az egyetlen ésszerű út.", source: gf("Google Flights HKG→DYG", "https://www.google.com/travel/flights/search?tfs=GhoSCjIwMjYtMTAtMjVqBRIDSEtHcgUSA0RZR0IEAQECAkgBmAEC&hl=en&curr=EUR") },
 ];
 
 /** A repülés menetrendi tényei, ahogy 2026. augusztus 27-én mérve látszanak. */
 export const scheduleFacts = [
   { route: "BUD → Shenzhen (HU 762)", days: "hétfő és péntek", detail: "11:50 → 04:50+1, 11 óra. Okt. 16. péntek és okt. 19. hétfő is jó. Okt. 14., 15., 17., 18., 20. nincs járat.", verified: true },
   { route: "Shenzhen → BUD (HU 761)", days: "hétfő és péntek", detail: "01:55 → 07:15, 12 óra 20 perc. Okt. 26. hétfő és okt. 30. péntek megy; okt. 27–29. nem.", verified: true },
-  { route: "Guangzhou → BUD (CZ 649)", days: "kedd, csütörtök, szombat", detail: "01:30 → 07:10, 12 óra 40 perc. Okt. 22., 24., 27., 29. megy; okt. 25., 26., 28., 30. nem.", verified: true },
+  { route: "Guangzhou → BUD (CZ 649)", days: "kedd, csütörtök, szombat", detail: "Létezik és 1689 € lenne, de a Hainan odaúttal egyetlen jegyre nem kombinálható – ezért nem ezt választottuk.", verified: true },
   { route: "Hongkong → BUD", days: "nincs közvetlen járat", detail: "Október 29-én és 30-án sincs nonstop opció; Doha, Dubaj vagy európai hub kell.", verified: true },
 ];
 

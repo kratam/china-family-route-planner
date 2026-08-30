@@ -4,7 +4,7 @@ import { describe, expect, it } from "vitest";
 import { destinations } from "./destinations";
 import { itineraries } from "./itineraries";
 import { travelogues } from "./travelogues";
-import { homewardFares, longHaulFares, regionalFares } from "./flightPrices";
+import { decision, longHaulFares, regionalFares } from "./flightPrices";
 
 describe("published travel data invariants", () => {
   it("uses unique destination ids and bounded scores", () => {
@@ -28,10 +28,13 @@ describe("published travel data invariants", () => {
     }
   });
 
-  it("keeps open-jaw filtering consistent with the route copy", () => {
-    expect(destinations.find((item) => item.id === "shenzhen")?.tags).not.toContain("open-jaw");
-    for (const id of ["zhaoqing", "chaozhou", "xiamen", "shaoguan", "kaiping"]) {
-      expect(destinations.find((item) => item.id === id)?.tags).toContain("open-jaw");
+  it("routes every destination back to the Shenzhen base", () => {
+    for (const destination of destinations) {
+      expect(destination.homeward.length).toBeGreaterThan(30);
+      expect(destination.homeward).not.toMatch(/open-jaw/i);
+    }
+    for (const id of ["hong-kong", "guangzhou", "zhaoqing", "chaozhou", "guilin", "xiamen", "shaoguan"]) {
+      expect(destinations.find((item) => item.id === id)?.tags).toContain("train");
     }
   });
 
@@ -47,7 +50,7 @@ describe("published travel data invariants", () => {
   });
 
   it("counts hotel changes rather than hotel bases", () => {
-    const expected = { "shenzhen-return": 4, "classic-guilin": 3, "ninh-binh": 4, xiamen: 3, chaozhou: 4, xian: 3, sanya: 3, angkor: 3, danang: 4, zhangjiajie: 3 };
+    const expected = { "karszt-tenger": 4, "barlang-to-strand": 4, "regi-kina-tenger": 4, "sziget-ovaros": 4, "sanya-strand": 4, "vietnam-barlang": 5, "ket-nagy-taj": 5 };
     for (const itinerary of itineraries) expect(itinerary.changes).toBe(expected[itinerary.id as keyof typeof expected]);
   });
 
@@ -57,9 +60,15 @@ describe("published travel data invariants", () => {
       expect(itinerary.flightBudget.totalEur).toBeLessThan(10_000);
       expect(itinerary.flightBudget.breakdown.length).toBeGreaterThan(20);
       expect(itinerary.flightBudget.note.length).toBeGreaterThan(20);
+      expect(itinerary.flightBudget.totalEur).toBeGreaterThanOrEqual(decision.price);
+      expect(itinerary.flightBudget.allDirectLongHaul).toBe(true);
+      expect(itinerary.route[1]).toBe("Shenzhen");
+      expect(itinerary.route.at(-2)).toBe("Shenzhen");
+      expect(itinerary.swimDays.length).toBeGreaterThan(15);
+      expect(itinerary.highlight.length).toBeGreaterThan(25);
     }
     const winner = itineraries.find((route) => route.rank === 1);
-    expect(winner?.id).toBe("shenzhen-return");
+    expect(winner?.id).toBe("karszt-tenger");
     expect(winner?.flightBudget.allDirectLongHaul).toBe(true);
     const cheapest = Math.min(...itineraries.map((route) => route.flightBudget.totalEur));
     expect(winner?.flightBudget.totalEur).toBe(cheapest);
@@ -74,13 +83,15 @@ describe("published travel data invariants", () => {
       expect(fare.source.url).toContain("google.com/travel/flights");
       if (fare.agencyEur !== undefined) expect(fare.agencyName).toBeTruthy();
     }
-    for (const fare of [...regionalFares, ...homewardFares]) {
+    for (const fare of regionalFares) {
       expect(fare.eur).toBeGreaterThan(50);
       expect(fare.source.url).toMatch(/^https:\/\//);
       expect(fare.date).toMatch(/okt\./);
     }
     const cheapestLongHaulDirect = longHaulFares.filter((fare) => fare.allDirect).sort((a, b) => a.eur - b.eur)[0];
     expect(cheapestLongHaulDirect.id).toBe("rt-szx");
+    expect(longHaulFares.filter((fare) => fare.status === "választott")).toHaveLength(1);
+    expect(cheapestLongHaulDirect.eur).toBe(decision.price);
   });
 
   it("has one transparent, family-aware travelogue for every destination", () => {
