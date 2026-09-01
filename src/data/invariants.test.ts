@@ -50,7 +50,7 @@ describe("published travel data invariants", () => {
   });
 
   it("counts hotel changes rather than hotel bases", () => {
-    const expected = { "karszt-tenger": 4, "barlang-to-strand": 4, "regi-kina-tenger": 4, "sziget-ovaros": 4, "sanya-strand": 4, "vietnam-barlang": 5, "ket-nagy-taj": 5 };
+    const expected = { "karszt-tenger": 4, "barlang-to-strand": 4, "regi-kina-tenger": 4, "sziget-ovaros": 4, "sanya-strand": 4, "vietnam-barlang": 5, "ket-nagy-taj": 5, "shanghai-tajvan-kor": 3, "shanghai-tajvan-teknos": 5 };
     for (const itinerary of itineraries) expect(itinerary.changes).toBe(expected[itinerary.id as keyof typeof expected]);
   });
 
@@ -62,8 +62,9 @@ describe("published travel data invariants", () => {
       expect(itinerary.flightBudget.note.length).toBeGreaterThan(20);
       expect(itinerary.flightBudget.totalEur).toBeGreaterThanOrEqual(3204);
       expect(itinerary.flightBudget.allDirectLongHaul).toBe(true);
-      expect(itinerary.route[1]).toBe("Guangzhou");
-      expect(itinerary.route.at(-2)).toBe("Guangzhou");
+      expect(["Guangzhou", "Shanghai"]).toContain(itinerary.route[1]);
+      expect(itinerary.route.at(-2)).toBe(itinerary.route[1]);
+      expect(itinerary.frame).toMatch(/kapu/);
       expect(itinerary.swimDays.length).toBeGreaterThan(15);
       expect(itinerary.highlight.length).toBeGreaterThan(25);
     }

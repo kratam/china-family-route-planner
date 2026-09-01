@@ -4,6 +4,11 @@ import { travelogues } from "@/data/travelogues";
 import { buildProgramLinks } from "@/lib/programLinks";
 import { SourceLink } from "./SourceLink";
 
+const ablative: Record<string, string> = {
+  Shenzhen: "Shenzhenből", Hongkong: "Hongkongból", Tajpej: "Tajpejből",
+  Kaohsiung: "Kaohsiungból", Shanghai: "Shanghaiból",
+};
+
 const Stars = ({ value }: { value: number }) => <span className="stars big" aria-label={`${value} az 5-ből`}>{"★".repeat(value)}<i>{"★".repeat(5 - value)}</i></span>;
 
 export function DestinationCard({ destination: d, index }: { destination: Destination; index: number }) {
@@ -22,8 +27,7 @@ export function DestinationCard({ destination: d, index }: { destination: Destin
     </div>
     <div className="destination-grid">
       <section><h4>Miért mennénk ide?</h4><ul className="check-list">{d.why.map((reason) => <li key={reason}>{reason}</li>)}</ul></section>
-      <section className="transport-card"><h4><TrainFront size={18} /> Shenzhenből</h4><strong>{d.fromShenzhen.summary}</strong><dl><div><dt>Menetidő</dt><dd>{d.fromShenzhen.duration}</dd></div><div><dt>Ajtótól ajtóig</dt><dd>{d.fromShenzhen.doorToDoor}</dd></div><div><dt>Költség</dt><dd>{d.fromShenzhen.price}</dd></div></dl>{d.fromShenzhen.note && <p className="fineprint">{d.fromShenzhen.note}</p>}<SourceLink source={d.fromShenzhen.source} /></section>
-      <section className="transport-card"><h4>{d.fromHongKong.summary.toLowerCase().includes("repül") ? <Plane size={18} /> : <TrainFront size={18} />} Hongkongból</h4><strong>{d.fromHongKong.summary}</strong><dl><div><dt>Menetidő</dt><dd>{d.fromHongKong.duration}</dd></div><div><dt>Ajtótól ajtóig</dt><dd>{d.fromHongKong.doorToDoor}</dd></div><div><dt>Költség</dt><dd>{d.fromHongKong.price}</dd></div></dl><SourceLink source={d.fromHongKong.source} /></section>
+      {d.access.map((leg) => <section className="transport-card" key={leg.from}><h4>{leg.summary.toLowerCase().includes("repül") || leg.summary.toLowerCase().includes("járat") ? <Plane size={18} /> : <TrainFront size={18} />} {ablative[leg.from] ?? `${leg.from} felől`}</h4><strong>{leg.summary}</strong><dl><div><dt>Menetidő</dt><dd>{leg.duration}</dd></div><div><dt>Ajtótól ajtóig</dt><dd>{leg.doorToDoor}</dd></div><div><dt>Költség</dt><dd>{leg.price}</dd></div></dl>{leg.note && <p className="fineprint">{leg.note}</p>}<SourceLink source={leg.source} /></section>)}
     </div>
     <details className="destination-details" open={index < 3}>
       <summary>Programok, fürdés, időjárás és szállások <span>+</span></summary>

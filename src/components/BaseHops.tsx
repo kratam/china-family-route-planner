@@ -3,30 +3,44 @@ import type { Destination } from "@/data/types";
 import { SourceLink } from "./SourceLink";
 
 const waterBadges: { tag: Destination["tags"][number]; label: string }[] = [
+  { tag: "nature", label: "🏔️ természet" },
   { tag: "swimming", label: "🏖️ fürdés" },
   { tag: "beach", label: "🏝️ strand" },
   { tag: "cave", label: "🕳️ barlang" },
   { tag: "boat", label: "🛶 hajózás" },
 ];
 
-const groups = [
+const modes = [
   {
     id: "vonat",
     title: "🚆 Vonattal",
-    lead: "Közvetlen gyorsvasút a shenzheni vagy a hongkongi pályaudvarról. Nincs reptér, nincs check-in – ezekre épül a hét útvonal többsége.",
+    lead: "Közvetlen gyorsvasút vagy vonat a bázisról. Nincs reptér, nincs check-in.",
     match: (d: Destination) => d.tags.includes("train"),
   },
   {
     id: "kozut",
-    title: "🚗 Közúton vagy komppal",
-    lead: "Nincs hozzájuk vasút, de két-három óra alatt megvannak. A strandnapok nagy része innen jön.",
+    title: "🚗 Közúton, komppal vagy busszal",
+    lead: "Nincs hozzájuk vasút, de néhány óra alatt megvannak. A strandnapok nagy része innen jön.",
     match: (d: Destination) => !d.tags.includes("train") && !d.tags.includes("flight"),
   },
   {
     id: "repulo",
     title: "✈️ Repülővel",
-    lead: "Oda-vissza jegy kell hozzájuk, mert Shenzhenből indul a hazaút. Egy-két óra repülés, de két fél nap reptérrel.",
+    lead: "Repülőjegy kell hozzájuk – a kapuvárosba mindig vissza kell érni a hazaútra.",
     match: (d: Destination) => d.tags.includes("flight") && !d.tags.includes("train"),
+  },
+];
+
+const clusters = [
+  {
+    name: "Shenzhen és Hongkong",
+    kicker: "A déli terv · guangzhoui kapu",
+    lead: "A guangzhoui oda-vissza jegyhez tartozó bázispár. Guangzhou 30–75 perc gyorsvasúttal Shenzhentől, tehát a bázis gyakorlatilag a Gyöngy-folyó deltája.",
+  },
+  {
+    name: "Tajpej és Kaohsiung",
+    kicker: "A shanghaji terv · tajvani blokk",
+    lead: "A shanghaji oda-vissza jegyhez tartozó tajvani blokk. Shanghaiból 1 óra 50 perc a belvárosi Songshan repülőtér, a szigeten belül pedig a gyorsvasút 1 óra 45 perc alatt visz északról délre.",
   },
 ];
 
@@ -39,18 +53,16 @@ function Hop({ destination }: { destination: Destination }) {
         <small>{destination.region}</small>
       </th>
       <td>
-        {destination.fromShenzhen.duration}
-        <br />
-        <span className={`direct-flag${destination.fromShenzhen.direct ? " yes" : " no"}`}>
-          {destination.fromShenzhen.direct ? "közvetlen" : "átszállással"}
-        </span>
-      </td>
-      <td>
-        {destination.fromHongKong.duration}
-        <br />
-        <span className={`direct-flag${destination.fromHongKong.direct ? " yes" : " no"}`}>
-          {destination.fromHongKong.direct ? "közvetlen" : "átszállással"}
-        </span>
+        <ul className="access-list">
+          {destination.access.map((leg) => (
+            <li key={leg.from}>
+              <b>{leg.from}:</b> {leg.duration}{" "}
+              <span className={`direct-flag${leg.direct ? " yes" : " no"}`}>
+                {leg.direct ? "közvetlen" : "átszállással"}
+              </span>
+            </li>
+          ))}
+        </ul>
       </td>
       <td className="num">{destination.nights.ideal} éj</td>
       <td>
@@ -61,47 +73,59 @@ function Hop({ destination }: { destination: Destination }) {
       <td className="detail">
         {destination.homeward}
         <br />
-        <SourceLink source={destination.fromShenzhen.source} />
+        <SourceLink source={destination.access[0].source} />
       </td>
     </tr>
   );
 }
 
 export function BaseHops() {
-  const pool = destinations.filter((destination) => destination.id !== "shenzhen");
   return (
     <section className="editorial-section" id="kiterok">
-      <div className="section-kicker">A két bázis: Shenzhen és Hongkong</div>
+      <div className="section-kicker">Kitérők a bázisokról</div>
       <h2>Innen hova tudunk elmenni?</h2>
       <p className="section-lead">
-        A repülőjegy Shenzhenbe szól és onnan is jövünk haza, tehát minden kitérő oda-vissza
-        értendő. Az alábbi lista azt mutatja, mi mennyire van messze a két bázistól – és melyik
-        ad fürdést, barlangot vagy hajózást a városnézés mellé. A kattintható nevek a lenti
-        részletes leírásokra visznek.
+        Két bázispár van, mert két repülőkeret van versenyben: a guangzhoui kapuval a Gyöngy-folyó
+        deltája, a shanghajival Tajvan. Mindkettőnél minden kitérő oda-vissza értendő – a kapuvárosba
+        vissza kell érni a hazaútra. A kattintható nevek a lenti részletes leírásokra visznek.
       </p>
-      {groups.map((group) => {
-        const rows = pool.filter(group.match);
+      {clusters.map((cluster) => {
+        const pool = destinations.filter(
+          (destination) => destination.cluster === cluster.name && destination.access[0].duration !== "—",
+        );
         return (
-          <div className="hop-group" key={group.id}>
-            <h3 className="sub-heading">{group.title}<span>{rows.length} célpont</span></h3>
-            <p className="hop-lead">{group.lead}</p>
-            <div className="fare-table-wrap">
-              <table className="fare-table hop-table">
-                <thead>
-                  <tr>
-                    <th>Célpont</th>
-                    <th>Shenzhenből</th>
-                    <th>Hongkongból</th>
-                    <th>Ideális</th>
-                    <th>Mit ad a városnézés mellé</th>
-                    <th>Visszaút a bázisra</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {rows.map((destination) => <Hop destination={destination} key={destination.id} />)}
-                </tbody>
-              </table>
+          <div className="cluster-block" key={cluster.name}>
+            <div className="cluster-head">
+              <span className="section-kicker">{cluster.kicker}</span>
+              <h3>{cluster.name}</h3>
+              <p>{cluster.lead}</p>
             </div>
+            {modes.map((mode) => {
+              const rows = pool.filter(mode.match);
+              if (rows.length === 0) return null;
+              return (
+                <div className="hop-group" key={`${cluster.name}-${mode.id}`}>
+                  <h4 className="hop-title">{mode.title}<span>{rows.length} célpont</span></h4>
+                  <p className="hop-lead">{mode.lead}</p>
+                  <div className="fare-table-wrap">
+                    <table className="fare-table hop-table">
+                      <thead>
+                        <tr>
+                          <th>Célpont</th>
+                          <th>Elérés a bázisokról</th>
+                          <th>Ideális</th>
+                          <th>Mit ad a városnézés mellé</th>
+                          <th>Visszaút</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {rows.map((destination) => <Hop destination={destination} key={destination.id} />)}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              );
+            })}
           </div>
         );
       })}

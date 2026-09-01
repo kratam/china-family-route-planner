@@ -1,11 +1,13 @@
 import { fireEvent, render, screen, within } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 import { Planner } from "./Planner";
+import { destinations } from "@/data/destinations";
+import { filterDestinations } from "@/lib/filterDestinations";
 
 describe("Planner", () => {
   it("renders the full researched destination set", () => {
     render(<Planner />);
-    expect(screen.getByText("22 célpont látható")).toBeInTheDocument();
+    expect(screen.getByText(`${destinations.length} célpont látható`)).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: "Guilin + Yangshuo + Xingping" })).toBeInTheDocument();
   });
 
@@ -13,7 +15,9 @@ describe("Planner", () => {
     render(<Planner />);
     fireEvent.click(screen.getByRole("button", { name: "🚆 csak vonattal" }));
     fireEvent.click(screen.getByRole("button", { name: "🏯 történelem" }));
-    expect(screen.getByText("6 célpont látható")).toBeInTheDocument();
+    const expected = filterDestinations(destinations, ["train", "history"]).length;
+    expect(expected).toBeGreaterThan(0);
+    expect(screen.getByText(`${expected} célpont látható`)).toBeInTheDocument();
     expect(screen.queryByRole("heading", { name: "Sanya / Hainan" })).not.toBeInTheDocument();
   });
 

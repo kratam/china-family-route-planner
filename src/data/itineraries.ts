@@ -3,7 +3,7 @@ import { sources } from "./sources";
 
 const routeData: Omit<Itinerary, "timeline" | "sources">[] = [
   {
-    id: "karszt-tenger", rank: 1, name: "Karszt, barlang és tenger", dates: "2026. okt. 16–30.",
+    id: "karszt-tenger", rank: 1, frame: "Guangzhou-kapu · 3204 €", name: "Karszt, barlang és tenger", dates: "2026. okt. 16–30.",
     route: ["Budapest", "Guangzhou", "Shenzhen", "Dapeng", "Hongkong", "Guilin / Yangshuo", "Shenzhen", "Guangzhou", "Budapest"],
     nights: ["Shenzhen 3", "Dapeng 2", "Hongkong 4", "Yangshuo 3", "Shenzhen: az éjszakai járat előtt"], changes: 4,
     trains: ["Shenzhen→Hongkong 14–33 perc", "Hongkong→Guilin West 3:02–3:16", "Guilin/Yangshuo→Shenzhen kb. 3–3,5 óra"],
@@ -19,7 +19,7 @@ const routeData: Omit<Itinerary, "timeline" | "sources">[] = [
     scores: { culture: 4, history: 3, nature: 5, active: 5, swimming: 4, family: 5, logistics: 5, value: 5, weather: 4, wow: 5 },
   },
   {
-    id: "barlang-to-strand", rank: 2, name: "Barlang, tó és tengerpart – a legkevesebb utazással", dates: "2026. okt. 16–30.",
+    id: "barlang-to-strand", rank: 2, frame: "Guangzhou-kapu · 3204 €", name: "Barlang, tó és tengerpart – a legkevesebb utazással", dates: "2026. okt. 16–30.",
     route: ["Budapest", "Guangzhou", "Shenzhen", "Zhaoqing", "Hongkong", "Dapeng", "Shenzhen", "Guangzhou", "Budapest"],
     nights: ["Shenzhen 4", "Zhaoqing 2", "Hongkong 4", "Dapeng 3"], changes: 4,
     trains: ["Shenzhen→Zhaoqing kb. 1,5–2,5 óra", "Zhaoqing→Hongkong kb. 2–3 óra", "Hongkong→Shenzhen 14–33 perc"],
@@ -35,7 +35,7 @@ const routeData: Omit<Itinerary, "timeline" | "sources">[] = [
     scores: { culture: 4, history: 4, nature: 4, active: 4, swimming: 5, family: 5, logistics: 5, value: 5, weather: 4, wow: 4 },
   },
   {
-    id: "regi-kina-tenger", rank: 3, name: "Régi Kína és tengerpart", dates: "2026. okt. 16–30.",
+    id: "regi-kina-tenger", rank: 3, frame: "Guangzhou-kapu · 3204 €", name: "Régi Kína és tengerpart", dates: "2026. okt. 16–30.",
     route: ["Budapest", "Guangzhou", "Shenzhen", "Chaozhou", "Hongkong", "Dapeng", "Shenzhen", "Guangzhou", "Budapest"],
     nights: ["Shenzhen 4", "Chaozhou 2", "Hongkong 4", "Dapeng 3"], changes: 4,
     trains: ["Shenzhen→Chaoshan 1:28–3:14", "Chaoshan→Hongkong kb. 2:21", "Hongkong→Shenzhen 14–33 perc"],
@@ -51,7 +51,7 @@ const routeData: Omit<Itinerary, "timeline" | "sources">[] = [
     scores: { culture: 5, history: 5, nature: 3, active: 4, swimming: 5, family: 4, logistics: 5, value: 5, weather: 4, wow: 4 },
   },
   {
-    id: "sziget-ovaros", rank: 4, name: "Sziget, strand és óváros – Xiamen", dates: "2026. okt. 16–30.",
+    id: "sziget-ovaros", rank: 4, frame: "Guangzhou-kapu · 3204 €", name: "Sziget, strand és óváros – Xiamen", dates: "2026. okt. 16–30.",
     route: ["Budapest", "Guangzhou", "Shenzhen", "Hongkong", "Xiamen + Gulangyu", "Dapeng", "Shenzhen", "Guangzhou", "Budapest"],
     nights: ["Shenzhen 4", "Hongkong 4", "Xiamen 3", "Dapeng 2"], changes: 4,
     trains: ["Shenzhen→Hongkong 14–33 perc", "Hongkong→Xiamen kb. 3:59", "Xiamen→Shenzhen kb. 2,5–4 óra"],
@@ -67,7 +67,7 @@ const routeData: Omit<Itinerary, "timeline" | "sources">[] = [
     scores: { culture: 5, history: 4, nature: 3, active: 4, swimming: 5, family: 5, logistics: 4, value: 4, weather: 3, wow: 4 },
   },
   {
-    id: "sanya-strand", rank: 5, name: "Strandmaximum – Sanya", dates: "2026. okt. 16–30.",
+    id: "sanya-strand", rank: 5, frame: "Guangzhou-kapu · 3204 €", name: "Strandmaximum – Sanya", dates: "2026. okt. 16–30.",
     route: ["Budapest", "Guangzhou", "Shenzhen", "Hongkong", "Sanya", "Shenzhen", "Guangzhou", "Budapest"],
     nights: ["Shenzhen 3", "Hongkong 5", "Sanya 3", "Shenzhen 2"], changes: 4,
     trains: ["Shenzhen→Hongkong 14–33 perc"],
@@ -83,7 +83,7 @@ const routeData: Omit<Itinerary, "timeline" | "sources">[] = [
     scores: { culture: 4, history: 2, nature: 4, active: 4, swimming: 5, family: 5, logistics: 4, value: 4, weather: 2, wow: 4 },
   },
   {
-    id: "vietnam-barlang", rank: 6, name: "Barlangos csónakázás Vietnámban", dates: "2026. okt. 16–30.",
+    id: "vietnam-barlang", rank: 6, frame: "Guangzhou-kapu · 3204 €", name: "Barlangos csónakázás Vietnámban", dates: "2026. okt. 16–30.",
     route: ["Budapest", "Guangzhou", "Shenzhen", "Hongkong", "Hanoi + Ninh Binh", "Shenzhen", "Guangzhou", "Budapest"],
     nights: ["Shenzhen 3", "Hongkong 4", "Ninh Binh 3 + Hanoi 1", "Shenzhen 2"], changes: 5,
     trains: ["Shenzhen→Hongkong 14–33 perc", "Hongkong→Shenzhen a hazaút előtt"],
@@ -99,7 +99,7 @@ const routeData: Omit<Itinerary, "timeline" | "sources">[] = [
     scores: { culture: 5, history: 4, nature: 5, active: 5, swimming: 2, family: 5, logistics: 3, value: 3, weather: 3, wow: 5 },
   },
   {
-    id: "ket-nagy-taj", rank: 7, name: "Két nagy táj – karszt és trópus", dates: "2026. okt. 16–30.",
+    id: "ket-nagy-taj", rank: 7, frame: "Guangzhou-kapu · 3204 €", name: "Két nagy táj – karszt és trópus", dates: "2026. okt. 16–30.",
     route: ["Budapest", "Guangzhou", "Shenzhen", "Guilin / Yangshuo", "Hongkong", "Sanya", "Shenzhen", "Guangzhou", "Budapest"],
     nights: ["Shenzhen 2", "Yangshuo 3", "Hongkong 4", "Sanya 3", "Shenzhen 1"], changes: 5,
     trains: ["Shenzhen→Guilin kb. 3–3,5 óra", "Guilin→Hongkong 3:02–3:16"],
@@ -114,9 +114,64 @@ const routeData: Omit<Itinerary, "timeline" | "sources">[] = [
     weatherRisk: "Közepes–magas: a sanyai tájfunkockázat itt is él, viszont Guilin kiegyensúlyozza.",
     scores: { culture: 4, history: 2, nature: 5, active: 5, swimming: 5, family: 4, logistics: 3, value: 3, weather: 3, wow: 5 },
   },
+  {
+    id: "shanghai-tajvan-kor", rank: 8, frame: "Shanghai-kapu · 4036 €", name: "Shanghai és Tajvan – a nagy kör", dates: "2026. okt. 16–30.",
+    route: ["Budapest", "Shanghai", "Tajpej", "Kaohsiung", "Shanghai", "Budapest"],
+    nights: ["Shanghai 4", "Tajpej 4", "Kaohsiung 4", "Shanghai 1 (a hazaút előtt)"], changes: 3,
+    trains: ["Tajpej→Kaohsiung THSR 1 óra 45 perc", "Shanghai→Suzhou 25 perc, →Hangzhou 45–60 perc"],
+    flights: ["BUD→Shanghai okt. 16.: Shanghai Airlines, közvetlen, 11 óra 5 perc", "Shanghai→Tajpej okt. 21. és vissza okt. 29.: közvetlen, 1 óra 50 perc, a belvárosi Songshanra", "Shanghai→BUD okt. 30.: közvetlen, 12 óra 15 perc"],
+    regionalCost: "kb. NT$4 000–7 000 / 4 fő tajvani vonatokra és buszokra, plusz ¥600–1 200 a shanghaji kirándulásokra (becslés)",
+    flightBudget: { totalEur: 4036, allDirectLongHaul: true, breakdown: "Budapest↔Shanghai oda-vissza 2884 € + Shanghai↔Tajpej oda-vissza 1152 €", note: "Mind a négy repülőszakasz közvetlen, és a tajvani gép a belvárosi Songshanra száll le. A shanghaji jegyet a Trip.comon vagy a China Eastern oldalán kell venni – a Google nem árazza." },
+    homeAirport: "Shanghai PVG", homeTime: "kb. 15–17 óra hotel–BUD, közvetlen éjszakai járattal",
+    swimDays: "kb. 3 fürdős nap: Cijin szigete Kaohsiungban és egy kiugrás Xiaoliuqiura vagy Kentingbe",
+    highlight: "Maglev 430 km/h-val a reptérről, a hangzhoui Feilai Feng sziklába vésett buddha-alakjai, majd Tajvan: éjszakai piacok, lámpásos óváros és a 108 méteres Fo Guang Shan-i Buddha.",
+    advantage: "A legváltozatosabb kulturális ív: két technológiai nagyváros, kínai kertek és csatornák, tajvani éjszakai piacok és egy hatalmas buddhista liget. Októberben Tajvan a legszárazabb hónapját éli – ez a legjobb időjárási fogadás az összes változat közül.",
+    drawback: "Kimarad Shenzhen, Hongkong és Guilin karsztja. Az utolsó tajvani nap hosszú: Kaohsiungból gyorsvasúttal Tajpejbe, onnan repülővel Shanghaiba.",
+    weatherRisk: "Alacsony: október Tajpejben az év legszárazabb hónapja, a tájfunszezon ekkorra kifut; Shanghai is kellemes.",
+    scores: { culture: 5, history: 5, nature: 4, active: 4, swimming: 3, family: 5, logistics: 3, value: 3, weather: 5, wow: 5 },
+  },
+  {
+    id: "shanghai-tajvan-teknos", rank: 9, frame: "Shanghai-kapu · 4036 €", name: "Shanghai és Tajvan – teknősök és tenger", dates: "2026. okt. 16–30.",
+    route: ["Budapest", "Shanghai", "Tajpej", "Kaohsiung", "Xiaoliuqiu", "Shanghai", "Budapest"],
+    nights: ["Shanghai 3", "Tajpej 3", "Kaohsiung 3", "Xiaoliuqiu 2", "Tajpej 1", "Shanghai 1"], changes: 5,
+    trains: ["Tajpej→Kaohsiung THSR 1 óra 45 perc", "Kaohsiung→Donggang busz, onnan 25 perc komp"],
+    flights: ["BUD→Shanghai okt. 16.: közvetlen, 11 óra 5 perc", "Shanghai→Tajpej okt. 20. és vissza okt. 29.: közvetlen, 1 óra 50 perc", "Shanghai→BUD okt. 30.: közvetlen, 12 óra 15 perc"],
+    regionalCost: "kb. NT$5 000–8 000 / 4 fő tajvani közlekedésre és a kompra, plusz a snorkeltúrák (becslés)",
+    flightBudget: { totalEur: 4036, allDirectLongHaul: true, breakdown: "Budapest↔Shanghai oda-vissza 2884 € + Shanghai↔Tajpej oda-vissza 1152 €", note: "Ugyanaz a repülőkeret, mint a nagy körnél – a különbség csak a szigeten belüli beosztás." },
+    homeAirport: "Shanghai PVG", homeTime: "kb. 15–17 óra hotel–BUD, közvetlen éjszakai járattal",
+    swimDays: "kb. 6 fürdős nap: két teljes nap Xiaoliuqiun a zöld teknősökkel, plusz Cijin szigete",
+    highlight: "Xiaoliuqiu korallszigetén a partról beúszva szinte biztos a találkozás zöld teknőssel – sekély, sodrásmentes öblökben, nyolc- és tízéves gyerekekkel is.",
+    advantage: "Ez a változat hozza a legtöbb vizet a tajvani kereten belül: két teljes nap a teknősös szigeten, mellette Kaohsiung strandja és a buddhista liget – és közben megmarad Shanghai és Tajpej városnézése.",
+    drawback: "Hat szállás két hét alatt, és a kompos sziget miatt az időjárásra érzékenyebb. A shanghaji blokk három éjre rövidül, így Suzhou és Hangzhou közül csak egy fér bele.",
+    weatherRisk: "Alacsony–közepes: Dél-Tajvan októberben száraz és meleg, de a kompközlekedést erős szél leállíthatja.",
+    scores: { culture: 4, history: 4, nature: 5, active: 5, swimming: 5, family: 5, logistics: 3, value: 3, weather: 5, wow: 5 },
+  },
 ];
 
 const routeEvidence: Record<string, Pick<Itinerary, "timeline" | "sources">> = {
+  "shanghai-tajvan-kor": {
+    timeline: [
+      { dates: "okt. 16–17.", place: "Budapest → Shanghai", note: "Shanghai Airlines, közvetlen, 12:30-kor indul és okt. 17-én 05:35-kor érkezik. A reptérről a Maglev 430 km/h-val visz be a városba.", source: sources.flightBUDPVG },
+      { dates: "okt. 17–21.", place: "Shanghai", note: "4 éj: Bund, Pudong, Yu-kert, és egy-egy nap Suzhouban (25 perc) vagy Hangzhouban a Feilai Feng buddha-szikláinál (45–60 perc)." },
+      { dates: "okt. 21.", place: "Shanghai → Tajpej", note: "Közvetlen járat a belvárosi Songshan repülőtérre, 1 óra 50 perc; utána 4 tajpeji éj.", source: sources.flightPVGTSA },
+      { dates: "okt. 25.", place: "Tajpej → Kaohsiung", note: "Tajvani gyorsvasút, 1 óra 45 perc; utána 4 éj a déli bázison, Fo Guang Shannal és Tainannal.", source: sources.railTHSR },
+      { dates: "okt. 29.", place: "Kaohsiung → Tajpej → Shanghai", note: "Gyorsvasút Tajpejbe, onnan közvetlen járat Shanghaiba; egy éj a hazaút előtt.", source: sources.flightPVGTSA },
+      { dates: "okt. 30.", place: "Shanghai → Budapest", note: "Közvetlen járat, 01:50-kor indul és 07:05-kor ér Budapestre.", source: sources.flightPVGBUD },
+    ],
+    sources: [sources.flightBUDPVG, sources.flightPVGTSA, sources.railTHSR, sources.flightPVGBUD],
+  },
+  "shanghai-tajvan-teknos": {
+    timeline: [
+      { dates: "okt. 16–17.", place: "Budapest → Shanghai", note: "Shanghai Airlines, közvetlen, 11 óra 5 perc.", source: sources.flightBUDPVG },
+      { dates: "okt. 17–20.", place: "Shanghai", note: "3 éj: Maglev, Bund, Yu-kert és egy nap Suzhouban vagy Hangzhouban." },
+      { dates: "okt. 20.", place: "Shanghai → Tajpej", note: "Közvetlen járat a Songshanra, 1 óra 50 perc; 3 tajpeji éj Jiufennel és Yehliuval.", source: sources.flightPVGTSA },
+      { dates: "okt. 23.", place: "Tajpej → Kaohsiung", note: "Gyorsvasút, 1 óra 45 perc; 3 éj Fo Guang Shannal, a Lótusz-tóval és Cijin szigetével.", source: sources.railTHSR },
+      { dates: "okt. 26.", place: "Kaohsiung → Xiaoliuqiu", note: "Busz Donggangba, onnan 25 perc komp; 2 teljes nap a teknősös korallszigeten.", source: sources.ferryXiaoliuqiu },
+      { dates: "okt. 28.", place: "Xiaoliuqiu → Tajpej", note: "Komp és gyorsvasút vissza északra; egy tajpeji éj.", source: sources.railTHSR },
+      { dates: "okt. 30.", place: "Tajpej → Shanghai → Budapest", note: "Okt. 29-én repülő Shanghaiba, egy éj, majd okt. 30-án 01:50-kor a közvetlen hazajárat.", source: sources.flightPVGBUD },
+    ],
+    sources: [sources.flightBUDPVG, sources.flightPVGTSA, sources.railTHSR, sources.ferryXiaoliuqiu, sources.flightPVGBUD],
+  },
   "karszt-tenger": {
     timeline: [
       { dates: "okt. 16–17.", place: "Budapest → Guangzhou → Shenzhen", note: "China Southern CZ 650, közvetlen, 12:45-kor indul és okt. 18-án 05:30-kor érkezik Guangzhouba; onnan 30–75 perc gyorsvasút Shenzhenbe.", source: sources.flightBUDSZX },

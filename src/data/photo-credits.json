@@ -1,310 +1,450 @@
 {
-  "shenzhen": [
-    {
-      "creditUrl": "https://commons.wikimedia.org/wiki/File:Commercial_area_of_futian_to_east2020.jpg",
-      "credit": "Charlie fong",
-      "license": "CC BY-SA 4.0",
-      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
-    },
-    {
-      "creditUrl": "https://commons.wikimedia.org/wiki/File:Pingan_International_Finance_Center2020.jpg",
-      "credit": "Charlie fong",
-      "license": "CC BY-SA 4.0",
-      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
-    }
-  ],
-  "dapeng": [
-    {
-      "creditUrl": "https://commons.wikimedia.org/wiki/File:Dameisha_Beach_230530_(1).jpg",
-      "credit": "Nkon21",
-      "license": "CC BY-SA 4.0",
-      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
-    },
-    {
-      "creditUrl": "https://commons.wikimedia.org/wiki/File:%E5%A4%A7%E9%B9%8F%E6%89%80%E5%9F%8E%E5%8D%97%E9%97%A8%E4%B8%9C%E8%B7%AF.jpg",
-      "credit": "Iswzo",
-      "license": "CC BY-SA 4.0",
-      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
-    }
-  ],
-  "hong-kong": [
-    {
-      "creditUrl": "https://commons.wikimedia.org/wiki/File:High_West_and_Victoria_Peak_from_Victoria_Gap_(crop1).jpg",
-      "credit": "Daniel Case",
-      "license": "CC BY-SA 3.0",
-      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0"
-    },
-    {
-      "creditUrl": "https://commons.wikimedia.org/wiki/File:Ngong_Ping_360_Cable_Car_and_HKG_2021-09.jpg",
-      "credit": "Sparktour",
-      "license": "CC BY-SA 4.0",
-      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
-    }
-  ],
-  "macau": [
-    {
-      "creditUrl": "https://commons.wikimedia.org/wiki/File:%E5%A4%A7%E4%B8%89%E5%B7%B4%E7%89%8C%E5%9D%8A.jpg",
-      "credit": "GG001213",
-      "license": "CC0",
-      "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en"
-    },
-    {
-      "creditUrl": "https://commons.wikimedia.org/wiki/File:Centre_of_Makau.jpg",
-      "credit": "Андрей Суриков / Andrey Surikov . Original uploader was Сура at ru.wikipedia",
-      "license": "CC BY 2.5",
-      "licenseUrl": "https://creativecommons.org/licenses/by/2.5"
-    }
-  ],
-  "guangzhou": [
-    {
-      "creditUrl": "https://commons.wikimedia.org/wiki/File:Canton_Tower_20241027_(cropped).jpg",
-      "credit": "Tim Wu",
-      "license": "CC BY-SA 4.0",
-      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
-    },
-    {
-      "creditUrl": "https://commons.wikimedia.org/wiki/File:Chen_Clan_Ancestral_Hall_2025.06_02.jpg",
-      "credit": "Shujianyang",
-      "license": "CC BY-SA 4.0",
-      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
-    }
-  ],
-  "zhaoqing": [
-    {
-      "creditUrl": "https://commons.wikimedia.org/wiki/File:%E4%B8%83%E6%98%9F%E5%B2%A9%E8%BF%9C%E7%9C%BA.JPG",
-      "credit": "Jeffery Law",
-      "license": "CC BY-SA 4.0",
-      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
-    },
-    {
-      "creditUrl": "https://commons.wikimedia.org/wiki/File:Dinghushan_dingyuan.JPG",
-      "credit": "空雨",
-      "license": "Public domain",
-      "licenseUrl": "https://commons.wikimedia.org/wiki/File:Dinghushan_dingyuan.JPG"
-    }
-  ],
-  "guilin": [
-    {
-      "creditUrl": "https://commons.wikimedia.org/wiki/File:87318-Li-River.jpg",
-      "credit": "xiquinhosilva",
-      "license": "CC BY 2.0",
-      "licenseUrl": "https://creativecommons.org/licenses/by/2.0"
-    },
-    {
-      "creditUrl": "https://commons.wikimedia.org/wiki/File:1_guilin_yangshuo_2017.jpg",
-      "credit": "Chensiyuan",
-      "license": "CC BY-SA 4.0",
-      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
-    }
-  ],
-  "chaozhou": [
-    {
-      "creditUrl": "https://commons.wikimedia.org/wiki/File:Guangji_Bridge.JPG",
-      "credit": "小杰杰",
-      "license": "CC BY 3.0",
-      "licenseUrl": "https://creativecommons.org/licenses/by/3.0"
-    },
-    {
-      "creditUrl": "https://commons.wikimedia.org/wiki/File:Paifangjie_(cropped).jpg",
-      "credit": "Sgnpkd",
-      "license": "CC BY-SA 4.0",
-      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
-    }
-  ],
-  "xiamen": [
-    {
-      "creditUrl": "https://commons.wikimedia.org/wiki/File:2018%E5%B9%B4%E7%9A%84%E9%BC%93%E6%B5%AA%E5%B1%BF.jpg",
-      "credit": "-森屿-",
-      "license": "CC BY 2.5",
-      "licenseUrl": "https://creativecommons.org/licenses/by/2.5"
-    },
-    {
-      "creditUrl": "https://commons.wikimedia.org/wiki/File:20121031_Xiamen_University_01.jpg",
-      "credit": "Windmemories",
-      "license": "CC BY-SA 4.0",
-      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
-    }
-  ],
-  "shaoguan": [
-    {
-      "creditUrl": "https://commons.wikimedia.org/wiki/File:39002-Danxiashan_(48989060302).jpg",
-      "credit": "xiquinhosilva",
-      "license": "CC BY 2.0",
-      "licenseUrl": "https://creativecommons.org/licenses/by/2.0"
-    },
-    {
-      "creditUrl": "https://commons.wikimedia.org/wiki/File:Danxia_Sunrise.jpg",
-      "credit": "Mankuen",
-      "license": "CC BY-SA 3.0",
-      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0"
-    }
-  ],
-  "kaiping": [
-    {
-      "creditUrl": "https://commons.wikimedia.org/wiki/File:Jinjiangli_0004.jpg",
-      "credit": "Stefan Fussan",
-      "license": "CC BY-SA 3.0",
-      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0"
-    },
-    {
-      "creditUrl": "https://commons.wikimedia.org/wiki/File:European_Style_Street.jpg",
-      "credit": "No machine-readable author provided. Earthengine assumed (based on copyright claims).",
-      "license": "CC BY-SA 2.5",
-      "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.5"
-    }
-  ],
-  "sanya": [
-    {
-      "creditUrl": "https://commons.wikimedia.org/wiki/File:Yalong_Bay_01.jpg",
-      "credit": "Anna Frodesiak",
-      "license": "Public domain",
-      "licenseUrl": "https://commons.wikimedia.org/wiki/File:Yalong_Bay_01.jpg"
-    },
-    {
-      "creditUrl": "https://commons.wikimedia.org/wiki/File:SuperStar_Aquarius_at_Phoenix_Island,_Sanya_Bay_-_01.jpg",
-      "credit": "Anna Frodesiak",
-      "license": "CC0",
-      "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en"
-    }
-  ],
-  "xian": [
-    {
-      "creditUrl": "https://commons.wikimedia.org/wiki/File:51714-Terracota-Army.jpg",
-      "credit": "xiquinhosilva",
-      "license": "CC BY 2.0",
-      "licenseUrl": "https://creativecommons.org/licenses/by/2.0"
-    },
-    {
-      "creditUrl": "https://commons.wikimedia.org/wiki/File:City_wall_of_Xi%27an_51550-Xian_(27959363326).jpg",
-      "credit": "xiquinhosilva",
-      "license": "CC BY 2.0",
-      "licenseUrl": "https://creativecommons.org/licenses/by/2.0"
-    }
-  ],
-  "zhangjiajie": [
-    {
-      "creditUrl": "https://commons.wikimedia.org/wiki/File:1_tianzishan_wulingyuan_zhangjiajie_2012.jpg",
-      "credit": "chensiyuan",
-      "license": "CC BY-SA 4.0",
-      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
-    },
-    {
-      "creditUrl": "https://commons.wikimedia.org/wiki/File:Tianmen_38330-Zhangjiajie_(49047525877).jpg",
-      "credit": "xiquinhosilva",
-      "license": "CC BY 2.0",
-      "licenseUrl": "https://creativecommons.org/licenses/by/2.0"
-    }
-  ],
-  "danang": [
-    {
-      "creditUrl": "https://commons.wikimedia.org/wiki/File:10549-Hoi-An_(37621348460).jpg",
-      "credit": "xiquinhosilva",
-      "license": "CC BY 2.0",
-      "licenseUrl": "https://creativecommons.org/licenses/by/2.0"
-    },
-    {
-      "creditUrl": "https://commons.wikimedia.org/wiki/File:Ngu_hanh_son_toan_canh.jpg",
-      "credit": "Viethavvh at vi.wikipedia",
-      "license": "Public domain",
-      "licenseUrl": "https://commons.wikimedia.org/wiki/File:Ngu_hanh_son_toan_canh.jpg"
-    }
-  ],
-  "ninh-binh": [
-    {
-      "creditUrl": "https://commons.wikimedia.org/wiki/File:Muaxuantamcoc.jpg",
-      "credit": "Kien1980v ( thảo luận )",
-      "license": "Public domain",
-      "licenseUrl": "https://commons.wikimedia.org/wiki/File:Muaxuantamcoc.jpg"
-    },
-    {
-      "creditUrl": "https://commons.wikimedia.org/wiki/File:Tam_Coc_by_Tuan_Mai_%22007%22_(8888350545).jpg",
-      "credit": "Tuan Mai",
-      "license": "CC BY 2.0",
-      "licenseUrl": "https://creativecommons.org/licenses/by/2.0"
-    }
-  ],
-  "ha-long": [
-    {
-      "creditUrl": "https://commons.wikimedia.org/wiki/File:Ha_Long_Bay_in_2019.jpg",
-      "credit": "Taewangkorea",
-      "license": "CC BY-SA 4.0",
-      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
-    },
-    {
-      "creditUrl": "https://commons.wikimedia.org/wiki/File:Bai_Tu_Long_Bay_-_Quang_Ninh_-_Vietnam_(35892945123).jpg",
-      "credit": "AnhTuan Le",
-      "license": "Public domain",
-      "licenseUrl": "https://commons.wikimedia.org/wiki/File:Bai_Tu_Long_Bay_-_Quang_Ninh_-_Vietnam_(35892945123).jpg"
-    }
-  ],
-  "phu-quoc": [
-    {
-      "creditUrl": "https://commons.wikimedia.org/wiki/File:Bai-sao-phu-quoc-tuonglamphotos.jpg",
-      "credit": "[//commons.wikimedia.org/wiki/User:Trantuonglam Trantuonglam]",
-      "license": "CC BY-SA 4.0",
-      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
-    },
-    {
-      "creditUrl": "https://commons.wikimedia.org/wiki/File:Phu_quoc_plage_sao.jpg",
-      "credit": "ntt",
-      "license": "CC BY-SA 3.0",
-      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0"
-    }
-  ],
-  "nha-trang": [
-    {
-      "creditUrl": "https://commons.wikimedia.org/wiki/File:Ganesh_Tempel_Po_Nagar_Nha_Trang.jpg",
-      "credit": "Tervlugt",
-      "license": "CC BY 3.0",
-      "licenseUrl": "https://creativecommons.org/licenses/by/3.0"
-    },
-    {
-      "creditUrl": "https://commons.wikimedia.org/wiki/File:Hanging_cabins_to_Vinpearland.jpg",
-      "credit": "Jame Healy",
-      "license": "CC BY-SA 2.0",
-      "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0"
-    }
-  ],
-  "siem-reap": [
-    {
-      "creditUrl": "https://commons.wikimedia.org/wiki/File:Angkor_Wat.jpg",
-      "credit": "Bjørn Christian Tørrissen",
-      "license": "CC BY-SA 4.0",
-      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
-    },
-    {
-      "creditUrl": "https://commons.wikimedia.org/wiki/File:Ta_Prohm_(III).jpg",
-      "credit": "This Photo was taken by Supanut Arunoprayote . Feel free to use any of my images, but please mention me as the author and may send me a message. (สามารถใช้ภาพได้อิสระ แต่กรุณาใส่เครดิตผู้ถ่ายและอาจส่ง ข้อความบอกกล่าวด้วย ) Please do not upload an updated image here without consultation with the Author. The author would like to make corrections only at his own source. This ensures that the changes are preserved. Please if you think that any changes should be required, please inform the author. Otherwise you can upload a new image with a new name. Please use one of the templates derivative or extract .",
-      "license": "CC BY 4.0",
-      "licenseUrl": "https://creativecommons.org/licenses/by/4.0"
-    }
-  ],
-  "bangkok": [
-    {
-      "creditUrl": "https://commons.wikimedia.org/wiki/File:4Y1A1159_Bangkok_(33536795515).jpg",
-      "credit": "Ninara from Helsinki, Finland",
-      "license": "CC BY 2.0",
-      "licenseUrl": "https://creativecommons.org/licenses/by/2.0"
-    },
-    {
-      "creditUrl": "https://commons.wikimedia.org/wiki/File:%E0%B9%80%E0%B8%88%E0%B8%94%E0%B8%B5%E0%B8%A2%E0%B9%8C%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%98%E0%B8%B2%E0%B8%99%E0%B8%97%E0%B8%A3%E0%B8%87%E0%B8%9B%E0%B8%A3%E0%B8%B2%E0%B8%87%E0%B8%84%E0%B9%8C%E0%B8%A7%E0%B8%B1%E0%B8%94%E0%B8%AD%E0%B8%A3%E0%B8%B8%E0%B8%932.jpg",
-      "credit": "Mastertongapollo",
-      "license": "CC BY-SA 4.0",
-      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
-    }
-  ],
-  "chiang-mai": [
-    {
-      "creditUrl": "https://commons.wikimedia.org/wiki/File:0020-%E0%B8%A7%E0%B8%B1%E0%B8%94%E0%B8%9E%E0%B8%A3%E0%B8%B0%E0%B8%AA%E0%B8%B4%E0%B8%87%E0%B8%AB%E0%B9%8C%E0%B8%A7%E0%B8%A3%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%A7%E0%B8%B4%E0%B8%AB%E0%B8%B2%E0%B8%A3.jpg",
-      "credit": "Nawit science",
-      "license": "CC BY-SA 4.0",
-      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
-    },
-    {
-      "creditUrl": "https://commons.wikimedia.org/wiki/File:Wat_Phra_That_Doi_Suthep_-_Chiang_Mai.jpg",
-      "credit": "JJ Harrison ( https://www.jjharrison.com.au/ )",
-      "license": "CC BY-SA 3.0",
-      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0"
-    }
-  ]
+ "shenzhen": [
+  {
+   "creditUrl": "https://commons.wikimedia.org/wiki/File:Commercial_area_of_futian_to_east2020.jpg",
+   "credit": "Charlie fong",
+   "license": "CC BY-SA 4.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+  },
+  {
+   "creditUrl": "https://commons.wikimedia.org/wiki/File:Pingan_International_Finance_Center2020.jpg",
+   "credit": "Charlie fong",
+   "license": "CC BY-SA 4.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+  }
+ ],
+ "dapeng": [
+  {
+   "creditUrl": "https://commons.wikimedia.org/wiki/File:Dameisha_Beach_230530_(1).jpg",
+   "credit": "Nkon21",
+   "license": "CC BY-SA 4.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+  },
+  {
+   "creditUrl": "https://commons.wikimedia.org/wiki/File:%E5%A4%A7%E9%B9%8F%E6%89%80%E5%9F%8E%E5%8D%97%E9%97%A8%E4%B8%9C%E8%B7%AF.jpg",
+   "credit": "Iswzo",
+   "license": "CC BY-SA 4.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+  }
+ ],
+ "hong-kong": [
+  {
+   "creditUrl": "https://commons.wikimedia.org/wiki/File:High_West_and_Victoria_Peak_from_Victoria_Gap_(crop1).jpg",
+   "credit": "Daniel Case",
+   "license": "CC BY-SA 3.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0"
+  },
+  {
+   "creditUrl": "https://commons.wikimedia.org/wiki/File:Ngong_Ping_360_Cable_Car_and_HKG_2021-09.jpg",
+   "credit": "Sparktour",
+   "license": "CC BY-SA 4.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+  }
+ ],
+ "macau": [
+  {
+   "creditUrl": "https://commons.wikimedia.org/wiki/File:%E5%A4%A7%E4%B8%89%E5%B7%B4%E7%89%8C%E5%9D%8A.jpg",
+   "credit": "GG001213",
+   "license": "CC0",
+   "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en"
+  },
+  {
+   "creditUrl": "https://commons.wikimedia.org/wiki/File:Centre_of_Makau.jpg",
+   "credit": "Андрей Суриков / Andrey Surikov . Original uploader was Сура at ru.wikipedia",
+   "license": "CC BY 2.5",
+   "licenseUrl": "https://creativecommons.org/licenses/by/2.5"
+  }
+ ],
+ "guangzhou": [
+  {
+   "creditUrl": "https://commons.wikimedia.org/wiki/File:Canton_Tower_20241027_(cropped).jpg",
+   "credit": "Tim Wu",
+   "license": "CC BY-SA 4.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+  },
+  {
+   "creditUrl": "https://commons.wikimedia.org/wiki/File:Chen_Clan_Ancestral_Hall_2025.06_02.jpg",
+   "credit": "Shujianyang",
+   "license": "CC BY-SA 4.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+  }
+ ],
+ "zhaoqing": [
+  {
+   "creditUrl": "https://commons.wikimedia.org/wiki/File:%E4%B8%83%E6%98%9F%E5%B2%A9%E8%BF%9C%E7%9C%BA.JPG",
+   "credit": "Jeffery Law",
+   "license": "CC BY-SA 4.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+  },
+  {
+   "creditUrl": "https://commons.wikimedia.org/wiki/File:Dinghushan_dingyuan.JPG",
+   "credit": "空雨",
+   "license": "Public domain",
+   "licenseUrl": "https://commons.wikimedia.org/wiki/File:Dinghushan_dingyuan.JPG"
+  }
+ ],
+ "guilin": [
+  {
+   "creditUrl": "https://commons.wikimedia.org/wiki/File:87318-Li-River.jpg",
+   "credit": "xiquinhosilva",
+   "license": "CC BY 2.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by/2.0"
+  },
+  {
+   "creditUrl": "https://commons.wikimedia.org/wiki/File:1_guilin_yangshuo_2017.jpg",
+   "credit": "Chensiyuan",
+   "license": "CC BY-SA 4.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+  }
+ ],
+ "chaozhou": [
+  {
+   "creditUrl": "https://commons.wikimedia.org/wiki/File:Guangji_Bridge.JPG",
+   "credit": "小杰杰",
+   "license": "CC BY 3.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by/3.0"
+  },
+  {
+   "creditUrl": "https://commons.wikimedia.org/wiki/File:Paifangjie_(cropped).jpg",
+   "credit": "Sgnpkd",
+   "license": "CC BY-SA 4.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+  }
+ ],
+ "xiamen": [
+  {
+   "creditUrl": "https://commons.wikimedia.org/wiki/File:2018%E5%B9%B4%E7%9A%84%E9%BC%93%E6%B5%AA%E5%B1%BF.jpg",
+   "credit": "-森屿-",
+   "license": "CC BY 2.5",
+   "licenseUrl": "https://creativecommons.org/licenses/by/2.5"
+  },
+  {
+   "creditUrl": "https://commons.wikimedia.org/wiki/File:20121031_Xiamen_University_01.jpg",
+   "credit": "Windmemories",
+   "license": "CC BY-SA 4.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+  }
+ ],
+ "shaoguan": [
+  {
+   "creditUrl": "https://commons.wikimedia.org/wiki/File:39002-Danxiashan_(48989060302).jpg",
+   "credit": "xiquinhosilva",
+   "license": "CC BY 2.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by/2.0"
+  },
+  {
+   "creditUrl": "https://commons.wikimedia.org/wiki/File:Danxia_Sunrise.jpg",
+   "credit": "Mankuen",
+   "license": "CC BY-SA 3.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0"
+  }
+ ],
+ "kaiping": [
+  {
+   "creditUrl": "https://commons.wikimedia.org/wiki/File:Jinjiangli_0004.jpg",
+   "credit": "Stefan Fussan",
+   "license": "CC BY-SA 3.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0"
+  },
+  {
+   "creditUrl": "https://commons.wikimedia.org/wiki/File:European_Style_Street.jpg",
+   "credit": "No machine-readable author provided. Earthengine assumed (based on copyright claims).",
+   "license": "CC BY-SA 2.5",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.5"
+  }
+ ],
+ "sanya": [
+  {
+   "creditUrl": "https://commons.wikimedia.org/wiki/File:Yalong_Bay_01.jpg",
+   "credit": "Anna Frodesiak",
+   "license": "Public domain",
+   "licenseUrl": "https://commons.wikimedia.org/wiki/File:Yalong_Bay_01.jpg"
+  },
+  {
+   "creditUrl": "https://commons.wikimedia.org/wiki/File:SuperStar_Aquarius_at_Phoenix_Island,_Sanya_Bay_-_01.jpg",
+   "credit": "Anna Frodesiak",
+   "license": "CC0",
+   "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en"
+  }
+ ],
+ "xian": [
+  {
+   "creditUrl": "https://commons.wikimedia.org/wiki/File:51714-Terracota-Army.jpg",
+   "credit": "xiquinhosilva",
+   "license": "CC BY 2.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by/2.0"
+  },
+  {
+   "creditUrl": "https://commons.wikimedia.org/wiki/File:City_wall_of_Xi%27an_51550-Xian_(27959363326).jpg",
+   "credit": "xiquinhosilva",
+   "license": "CC BY 2.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by/2.0"
+  }
+ ],
+ "zhangjiajie": [
+  {
+   "creditUrl": "https://commons.wikimedia.org/wiki/File:1_tianzishan_wulingyuan_zhangjiajie_2012.jpg",
+   "credit": "chensiyuan",
+   "license": "CC BY-SA 4.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+  },
+  {
+   "creditUrl": "https://commons.wikimedia.org/wiki/File:Tianmen_38330-Zhangjiajie_(49047525877).jpg",
+   "credit": "xiquinhosilva",
+   "license": "CC BY 2.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by/2.0"
+  }
+ ],
+ "danang": [
+  {
+   "creditUrl": "https://commons.wikimedia.org/wiki/File:10549-Hoi-An_(37621348460).jpg",
+   "credit": "xiquinhosilva",
+   "license": "CC BY 2.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by/2.0"
+  },
+  {
+   "creditUrl": "https://commons.wikimedia.org/wiki/File:Ngu_hanh_son_toan_canh.jpg",
+   "credit": "Viethavvh at vi.wikipedia",
+   "license": "Public domain",
+   "licenseUrl": "https://commons.wikimedia.org/wiki/File:Ngu_hanh_son_toan_canh.jpg"
+  }
+ ],
+ "ninh-binh": [
+  {
+   "creditUrl": "https://commons.wikimedia.org/wiki/File:Muaxuantamcoc.jpg",
+   "credit": "Kien1980v ( thảo luận )",
+   "license": "Public domain",
+   "licenseUrl": "https://commons.wikimedia.org/wiki/File:Muaxuantamcoc.jpg"
+  },
+  {
+   "creditUrl": "https://commons.wikimedia.org/wiki/File:Tam_Coc_by_Tuan_Mai_%22007%22_(8888350545).jpg",
+   "credit": "Tuan Mai",
+   "license": "CC BY 2.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by/2.0"
+  }
+ ],
+ "ha-long": [
+  {
+   "creditUrl": "https://commons.wikimedia.org/wiki/File:Ha_Long_Bay_in_2019.jpg",
+   "credit": "Taewangkorea",
+   "license": "CC BY-SA 4.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+  },
+  {
+   "creditUrl": "https://commons.wikimedia.org/wiki/File:Bai_Tu_Long_Bay_-_Quang_Ninh_-_Vietnam_(35892945123).jpg",
+   "credit": "AnhTuan Le",
+   "license": "Public domain",
+   "licenseUrl": "https://commons.wikimedia.org/wiki/File:Bai_Tu_Long_Bay_-_Quang_Ninh_-_Vietnam_(35892945123).jpg"
+  }
+ ],
+ "phu-quoc": [
+  {
+   "creditUrl": "https://commons.wikimedia.org/wiki/File:Bai-sao-phu-quoc-tuonglamphotos.jpg",
+   "credit": "[//commons.wikimedia.org/wiki/User:Trantuonglam Trantuonglam]",
+   "license": "CC BY-SA 4.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+  },
+  {
+   "creditUrl": "https://commons.wikimedia.org/wiki/File:Phu_quoc_plage_sao.jpg",
+   "credit": "ntt",
+   "license": "CC BY-SA 3.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0"
+  }
+ ],
+ "nha-trang": [
+  {
+   "creditUrl": "https://commons.wikimedia.org/wiki/File:Ganesh_Tempel_Po_Nagar_Nha_Trang.jpg",
+   "credit": "Tervlugt",
+   "license": "CC BY 3.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by/3.0"
+  },
+  {
+   "creditUrl": "https://commons.wikimedia.org/wiki/File:Hanging_cabins_to_Vinpearland.jpg",
+   "credit": "Jame Healy",
+   "license": "CC BY-SA 2.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0"
+  }
+ ],
+ "siem-reap": [
+  {
+   "creditUrl": "https://commons.wikimedia.org/wiki/File:Angkor_Wat.jpg",
+   "credit": "Bjørn Christian Tørrissen",
+   "license": "CC BY-SA 4.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+  },
+  {
+   "creditUrl": "https://commons.wikimedia.org/wiki/File:Ta_Prohm_(III).jpg",
+   "credit": "This Photo was taken by Supanut Arunoprayote . Feel free to use any of my images, but please mention me as the author and may send me a message. (สามารถใช้ภาพได้อิสระ แต่กรุณาใส่เครดิตผู้ถ่ายและอาจส่ง ข้อความบอกกล่าวด้วย ) Please do not upload an updated image here without consultation with the Author. The author would like to make corrections only at his own source. This ensures that the changes are preserved. Please if you think that any changes should be required, please inform the author. Otherwise you can upload a new image with a new name. Please use one of the templates derivative or extract .",
+   "license": "CC BY 4.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by/4.0"
+  }
+ ],
+ "bangkok": [
+  {
+   "creditUrl": "https://commons.wikimedia.org/wiki/File:4Y1A1159_Bangkok_(33536795515).jpg",
+   "credit": "Ninara from Helsinki, Finland",
+   "license": "CC BY 2.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by/2.0"
+  },
+  {
+   "creditUrl": "https://commons.wikimedia.org/wiki/File:%E0%B9%80%E0%B8%88%E0%B8%94%E0%B8%B5%E0%B8%A2%E0%B9%8C%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%98%E0%B8%B2%E0%B8%99%E0%B8%97%E0%B8%A3%E0%B8%87%E0%B8%9B%E0%B8%A3%E0%B8%B2%E0%B8%87%E0%B8%84%E0%B9%8C%E0%B8%A7%E0%B8%B1%E0%B8%94%E0%B8%AD%E0%B8%A3%E0%B8%B8%E0%B8%932.jpg",
+   "credit": "Mastertongapollo",
+   "license": "CC BY-SA 4.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+  }
+ ],
+ "chiang-mai": [
+  {
+   "creditUrl": "https://commons.wikimedia.org/wiki/File:0020-%E0%B8%A7%E0%B8%B1%E0%B8%94%E0%B8%9E%E0%B8%A3%E0%B8%B0%E0%B8%AA%E0%B8%B4%E0%B8%87%E0%B8%AB%E0%B9%8C%E0%B8%A7%E0%B8%A3%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%A7%E0%B8%B4%E0%B8%AB%E0%B8%B2%E0%B8%A3.jpg",
+   "credit": "Nawit science",
+   "license": "CC BY-SA 4.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+  },
+  {
+   "creditUrl": "https://commons.wikimedia.org/wiki/File:Wat_Phra_That_Doi_Suthep_-_Chiang_Mai.jpg",
+   "credit": "JJ Harrison ( https://www.jjharrison.com.au/ )",
+   "license": "CC BY-SA 3.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0"
+  }
+ ],
+ "taipei": [
+  {
+   "creditUrl": "https://commons.wikimedia.org/wiki/File:Taipei_-_Skyline_Sunset.jpg",
+   "credit": "Jorge Cancela",
+   "license": "CC BY 2.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by/2.0"
+  },
+  {
+   "creditUrl": "https://commons.wikimedia.org/wiki/File:2009-04-01_Shilin_Night_Market.jpg",
+   "credit": "Pedro Angelini",
+   "license": "CC BY 2.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by/2.0"
+  }
+ ],
+ "jiufen": [
+  {
+   "creditUrl": "https://commons.wikimedia.org/wiki/File:Jiufen%2C_November_27%2C_2024_-_084.jpg",
+   "credit": "Another Believer",
+   "license": "CC BY-SA 4.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+  },
+  {
+   "creditUrl": "https://commons.wikimedia.org/wiki/File:Shifen_Waterfall_front_view_20200626a.jpg",
+   "credit": "Solomon203",
+   "license": "CC BY-SA 4.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+  }
+ ],
+ "yehliu": [
+  {
+   "creditUrl": "https://commons.wikimedia.org/wiki/File:Queens_Head_Rock_Yeliu_North_Coast_Taiwan.jpg",
+   "credit": "Mark S. Piteo-Tarpy",
+   "license": "CC BY-SA 3.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0"
+  },
+  {
+   "creditUrl": "https://commons.wikimedia.org/wiki/File:Yehliu_Geopark_-_Yehliu5397.jpg",
+   "credit": "lumoplank",
+   "license": "CC0",
+   "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en"
+  }
+ ],
+ "taroko": [
+  {
+   "creditUrl": "https://commons.wikimedia.org/wiki/File:Taroko-Gorge_Hualien_Taiwan_Swallow-Grotto-01.jpg",
+   "credit": "CEphoto, Uwe Aranas",
+   "license": "CC BY-SA 3.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0"
+  },
+  {
+   "creditUrl": "https://commons.wikimedia.org/wiki/File:Taiwan_Taroko-Schlucht_Eternal_Spring_Shrine_01.jpg",
+   "credit": "Zairon",
+   "license": "CC BY-SA 4.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+  }
+ ],
+ "sun-moon-lake": [
+  {
+   "creditUrl": "https://commons.wikimedia.org/wiki/File:Sun_Moon_Lake_from_Cable_Car%2C_Nantou%2C_Dec_2024.jpg",
+   "credit": "Ralff Nestor Nacor",
+   "license": "CC BY-SA 4.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+  },
+  {
+   "creditUrl": "https://commons.wikimedia.org/wiki/File:Ci_En_Pagoda%2C_Sun_Moon_Lake.jpg",
+   "credit": "Selvamsathish",
+   "license": "CC BY-SA 4.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+  }
+ ],
+ "alishan": [
+  {
+   "creditUrl": "https://commons.wikimedia.org/wiki/File:Alishan_Taiwan_Alishan-Forest-Railway-01.jpg",
+   "credit": "CEphoto, Uwe Aranas",
+   "license": "CC BY-SA 3.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0"
+  },
+  {
+   "creditUrl": "https://commons.wikimedia.org/wiki/File:Alishan_sunrise.JPG",
+   "credit": "Rybloo",
+   "license": "CC BY-SA 3.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0"
+  }
+ ],
+ "tainan": [
+  {
+   "creditUrl": "https://commons.wikimedia.org/wiki/File:Chihkan_Tower%2C_Tainan_at_dusk.jpg",
+   "credit": "Kdm852",
+   "license": "CC BY-SA 4.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+  },
+  {
+   "creditUrl": "https://commons.wikimedia.org/wiki/File:Anping_Fort%2C_Tainan.jpg",
+   "credit": "Rybloo",
+   "license": "CC BY-SA 3.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0"
+  }
+ ],
+ "kaohsiung": [
+  {
+   "creditUrl": "https://commons.wikimedia.org/wiki/File:20190819_Fo_Guang_Shan_Buddha_Museum%2C_Kaohsiung%2C_Taiwan.jpg",
+   "credit": "毛貓大少爺 from Taipei, Taiwan",
+   "license": "CC BY-SA 2.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0"
+  },
+  {
+   "creditUrl": "https://commons.wikimedia.org/wiki/File:Cihji_Palace_from_Dragon_and_Tiger_Pagodas%2C_Lotus_Pond.jpg",
+   "credit": "Nandaro",
+   "license": "CC BY-SA 3.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0"
+  }
+ ],
+ "xiaoliuqiu": [
+  {
+   "creditUrl": "https://commons.wikimedia.org/wiki/File:Vase_Rock%2C_Lamay_Island_2015-10-09.jpg",
+   "credit": "Taiwania Justo",
+   "license": "CC BY-SA 4.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+  },
+  {
+   "creditUrl": "https://commons.wikimedia.org/wiki/File:Snorkelling_People_in_Lamay_Island_01.JPG",
+   "credit": "Taiwania Justo",
+   "license": "CC BY-SA 4.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+  }
+ ],
+ "kenting": [
+  {
+   "creditUrl": "https://commons.wikimedia.org/wiki/File:Kending_coastline%2C_Taiwan_%283828587307%29.jpg",
+   "credit": "Caitriana Nicholson from 北京 ~ Beijing, 中国 ~ China",
+   "license": "CC BY-SA 2.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0"
+  },
+  {
+   "creditUrl": "https://commons.wikimedia.org/wiki/File:Eluanbi_Lighthouse_01.jpg",
+   "credit": "Bernard Gagnon",
+   "license": "CC BY-SA 3.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0"
+  }
+ ]
 }

@@ -20,10 +20,11 @@ export function Itineraries() {
   return (
     <section className="editorial-section" id="utvonalak">
       <div className="section-kicker">2026. október 16–30.</div>
-      <h2>Hét teljes útvonal a megvett repülőkeretre</h2>
+      <h2>Kilenc teljes útvonal, két repülőkeretre</h2>
       <p className="section-lead">
-        Mindegyik Shenzhenbe érkezik és Shenzhenből indul haza – a különbség az, mi van
-        közte. A repülőár konkrét, lekérdezett végösszeg a teljes négyfős társaságra
+        Az első hét a <strong>guangzhoui kapura</strong> épül (3204 €), az utolsó kettő a
+        <strong>shanghajira</strong> (4036 €, benne a tajvani blokk). Mindegyik ugyanoda érkezik,
+        ahonnan hazaindul. A repülőár konkrét, lekérdezett végösszeg a teljes négyfős társaságra
         (2 felnőtt + 2 gyerek, 8 és 10 év), adókkal; ahol 3016 € szerepel, ott a kitérők
         végig vonattal mennek. A régiós költségsáv ezen felül értendő. Részletek a{" "}
         <a href="./repuloarak/">repülőárak oldalon</a>.
@@ -34,7 +35,7 @@ export function Itineraries() {
             <header>
               <div className="route-rank">#{route.rank}</div>
               <div>
-                <span>{route.dates}</span>
+                <span>{route.dates} · {route.frame}</span>
                 <h3>{route.name}</h3>
               </div>
               <div className="total-score">

@@ -21,6 +21,9 @@ export type Transport = {
   source: SourceRef;
 };
 
+/** Egy elérési szakasz: honnan, mivel, mennyi idő alatt. */
+export type AccessLeg = Transport & { from: string };
+
 export type Attraction = {
   name: string;
   description: string;
@@ -69,8 +72,10 @@ export type Destination = {
   scores: Scores;
   travelCost: string;
   realisticTime: string;
-  fromShenzhen: Transport;
-  fromHongKong: Transport;
+  /** Melyik bázispárról értelmezzük az elérést. */
+  cluster: string;
+  /** Elérési szakaszok a bázisokról; a sorrend a `cluster` sorrendjét követi. */
+  access: AccessLeg[];
   homeward: string;
   weather: { air: string; rain: string; risk: "alacsony" | "közepes" | "magas"; note: string; source: SourceRef };
   swimming: { realistic: string; water: string; where: string };
@@ -99,6 +104,8 @@ export type FlightBudget = {
 export type Itinerary = {
   id: string;
   rank: number;
+  /** Melyik repülőkeretre épül: melyik kapuváros a be- és kilépés. */
+  frame: string;
   name: string;
   dates: string;
   route: string[];

@@ -1,6 +1,6 @@
 # Keleti Iránytű – családi Kína + régiós útvonaltervező
 
-Magyar nyelvű, statikus utazási döntéstámogató oldal a 2026. október 16–30. közötti, két felnőtt és két (8 és 10 éves) gyerek részvételével tervezett úthoz.
+Magyar nyelvű, statikus utazási döntéstámogató oldal a 2026. október 16–30. közötti, két felnőtt és két (8 és 10 éves) gyerek részvételével tervezett úthoz. Két repülőkeret van versenyben: a **guangzhoui kapu** (3204 €) a Gyöngy-folyó deltájával, és a **shanghaji kapu** (4036 €) a tajvani blokkal.
 
 Publikus oldal: <https://kratam.github.io/china-family-route-planner/>
 
@@ -24,7 +24,7 @@ npm run check:links
 
 ## Frissíthető adatok
 
-- `src/data/destinations.ts` – célpontok, közlekedés, időjárás, programok, szállások, pontszámok és képek.
+- `src/data/destinations.ts` – 32 célpont (22 dél-kínai/délkelet-ázsiai + 10 tajvani), közlekedés, időjárás, programok, szállások, pontszámok és képek. Az elérés a `cluster` + `access` mezőkben van, bázispáronként.
 - `src/data/itineraries.ts` – teljes útvonalak, költségsávok, éjszakák, fürdős napok és rangsorok.
 - `src/data/flightPrices.ts` – konkrét, lekérdezett repülőárak (Google Flights, 2026. augusztus 27., 2 felnőtt + 2 gyerek), a `/repuloarak/` aloldal és az útvonalkártyák árai.
 - `src/data/sources.ts` – újrahasznált, változó forráslinkek.
@@ -63,11 +63,19 @@ Fő megállapítások:
   hazautat kapunk 3437 €-ért.
 - Hongkongból **nincs** közvetlen járat Budapestre.
 
-## Jelenlegi top 3
+## Jelenlegi top 3 – guangzhoui keret
 
-1. **Karszt, barlang és tenger** – Guangzhou · Shenzhen · Dapeng · Hongkong · Yangshuo (3204 €, nulla regionális repülés, kb. 5 fürdős nap).
+1. **Karszt, barlang és tenger** – Guangzhou · Shenzhen · Dapeng · Hongkong · Yangshuo (3204 €, kb. 5 fürdős nap).
 2. **Barlang, tó és tengerpart** – Guangzhou · Shenzhen · Zhaoqing · Hongkong · Dapeng (3204 €).
 3. **Régi Kína és tengerpart** – Guangzhou · Shenzhen · Chaozhou · Hongkong · Dapeng (3204 €).
 
-Nyitva álló, még meg nem írt irány: **északi ív** Peking kijárattal (Nagy Fal, Xi'an vagy
-Luoyang buddhista sziklatemplomai) 3696 €-ért – ehhez új célpontokat kell felvenni.
+## Shanghaji keret – Tajvannal
+
+Budapest ↔ Shanghai oda-vissza 2884 € + Shanghai ↔ Tajpej (Songshan) oda-vissza 1152 € =
+**4036 €**, négy közvetlen járattal. Tíz tajvani célpont és két teljes útvonal:
+
+- **Shanghai és Tajvan – a nagy kör**: Shanghai 4 · Tajpej 4 · Kaohsiung 4 éj.
+- **Shanghai és Tajvan – teknősök és tenger**: ugyanez, két nap Xiaoliuqiun a zöld teknősökkel.
+
+Októberben Tajpej az év legszárazabb hónapját éli, a tájfunszezon ekkorra kifut – ez a legjobb
+időjárási fogadás a mezőnyben. A Taroko-szurdok a 2024-es földrengés óta csak részlegesen nyitva.
