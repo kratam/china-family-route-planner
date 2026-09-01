@@ -139,8 +139,8 @@ export const architectures: Architecture[] = [
     id: "rt-pvg", label: "Shanghai oda-vissza", kind: "oda-vissza", ticketing: "egy jegy", eur: 2884,
     dates: "okt. 16. → okt. 30.", inGate: "Shanghai PVG", outGate: "Shanghai PVG",
     allDirect: true, dayFlightHome: false,
-    fits: "A legolcsóbb megoldás, és Shanghai maga is technológiai nagyváros. Innen Hangzhou, Suzhou és a vízi városok egy-két óra vonattal.",
-    drawback: "Shenzhen 7 óra gyorsvasútra van, a déli tengerpartok és Guilin karsztja pedig kiesnek. A hazaút hajnali 01:50-kor indul.",
+    fits: "A legolcsóbb megoldás, és Shanghai maga is technológiai nagyváros. Innen Hangzhou (Lingyin-templom és a Feilai Feng sziklába vésett buddha-alakjai), Suzhou és a csatornás vízi városok egy-két óra vonattal. Tajvan is innen a legkényelmesebb: Shanghai↔Tajpej oda-vissza 1152 € négy főre, 1 óra 50 perc, a belvárosi Songshan repülőtérre – így a teljes keret 4036 €.",
+    drawback: "Shenzhen 7 óra gyorsvasútra van, a déli tengerpartok és Guilin karsztja pedig kiesnek. A hazaút hajnali 01:50-kor indul. Magának Shanghainak nincs strandja.",
   },
   {
     id: "oj-pvg-pek", label: "Shanghai be / Peking ki", kind: "open-jaw", ticketing: "két egyirányú jegy", eur: 3396,
@@ -207,6 +207,7 @@ export type RegionalFare = {
 
 /** Belső szakaszok repülővel – mind a négy főre, egy irányra, ha nincs jelölve másképp. */
 export const regionalFares: RegionalFare[] = [
+  { route: "Shanghai ↔ Tajpej (Songshan), oda-vissza", date: "okt. 21. → okt. 27.", eur: 1152, airline: "Shanghai Airlines", duration: "1 óra 50 perc irányonként", nonstop: true, note: "Tajpej belvárosi repterére (TSA) érkezik, nem a távoli Taoyuanra – 15 perc a városközpont. Ezzel a shanghaji oda-vissza keret kiegészíthető egy teljes tajvani blokkal.", source: trip("Trip.com PVG↔TSA oda-vissza", "shanghai-to-taipei/tickets-sha-tsa") },
   { route: "Shanghai → Tajpej", date: "okt. 24.", eur: 638, airline: "China Airlines / China Southern", duration: "2 óra", nonstop: true, note: "Tajvan olcsón beköthető: technológia, éjszakai piacok, Taroko-szurdok és tengerpart.", source: gf("Google Flights PVG→TPE", "https://www.google.com/travel/flights/search?tfs=GhwSCjIwMjYtMTAtMjQoAGoFEgNQVkdyBRIDVFBFQgQBAQICSAGYAQI=&hl=en&curr=EUR") },
   { route: "Tajpej → Hongkong", date: "okt. 28.", eur: 310, airline: "HK Express", duration: "2 óra 5 perc", nonstop: true, note: "A legolcsóbb regionális szakasz; napi több járat.", source: gf("Google Flights TPE→HKG", "https://www.google.com/travel/flights/search?tfs=GhwSCjIwMjYtMTAtMjgoAGoFEgNUUEVyBRIDSEtHQgQBAQICSAGYAQI=&hl=en&curr=EUR") },
   { route: "Tajpej → Guangzhou", date: "okt. 28.", eur: 681, airline: "China Southern", duration: "2 óra 15 perc", nonstop: true, source: gf("Google Flights TPE→CAN", "https://www.google.com/travel/flights/search?tfs=GhwSCjIwMjYtMTAtMjgoAGoFEgNUUEVyBRIDQ0FOQgQBAQICSAGYAQI=&hl=en&curr=EUR") },
