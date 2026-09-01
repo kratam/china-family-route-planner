@@ -1,9 +1,9 @@
 import { itineraries } from "@/data/itineraries";
 import {
+  architectures,
   dateVariants,
-  decision,
+  gateways,
   grouped,
-  longHaulFares,
   priceCheck,
   regionalFares,
   scheduleFacts,
@@ -13,12 +13,31 @@ import { SourceLink } from "./SourceLink";
 const eur = (value: number) => `${grouped(value)} €`;
 const huf = (value: number) => `${grouped(Math.round((value * priceCheck.hufRate) / 1000) * 1000)} Ft`;
 
-const chosen = longHaulFares.find((fare) => fare.status === "választott");
-const rejected = longHaulFares.filter((fare) => fare.status === "elvetett").sort((a, b) => a.eur - b.eur);
+const live = gateways.filter((gateway) => gateway.status === "él");
+const dead = gateways.filter((gateway) => gateway.status === "kiesett");
+const cheapestArch = [...architectures].sort((a, b) => a.eur - b.eur)[0];
+
+const findings = [
+  {
+    tag: "Ami elromlott",
+    title: "A shenzheni járat papíron él, a gyakorlatban nem eladó",
+    body: "A Hainan HU 761/762 ott van a menetrendben, de október 16-ra és a teljes okt. 26–31. ablakra egyetlen jegyárus sem ad árat. A Google szó szerint azt írja: „We can’t find booking options for this itinerary.” Az eddigi terv teljes alapja ezzel megszűnt.",
+  },
+  {
+    tag: "Ami kiderült",
+    title: "Nem egy, hanem három közvetlen kínai kapu van",
+    body: "Peking (Air China, naponta, 9 óra 10 perc), Shanghai (Shanghai Airlines, naponta, 11 óra 5 perc) és Guangzhou (China Southern, kedd/csütörtök/szombat, 10 óra 45 perc). Ezek közül a Google kettőt egyáltalán nem árazott – csak a Trip.com hozta ki őket.",
+  },
+  {
+    tag: "Ami a legtöbbet ér",
+    title: "Pekingből van az egyetlen nappali hazaút",
+    body: "A pekingi járat 14:00-kor indul és 17:35-kor ér Budapestre – ugyanaznap este otthon vagyunk. Minden más kapu hajnali 01:30 és 01:55 között indul. Nyolc- és tízéves gyerekkel ez a különbség többet ér, mint pár száz euró.",
+  },
+];
 
 export function FarePage() {
   const ranked = [...itineraries].sort((a, b) => a.flightBudget.totalEur - b.flightBudget.totalEur);
-  const cheapest = ranked[0].flightBudget.totalEur;
+  const cheapestRoute = ranked[0].flightBudget.totalEur;
 
   return (
     <>
@@ -26,55 +45,155 @@ export function FarePage() {
         <a className="brand" href="../">KELETI <i>IRÁNYTŰ</i></a>
         <nav>
           <a href="../">Vissza a főoldalra</a>
-          <a href="#kiterok">Kitérők ára</a>
-          <a href="#utvonalak-ara">Útvonalak</a>
-          <a href="#elvetett">Miért nem open-jaw</a>
+          <a href="#kapuk">Kapuk</a>
+          <a href="#architekturak">Open-jaw</a>
+          <a href="#kiterok">Belső szakaszok</a>
           <a href="#menetrend">Menetrend</a>
         </nav>
-        <span className="verified">Lekérdezve: {priceCheck.checkedOn} és {priceCheck.regionalCheckedOn}</span>
+        <span className="verified">Újramérve: {priceCheck.checkedOn}</span>
       </header>
 
       <main id="top">
         <section className="fare-hero">
-          <span className="hero-kicker">Eldöntve · a keret megvan</span>
-          <h1>Ez a <em>repülőkeret</em></h1>
+          <span className="hero-kicker">Újratervezés · {priceCheck.checkedOn}</span>
+          <h1>A shenzheni járat <em>kiesett</em></h1>
           <p>
-            Budapest–Shenzhen oda-vissza, mindkét irányban közvetlenül. Minden ár ezen az
-            oldalon a Google Flights lekérdezéséből származik, {priceCheck.passengers} részére,
-            {" "}{priceCheck.cabin}on, a foglalási panelig végigkattintva – tehát a
-            <strong> teljes négyfős társaságra</strong> szóló végösszeg, adókkal.
+            Az eddigi terv arra épült, hogy Budapestről közvetlenül Shenzhenbe repülünk oda-vissza.
+            Ez a jegy a mi dátumainkra megszűnt megvásárolhatónak lenni. Az egész repülőkeretet
+            újramértük, két forrásból – és a helyzet nem rosszabb lett, hanem más:{" "}
+            <strong>három közvetlen kínai kapu</strong> közül lehet választani.
           </p>
           <div className="fare-hero-stats">
-            <div><strong>{eur(decision.price)}</strong><span>a megvett oda-vissza jegy, 4 fő</span></div>
-            <div><strong>13</strong><span>éjszaka Kínában, okt. 17. hajnalától</span></div>
-            <div><strong>0</strong><span>átszállás a hosszú távú szakaszokon</span></div>
+            <div><strong>3</strong><span>közvetlen kínai kapu Budapestről</span></div>
+            <div><strong>{eur(cheapestArch.eur)}</strong><span>a legolcsóbb teljes megoldás, 4 fő</span></div>
+            <div><strong>9 ó 10 p</strong><span>a legrövidebb repülés (Peking)</span></div>
           </div>
         </section>
 
         <section className="editorial-section">
-          <div className="section-kicker">A megvett keret</div>
-          <h2>{decision.headline}</h2>
-          <div className="decision-card">
-            <ul className="segment-list">
-              <li className="nonstop"><b>BUD → SZX</b><span>{decision.out}</span><i>közvetlen</i></li>
-              <li className="nonstop"><b>SZX → BUD</b><span>{decision.back}</span><i>közvetlen</i></li>
-            </ul>
-            <div className="decision-facts">
-              <div><strong>{eur(decision.price)}</strong><span>Hainan Airlines · ≈ {huf(decision.price)}</span></div>
-              <div><strong>{eur(decision.agencyPrice)}</strong><span>ugyanez a {decision.agencyName} oldalán</span></div>
-              <div><strong>4 db</strong><span>{decision.baggage}</span></div>
-            </div>
-            <p className="fare-verdict">{decision.why}</p>
+          <div className="section-kicker">Amit az újramérés kihozott</div>
+          <h2>Három dolog, ami átírja a tervet</h2>
+          <div className="finding-grid">
+            {findings.map((item) => (
+              <article key={item.tag}>
+                <span>{item.tag}</span>
+                <h3>{item.title}</h3>
+                <p>{item.body}</p>
+              </article>
+            ))}
+          </div>
+          <div className="notice">
+            <strong>Miért nem hozta ki a Google?</strong> A Google Flights menetrendben mutatja a
+            Shanghai- és a Peking-járatot, de tarifát nem kap hozzájuk: minden dátumon és minden
+            pénznemben „Price unavailable”. A kínai légitársaságok saját tarifái csak kínai
+            jegyárusítókon – például a Trip.comon – jelennek meg. Ezért mértünk mindkét forrásból.
+          </div>
+        </section>
+
+        <section className="editorial-section" id="kapuk">
+          <div className="section-kicker">Közvetlen kapuk Budapestről</div>
+          <h2>Hova lehet átszállás nélkül eljutni?</h2>
+          <p className="section-lead">
+            Minden ár egy irányra, a teljes négyfős társaságra. Ahol két dátum szerepel, ott a
+            járat nem jár mindennap – a menetrendi napokat külön ellenőriztük.
+          </p>
+          <div className="fare-table-wrap">
+            <table className="fare-table">
+              <thead>
+                <tr>
+                  <th>Kapu</th>
+                  <th>Légitársaság · napok</th>
+                  <th>Oda</th>
+                  <th>Ár oda</th>
+                  <th>Vissza</th>
+                  <th>Ár vissza</th>
+                  <th>Miért érdekes</th>
+                </tr>
+              </thead>
+              <tbody>
+                {live.map((gateway) => (
+                  <tr key={gateway.id}>
+                    <th scope="row">{gateway.city}<br /><small>{gateway.code}</small></th>
+                    <td>{gateway.airline}<br /><small>{gateway.days}</small></td>
+                    <td>{gateway.outbound}<br /><small>{gateway.outNote}</small></td>
+                    <td className="num"><strong>{gateway.outEur ? eur(gateway.outEur) : "—"}</strong></td>
+                    <td>{gateway.inbound}<br /><small>{gateway.inNote}</small></td>
+                    <td className="num"><strong>{gateway.inEur ? eur(gateway.inEur) : "—"}</strong></td>
+                    <td className="detail">{gateway.verdict}<br /><SourceLink source={gateway.source} /></td>
+                  </tr>
+                ))}
+                {dead.map((gateway) => (
+                  <tr key={gateway.id} className="indirect">
+                    <th scope="row">{gateway.city}<br /><small>{gateway.code} · kiesett</small></th>
+                    <td>{gateway.airline}<br /><small>{gateway.days}</small></td>
+                    <td>{gateway.outbound}<br /><small>{gateway.outNote}</small></td>
+                    <td className="num">nincs ár</td>
+                    <td>{gateway.inbound}<br /><small>{gateway.inNote}</small></td>
+                    <td className="num">nincs ár</td>
+                    <td className="detail">{gateway.verdict}<br /><SourceLink source={gateway.source} /></td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section className="editorial-section" id="architekturak">
+          <div className="section-kicker">Teljes megoldások</div>
+          <h2>Oda-vissza vagy nyitott szárú – mibe kerül?</h2>
+          <p className="section-lead">
+            Mind a nyolc változatban <strong>mindkét hosszú távú szakasz közvetlen</strong>. Az
+            oda-vissza árak egy jegyre szólnak; a nyitott szárú árak két külön egyirányú jegy
+            összege, mert két különböző légitársaságról van szó. Egyetlen multi-city jegyen ezek
+            jellemzően olcsóbbak, de azt a légitársaság saját oldalán kell megkérdezni.
+          </p>
+          <div className="fare-table-wrap">
+            <table className="fare-table">
+              <thead>
+                <tr>
+                  <th>Megoldás</th>
+                  <th>Ár / 4 fő</th>
+                  <th>≈ forint</th>
+                  <th>Dátum</th>
+                  <th>Jegy</th>
+                  <th>Nappali hazaút</th>
+                  <th>Mit ad</th>
+                </tr>
+              </thead>
+              <tbody>
+                {[...architectures].sort((a, b) => a.eur - b.eur).map((arch) => (
+                  <tr key={arch.id} className={arch.id === cheapestArch.id ? "best" : ""}>
+                    <th scope="row">{arch.label}<br /><small>{arch.kind}</small></th>
+                    <td className="num"><strong>{eur(arch.eur)}</strong></td>
+                    <td className="num">{huf(arch.eur)}</td>
+                    <td>{arch.dates}</td>
+                    <td><small>{arch.ticketing}</small></td>
+                    <td>
+                      <span className={`direct-flag${arch.dayFlightHome ? " yes" : " no"}`}>
+                        {arch.dayFlightHome ? "nappali" : "hajnali indulás"}
+                      </span>
+                    </td>
+                    <td className="detail"><strong>{arch.fits}</strong><br />{arch.drawback}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <div className="notice">
+            <strong>Szubjektív ajánlás:</strong> ha az eddigi program – Shenzhen, Hongkong, Guilin,
+            tengerpart – érintetlenül fontos, akkor a <em>Guangzhou oda-vissza</em> a legkisebb
+            változtatás {eur(3204)}-ért. Ha viszont a történelem és a buddhista sziklatemplomok is
+            súlyt kapnak, akkor a <em>Guangzhou be / Peking ki</em> ív {eur(3696)}-ért mindent
+            lefed, és nappali hazaúttal zár.
           </div>
         </section>
 
         <section className="editorial-section" id="kiterok">
-          <div className="section-kicker">Kitérők a bázisról · lekérdezve {priceCheck.regionalCheckedOn}</div>
+          <div className="section-kicker">Belső szakaszok</div>
           <h2>Mibe kerül egy repülős kitérő?</h2>
           <p className="section-lead">
-            Mivel Shenzhenbe térünk vissza, minden repülős kitérő oda-vissza értendő. A vonatos
-            kitérők – Hongkong, Guangzhou, Zhaoqing, Chaozhou, Guilin, Xiamen, Shaoguan – ennél
-            nagyságrendekkel olcsóbbak: a leghosszabb is ¥250–350 fejenként.
+            Mind a négy főre. A vonatos kitérők ennél nagyságrendekkel olcsóbbak: a leghosszabb
+            kínai gyorsvasúti szakasz is ¥250–350 fejenként.
           </p>
           <div className="fare-table-wrap">
             <table className="fare-table">
@@ -106,38 +225,27 @@ export function FarePage() {
           </div>
         </section>
 
-        <section className="editorial-section" id="utvonalak-ara">
+        <section className="editorial-section">
           <div className="section-kicker">Útvonalanként</div>
-          <h2>Mennyi a teljes repülőköltség útvonalanként?</h2>
+          <h2>Mennyi a teljes repülőköltség a jelenlegi útvonalakon?</h2>
           <p className="section-lead">
-            A megvett {eur(decision.price)}-s keret plusz az adott útvonal regionális repülőjegyei,
-            négy főre. Ahol {eur(cheapest)} szerepel, ott a kitérők végig vonattal mennek.
+            A főoldalon szereplő hét útvonal a guangzhoui oda-vissza keretre átszámolva – ez a
+            legkisebb változtatás, amivel megmenthetők. Az északi, pekingi ívekhez új célpontok
+            kellenének (Peking, Xi’an, Luoyang, Datong), azok még nincsenek megírva.
           </p>
           <div className="fare-table-wrap">
             <table className="fare-table">
               <thead>
-                <tr>
-                  <th>#</th>
-                  <th>Útvonal</th>
-                  <th>Repülő / 4 fő</th>
-                  <th>≈ forint</th>
-                  <th>Többlet a kerethez</th>
-                  <th>Fürdős napok</th>
-                  <th>Miből áll össze</th>
-                </tr>
+                <tr><th>#</th><th>Útvonal</th><th>Repülő / 4 fő</th><th>≈ forint</th><th>Többlet</th><th>Fürdős napok</th><th>Miből áll össze</th></tr>
               </thead>
               <tbody>
                 {ranked.map((route) => (
-                  <tr key={route.id} className={route.flightBudget.totalEur === cheapest ? "best" : ""}>
+                  <tr key={route.id} className={route.flightBudget.totalEur === cheapestRoute ? "best" : ""}>
                     <td>#{route.rank}</td>
                     <th scope="row">{route.name}</th>
                     <td className="num"><strong>{eur(route.flightBudget.totalEur)}</strong></td>
                     <td className="num">{huf(route.flightBudget.totalEur)}</td>
-                    <td className="num">
-                      {route.flightBudget.totalEur === cheapest
-                        ? "—"
-                        : `+ ${eur(route.flightBudget.totalEur - cheapest)}`}
-                    </td>
+                    <td className="num">{route.flightBudget.totalEur === cheapestRoute ? "—" : `+ ${eur(route.flightBudget.totalEur - cheapestRoute)}`}</td>
                     <td className="detail">{route.swimDays}</td>
                     <td className="detail">{route.flightBudget.breakdown}</td>
                   </tr>
@@ -145,81 +253,12 @@ export function FarePage() {
               </tbody>
             </table>
           </div>
-          <div className="notice">
-            <strong>Hogyan olvasd:</strong> ezek repülőárak, nem teljes utazási költségek. A kínai
-            gyorsvasút, a szállás és a programok külön jönnek – azokat a főoldal útvonalkártyái
-            tartalmazzák tervezési sávként.
-          </div>
-        </section>
-
-        <section className="editorial-section" id="elvetett">
-          <div className="section-kicker">Miért nem nyitott szárú jegyet vettünk</div>
-          <h2>A mérés során elvetett alternatívák</h2>
-          <p className="section-lead">
-            Mindegyiket ugyanúgy, a foglalási panelig végigkattintva néztük meg. Egyik sem volt
-            egyszerre olcsóbb és kényelmesebb a Shenzhen oda-visszánál – a {eur(decision.price)}-s
-            keret ezért maradt.
-          </p>
-          <div className="fare-list">
-            {chosen && (
-              <article className="fare-card all-direct" key={chosen.id}>
-                <header>
-                  <div>
-                    <span className="fare-dates">{chosen.dates} · {chosen.ticketing} · ✔ EZT VETTÜK</span>
-                    <h3>{chosen.label}</h3>
-                    <span className="direct-flag yes">✓ minden hosszú távú szakasz közvetlen</span>
-                  </div>
-                  <div className="fare-figure">
-                    <strong>{eur(chosen.eur)}</strong>
-                    <span>4 fő · ≈ {huf(chosen.eur)}</span>
-                    {chosen.agencyEur !== undefined && <em>{eur(chosen.agencyEur)} a {chosen.agencyName} oldalán</em>}
-                  </div>
-                </header>
-                <p className="fare-verdict">{chosen.verdict}</p>
-                <SourceLink source={chosen.source} />
-              </article>
-            )}
-            {rejected.map((fare) => (
-              <article className="fare-card rejected" key={fare.id}>
-                <header>
-                  <div>
-                    <span className="fare-dates">{fare.dates} · {fare.ticketing} · elvetve</span>
-                    <h3>{fare.label}</h3>
-                    <span className={`direct-flag${fare.allDirect ? " yes" : " no"}`}>
-                      {fare.allDirect ? "✓ minden hosszú távú szakasz közvetlen" : "✗ átszállással"}
-                    </span>
-                  </div>
-                  <div className="fare-figure">
-                    <strong>{eur(fare.eur)}</strong>
-                    <span>4 fő · ≈ {huf(fare.eur)}</span>
-                    {fare.eur > decision.price && <em>+ {eur(fare.eur - decision.price)} a kerethez képest</em>}
-                  </div>
-                </header>
-                <ul className="segment-list">
-                  {fare.segments.map((segment) => (
-                    <li key={`${fare.id}-${segment.code}-${segment.from}`} className={segment.nonstop ? "nonstop" : ""}>
-                      <b>{segment.from} → {segment.to}</b>
-                      <span>{segment.code}</span>
-                      <span>{segment.dep} → {segment.arr}</span>
-                      <span>{segment.duration}</span>
-                      <i>{segment.nonstop ? "közvetlen" : "átszállással"}</i>
-                    </li>
-                  ))}
-                </ul>
-                <p className="fare-verdict">{fare.verdict}</p>
-                <SourceLink source={fare.source} />
-              </article>
-            ))}
-          </div>
         </section>
 
         <section className="editorial-section" id="menetrend">
           <div className="section-kicker">Menetrendi tények</div>
           <h2>Melyik nap van egyáltalán közvetlen járat?</h2>
-          <p className="section-lead">
-            Ezt napról napra végigkérdeztük. A Hainan hétfőn és pénteken repül – okt. 16. és
-            okt. 30. is péntek, ezért illeszkedik pontosan a két hét.
-          </p>
+          <p className="section-lead">Napról napra ellenőrizve, mindkét irányban.</p>
           <div className="schedule-grid">
             {scheduleFacts.map((fact) => (
               <article key={fact.route}>
@@ -230,19 +269,19 @@ export function FarePage() {
             ))}
           </div>
 
-          <h3 className="sub-heading">A tarifa dátumérzéketlen – ezért nem érdemes tovább keresni</h3>
+          <h3 className="sub-heading">A nap megválasztása több százezer forintot mozgat</h3>
           <div className="fare-table-wrap">
             <table className="fare-table">
               <thead>
-                <tr><th>Közvetlen shenzheni oda-vissza</th><th>Hossz</th><th>Ár / 4 fő</th><th>Megjegyzés</th></tr>
+                <tr><th>Ugyanaz a pekingi járat</th><th>Irány</th><th>Ár / 4 fő</th><th>Megjegyzés</th></tr>
               </thead>
               <tbody>
                 {dateVariants.map((variant) => (
-                  <tr key={variant.dates} className={variant.dates.startsWith("okt. 16. (P) → okt. 30.") ? "best" : ""}>
+                  <tr key={variant.dates}>
                     <th scope="row">{variant.dates}</th>
                     <td>{variant.nights}</td>
                     <td className="num"><strong>{eur(variant.eur)}</strong></td>
-                    <td className="detail">{variant.note}</td>
+                    <td className="detail">{variant.note || "—"}</td>
                   </tr>
                 ))}
               </tbody>
@@ -255,46 +294,48 @@ export function FarePage() {
           <h2>Mit jelent pontosan ez a szám</h2>
           <div className="method-grid">
             <article>
-              <h3>Így mértük</h3>
+              <h3>Két forrás, mert egy nem elég</h3>
               <p>
-                Google Flights, {priceCheck.checkedOn} (hosszú táv) és {priceCheck.regionalCheckedOn}
-                {" "}(regionális szakaszok), {priceCheck.passengers}, {priceCheck.cabin}. Minden
-                opciónál a járatválasztásig és a foglalási panelig kattintva, tehát a megjelenített
-                összeg a ténylegesen ajánlott, adóval növelt végösszeg négy főre.
+                Google Flights és Trip.com, {priceCheck.checkedOn}, {priceCheck.passengers},
+                {" "}{priceCheck.cabin}. A Google a kínai légitársaságok tarifáit nem árazza; a
+                Trip.com igen. Ezért került elő a pekingi és a shanghaji járat.
+              </p>
+            </article>
+            <article>
+              <h3>Miért két külön jegy a nyitott szárú ár</h3>
+              <p>
+                A nyitott szárú változatokban két különböző légitársaság repül. A két egyirányú
+                jegy összege a biztosan megvásárolható felső korlát; egyetlen multi-city jegyen
+                jellemzően olcsóbb, de azt a légitársaságnál kell megkérdezni.
               </p>
             </article>
             <article>
               <h3>Poggyász</h3>
               <p>
-                A megvett Hainan oda-vissza jegynél a Google kiírja: fejenként egy kézipoggyász
-                és <strong>az első feladott bőrönd is benne van</strong>. A fapados regionális
-                járatoknál (HK Express, Spring, Vietjet) a feladott poggyász külön fizetendő.
-              </p>
-            </article>
-            <article>
-              <h3>Árfolyam</h3>
-              <p>
-                A forintértékek {priceCheck.hufRate} Ft/€-val számolva – ezt az árfolyamot mutatta a
-                Google foglalási panelje. Az EKB középárfolyam 2026. augusztus 26-án 360,2 Ft/€ volt.
+                A kínai légitársaságok hosszú távú turista tarifáiban a Trip.com „Included”
+                jelzést mutat a feladott poggyászra. A fapados regionális járatoknál (HK Express,
+                Spring, Vietjet) külön fizetendő.
               </p>
             </article>
             <article>
               <h3>Meddig érvényes</h3>
               <p>
-                A hosszú távú keret eldőlt, de a regionális jegyek dinamikusak: a fapadosok naponta
-                mozognak. Kitérő foglalása előtt minden sort érdemes újrafuttatni a forráslinkkel.
+                A shenzheni példa mutatja, milyen gyorsan tud eltűnni egy jegy. A pekingi ár egy
+                héten belül 1803 € és 3231 € között mozgott ugyanarra a járatra. Foglalás előtt
+                minden sort újra kell futtatni.
               </p>
             </article>
           </div>
           <div className="notice">
-            <strong>Fontos:</strong> ez nem foglalási szolgáltatás és nem ajánlat. A kínai
-            vasúti jegyek októberre augusztusban még nem foglalhatók, a repülőjegyek viszont igen.
+            <strong>Fontos:</strong> ez nem foglalási szolgáltatás és nem ajánlat. Az árak
+            pillanatképek, és a kínai carrierek tarifáit a legmegbízhatóbban a saját oldalukon
+            (airchina.com, ceair.com, csair.com) lehet ellenőrizni.
           </div>
         </section>
       </main>
 
       <footer>
-        <div><strong>KELETI IRÁNYTŰ</strong><p>Repülőár-lekérdezés · {priceCheck.checkedOn} és {priceCheck.regionalCheckedOn}</p></div>
+        <div><strong>KELETI IRÁNYTŰ</strong><p>Repülőár-újramérés · {priceCheck.checkedOn}</p></div>
         <p>{priceCheck.note}</p>
         <a href="../">← Vissza a főoldalra</a>
       </footer>

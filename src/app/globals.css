@@ -143,3 +143,12 @@ footer{background:#102b23;color:white;padding:3rem 6vw;display:grid;grid-templat
   .decision-facts{grid-template-columns:1fr;gap:.9rem}
   .hop-group .sub-heading{flex-direction:column;gap:.2rem}
 }
+
+/* --- Terv-változás figyelmeztető sáv --- */
+.plan-alert{background:#fff4dc;border-top:4px solid var(--gold);border-bottom:1px solid #e6d5ac;padding:3rem 6vw}
+.plan-alert>div{max-width:1100px;margin:auto}
+.plan-alert-tag{display:inline-block;font-size:.66rem;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:#8a5a1c;background:#f6e3bb;padding:.35rem .7rem;border-radius:999px}
+.plan-alert h2{font-size:clamp(1.8rem,3.4vw,2.9rem);margin:.9rem 0 .8rem;max-width:900px}
+.plan-alert p{font-size:.92rem;color:#4f4529;max-width:900px;margin:.6rem 0}
+.plan-alert-cta a{font-weight:700;color:#8a5a1c;text-decoration:underline;text-underline-offset:4px}
+@media(max-width:900px){.plan-alert{padding:2.2rem 5vw}}

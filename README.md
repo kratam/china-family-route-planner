@@ -33,12 +33,23 @@ npm run check:links
 
 Októberig különösen változhat a pontos repülési nap/idő, a viteldíj, a kínai HSR-jegyek elérhetősége, az attrakciók szezonális nyitvatartása és a trópusi időjárás. A **repülőárak konkrét, lekérdezett végösszegek** (nem becslés), de dinamikusak; a szállás- és programköltségek továbbra is tervezési sávok.
 
-## A megvett keret
+## A repülőkeret – 2026. augusztus 30-i újramérés
 
-**Budapest ↔ Shenzhen, oda-vissza, mindkét irányban közvetlenül** – Hainan HU 762 (okt. 16.,
-11:50 → 04:50+1) és HU 761 (okt. 30., 01:55 → 07:15), 3016 € négy főre. Kínán belül nincs
-open-jaw: minden kitérő oda-vissza értendő a shenzheni vagy hongkongi bázisról, döntően
-gyorsvasúttal. Marad 13 éjszaka, okt. 17. hajnalától okt. 29. estéig.
+**A shenzheni közvetlen járat kiesett.** A Hainan HU 761/762 a menetrendben szerepel, de az
+októberi dátumokra egyetlen jegyárus sem ad árat. Három közvetlen kínai kapu maradt:
+
+| Kapu | Légitársaság | Napok | Menetidő | Ár egy irányba (4 fő) |
+|---|---|---|---|---|
+| Peking PEK | Air China | naponta | 9 ó 10 p oda / 10 ó 35 p vissza | 2431 € oda, 1306 € vissza |
+| Shanghai PVG | Shanghai Airlines | naponta | 11 ó 5 p / 12 ó 15 p | 2090 € oda, 1704 € vissza |
+| Guangzhou CAN | China Southern | K/Cs/Szo | 10 ó 45 p / 12 ó 40 p | 2390 € oda, 1750 € vissza |
+
+Teljes megoldások: Shanghai oda-vissza 2884 €, Guangzhou oda-vissza 3204 €, Peking oda-vissza
+3256 €, Shanghai be / Peking ki 3396 €, **Guangzhou be / Peking ki 3696 €** (ez fed le mindent,
+és ez az egyetlen nappali hazaút). A hét útvonal jelenleg a guangzhoui keretre van átszámolva.
+
+⚠️ A Google Flights a kínai légitársaságok tarifáit nem árazza – a pekingi és a shanghaji
+járat csak a Trip.comon és a carrierek saját oldalán látszik árral.
 
 ## Repülőárak
 
@@ -46,8 +57,7 @@ A `/repuloarak/` aloldal a 2026. augusztus 27-i Google Flights-lekérdezés ered
 (2 felnőtt + 2 gyerek, 8 és 10 év), turista osztályon, a foglalási panelig végigkattintva.
 Fő megállapítások:
 
-- **Budapest ↔ Shenzhen oda-vissza (Hainan HU 762 / HU 761): 3016 €** – ez egyszerre a
-  legolcsóbb és az egyetlen mindkét irányban közvetlen megoldás. **Ez lett megvéve.**
+- ~~Budapest ↔ Shenzhen oda-vissza 3016 €~~ – **2026. augusztus 30-tól nem megvásárolható.**
 - A közvetlen Guangzhou→Budapest járat (China Southern CZ 649, 1689 €) létezik, de **egyetlen
   nyitott szárú jegyre nem kombinálható** a Hainan odaúttal – egy jegyen 26,5 órás, kétátszállásos
   hazautat kapunk 3437 €-ért.
@@ -55,9 +65,9 @@ Fő megállapítások:
 
 ## Jelenlegi top 3
 
-1. **Karszt, barlang és tenger** – Shenzhen · Dapeng · Hongkong · Yangshuo (3016 €, nulla regionális repülés, kb. 5 fürdős nap).
-2. **Barlang, tó és tengerpart** – Shenzhen · Zhaoqing · Hongkong · Dapeng (3016 €, a legrövidebb szakaszok, kb. 6 fürdős nap).
-3. **Régi Kína és tengerpart** – Shenzhen · Chaozhou · Hongkong · Dapeng (3016 €).
+1. **Karszt, barlang és tenger** – Guangzhou · Shenzhen · Dapeng · Hongkong · Yangshuo (3204 €, nulla regionális repülés, kb. 5 fürdős nap).
+2. **Barlang, tó és tengerpart** – Guangzhou · Shenzhen · Zhaoqing · Hongkong · Dapeng (3204 €).
+3. **Régi Kína és tengerpart** – Guangzhou · Shenzhen · Chaozhou · Hongkong · Dapeng (3204 €).
 
-Ha a fürdés a fő cél: **Strandmaximum – Sanya** (3825 €, Hongkongból 1 óra 45 perc közvetlen).
-Ha a barlangos csónakázás: **Ninh Binh / Trang An** (3986 €).
+Nyitva álló, még meg nem írt irány: **északi ív** Peking kijárattal (Nagy Fal, Xi'an vagy
+Luoyang buddhista sziklatemplomai) 3696 €-ért – ehhez új célpontokat kell felvenni.

@@ -4,7 +4,7 @@ import { describe, expect, it } from "vitest";
 import { destinations } from "./destinations";
 import { itineraries } from "./itineraries";
 import { travelogues } from "./travelogues";
-import { decision, longHaulFares, regionalFares } from "./flightPrices";
+import { architectures, gateways, regionalFares } from "./flightPrices";
 
 describe("published travel data invariants", () => {
   it("uses unique destination ids and bounded scores", () => {
@@ -60,10 +60,10 @@ describe("published travel data invariants", () => {
       expect(itinerary.flightBudget.totalEur).toBeLessThan(10_000);
       expect(itinerary.flightBudget.breakdown.length).toBeGreaterThan(20);
       expect(itinerary.flightBudget.note.length).toBeGreaterThan(20);
-      expect(itinerary.flightBudget.totalEur).toBeGreaterThanOrEqual(decision.price);
+      expect(itinerary.flightBudget.totalEur).toBeGreaterThanOrEqual(3204);
       expect(itinerary.flightBudget.allDirectLongHaul).toBe(true);
-      expect(itinerary.route[1]).toBe("Shenzhen");
-      expect(itinerary.route.at(-2)).toBe("Shenzhen");
+      expect(itinerary.route[1]).toBe("Guangzhou");
+      expect(itinerary.route.at(-2)).toBe("Guangzhou");
       expect(itinerary.swimDays.length).toBeGreaterThan(15);
       expect(itinerary.highlight.length).toBeGreaterThan(25);
     }
@@ -76,22 +76,30 @@ describe("published travel data invariants", () => {
   });
 
   it("keeps every quoted fare sourced and internally consistent", () => {
-    for (const fare of longHaulFares) {
-      expect(fare.eur).toBeGreaterThan(1000);
-      expect(fare.segments.length).toBeGreaterThanOrEqual(2);
-      expect(fare.allDirect).toBe(fare.segments.every((segment) => segment.nonstop));
-      expect(fare.source.url).toContain("google.com/travel/flights");
-      if (fare.agencyEur !== undefined) expect(fare.agencyName).toBeTruthy();
+    for (const gateway of gateways) {
+      expect(gateway.source.url).toMatch(/^https:\/\//);
+      if (gateway.status === "él") {
+        expect(gateway.outEur).toBeGreaterThan(500);
+        expect(gateway.inEur).toBeGreaterThan(200);
+      } else {
+        expect(gateway.outEur).toBeNull();
+        expect(gateway.inEur).toBeNull();
+      }
     }
+    expect(gateways.filter((gateway) => gateway.status === "kiesett").map((gateway) => gateway.code)).toEqual(["SZX"]);
+    for (const arch of architectures) {
+      expect(arch.allDirect).toBe(true);
+      expect(arch.eur).toBeGreaterThan(2000);
+      expect(arch.fits.length).toBeGreaterThan(40);
+      expect(arch.drawback.length).toBeGreaterThan(20);
+    }
+    const cheapest = [...architectures].sort((a, b) => a.eur - b.eur)[0];
+    expect(cheapest.id).toBe("rt-pvg");
     for (const fare of regionalFares) {
       expect(fare.eur).toBeGreaterThan(50);
       expect(fare.source.url).toMatch(/^https:\/\//);
       expect(fare.date).toMatch(/okt\./);
     }
-    const cheapestLongHaulDirect = longHaulFares.filter((fare) => fare.allDirect).sort((a, b) => a.eur - b.eur)[0];
-    expect(cheapestLongHaulDirect.id).toBe("rt-szx");
-    expect(longHaulFares.filter((fare) => fare.status === "választott")).toHaveLength(1);
-    expect(cheapestLongHaulDirect.eur).toBe(decision.price);
   });
 
   it("has one transparent, family-aware travelogue for every destination", () => {
