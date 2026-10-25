@@ -1,8 +1,17 @@
-import { fireEvent, render, screen, within } from '@testing-library/react';
+import { fireEvent, render, screen, within, waitFor } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 import { SpringPlanner } from './SpringPlanner';
 
 describe('tavaszi útvonalválasztás', () => {
+  it('a megosztott déli szakaszlink megnyitja a megfelelő útvonalat', async () => {
+    window.history.replaceState(null, '', '#south-days');
+    render(<SpringPlanner />);
+    await waitFor(() => expect(screen.getByRole('heading', {name:'A Nagy Faltól a déli karsztokig'})).toBeVisible());
+    window.history.replaceState(null, '', '#north-rail');
+    fireEvent(window, new Event('hashchange'));
+    await waitFor(() => expect(screen.getByRole('heading', {name:'A császároktól a neonvárosig'})).toBeVisible());
+    window.history.replaceState(null, '', '/');
+  });
   it('váltás után az új napi terv látszik, a másik nem olvastatható fel', () => {
     render(<SpringPlanner />);
     expect(screen.getByRole('heading', {name:'A császároktól a neonvárosig'})).toBeVisible();

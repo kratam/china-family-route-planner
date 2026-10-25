@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { ArrowDown, ArrowUpRight, Check, ChevronDown, Clock3, TrainFront, Users, Wallet } from 'lucide-react';
 import { routes, sources, type Route, type SourceId } from '@/data/spring2027';
 import { calculateBudget, railSaleDate, type Range } from '@/lib/springBudget';
@@ -38,11 +38,26 @@ function RoutePanel({ route, exchange, active }: { route: Route; exchange: numbe
     <section id={`${route.id}-flights`} className="spring-width spring-section"><span className="spring-kicker">A repülőkeret</span><h2>Közvetlen kiút, másik városból haza.</h2><div className="spring-flights"><article><span>ODA · MÁRCIUS 25–26.</span><h3>Budapest → Peking</h3><strong>19:35 → 11:40 +1 nap</strong><p>Air China · közvetlen · 9 óra 5 perc</p><b>147 454 Ft / 1 utas</b><p className="spring-small">Felhasználói képernyőkép, 2026. október 25. 4× = 589 816 Ft. Járatszám és poggyásztarifa nem látszik, ezért nem találunk ki ilyet.</p></article><article><span>VISSZA · {route.id==='north'?'ÁPRILIS 7.':'ÁPRILIS 8.'}</span><h3>{route.id==='north'?'Chongqing':'Guangzhou'} → Budapest</h3><p>{route.flight}</p><b>{route.returnHuf?`${number(route.returnHuf/4)} Ft / 1 utas`:'Ár még nincs ellenőrizve'}</b><p className="spring-small">{route.flightNote}</p>{route.id==='north'&&<Ref id="flight"/>}</article></div><p className="spring-tip"><b>Foglalási sorrend</b> Először a két nemzetközi járatot kell együtt újraárazni 2 felnőtt + 8 és 11 éves gyerekkel, feladott poggyásszal és ülőhelyekkel. Ha a chongqingi hazaút nem működik, arra még ne építsetek nem visszatéríthető programot. Jegyet az oldal nem vásárol.</p></section>
     <section id={`${route.id}-reports`} className="spring-width spring-section spring-reports"><div className="spring-section-head"><div><span className="spring-kicker">Más családok saját útjai</span><h2>Akik már jártak ott.</h2></div><p>Két elolvasott, tapasztalati beszámoló. Pontosan jelezzük, melyik útszakaszról szól, és mi nem vehető át belőle 2027-re.</p></div><div className="spring-report-grid">{route.reports.map((report,i)=><article key={report.url}><span className="spring-report-number">0{i+1}</span><small>{report.author}</small><h3>{report.title}</h3><p className="spring-report-coverage">{report.coverage}</p><p>{report.takeaway}</p><p className="spring-small">{report.caveat}</p><a href={report.url} target="_blank" rel="noreferrer">Eredeti beszámoló elolvasása <ArrowUpRight size={16}/><span className="sr-only"> (új lapon)</span></a></article>)}</div></section>
     <section className="spring-width spring-options"><h3>Ami még variálható</h3>{route.options.map(option=><article key={option.title}><div><b>{option.title}</b><span>{money(option.cost,'CNY')} · ≈ {money([option.cost[0]*exchange,option.cost[1]*exchange])}</span></div><p>{option.note}</p><Ref id={option.source}/></article>)}</section>
+    <div className="spring-width spring-return"><a href="#tervek">↑ Vissza az útválasztáshoz</a></div>
   </section>;
 }
 export function SpringPlanner() {
   const [selected,setSelected] = useState<'north'|'south'>('north');
   const [exchange,setExchange] = useState(50);
+  useEffect(() => {
+    let frame = 0;
+    const syncFromHash = () => {
+      const hash = window.location.hash;
+      const route = /^#(?:south(?:-|$)|route-south$)/.test(hash) ? 'south' : /^#(?:north(?:-|$)|route-north$)/.test(hash) ? 'north' : null;
+      if (!route) return;
+      setSelected(route);
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(() => document.getElementById(hash.slice(1))?.scrollIntoView?.());
+    };
+    const initialFrame = requestAnimationFrame(syncFromHash);
+    window.addEventListener('hashchange', syncFromHash);
+    return () => { cancelAnimationFrame(initialFrame); cancelAnimationFrame(frame); window.removeEventListener('hashchange', syncFromHash); };
+  }, []);
   return <div className="spring-site"><a className="spring-skip" href="#tervek">Ugrás az útitervekhez</a>
     <header className="spring-header"><a className="brand" href="#top">KELETI <i>IRÁNYTŰ</i></a><nav aria-label="Fő navigáció"><a href="#valasztas">Két út, egy döntés</a><a href="#koltsegek">Családi költségek</a><a href="#tervek">Napi tervek</a><a href="./archivum/">Korábbi kutatás ↗</a></nav><span>2027 / TAVASZ</span></header>
     <main id="top"><section className="spring-hero"><PhotoBlock id="wall" hero/><div className="spring-hero-overlay"/><div className="spring-hero-copy"><span className="spring-kicker">Családi felfedezőút · 2 felnőtt + 8 és 11 éves gyerek</span><h1>Két út.<br/>Egy nagy <em>Kína.</em></h1><p>Császári városok és chongqingi fények.<br/>Vagy karszthegyek, folyók és a déli metropoliszok.</p><a className="spring-button" href="#valasztas">Nézzük a két változatot <ArrowDown size={18}/></a></div><div className="spring-hero-bottom"><span>2027. MÁRCIUS 25. – ÁPRILIS 7 / 8.</span><span>KÖZVETLEN REPÜLÉS · BELSŐ GYORSVONATOK</span></div></section>
