@@ -38,5 +38,37 @@
     "author": "中国新闻社 (China News Service)",
     "license": "CC BY 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by/4.0"
+  },
+  "temple": {
+    "src": "./spring/temple.jpg",
+    "title": "20200110 Temple of Heaven-1.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:20200110_Temple_of_Heaven-1.jpg",
+    "author": "\nBalon Greyjoy",
+    "license": "CC0",
+    "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en"
+  },
+  "panda": {
+    "src": "./spring/panda.jpg",
+    "title": "Giant Panda at Chongqing Zoo image 1.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Giant_Panda_at_Chongqing_Zoo_image_1.jpg",
+    "author": "TarnishedPath",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+  },
+  "cave": {
+    "src": "./spring/cave.jpg",
+    "title": "YinZiYan - 银子岩 - Silver Cave 46.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:YinZiYan_-_%E9%93%B6%E5%AD%90%E5%B2%A9_-_Silver_Cave_46.jpg",
+    "author": "Johannes Böckh",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+  },
+  "yulong": {
+    "src": "./spring/yulong.jpg",
+    "title": "Yulong River Bamboo raft boatmen - panoramio.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Yulong_River_Bamboo_raft_boatmen_-_panoramio.jpg",
+    "author": "Annette Teng",
+    "license": "CC BY 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/3.0"
   }
 }

@@ -8,12 +8,12 @@ import springPhotos from '@/data/spring-photos.json';
 import oldCredits from '@/data/photo-credits.json';
 
 type Photo = { src: string; source: string; author: string; license: string; licenseUrl: string };
-const oldPhoto = (id: 'guilin' | 'shenzhen' | 'guangzhou'): Photo => {
-  const credit = oldCredits[id][0];
-  return { src:`./photos/${id}-1.jpg`, source:credit.creditUrl, author:credit.credit, license:credit.license, licenseUrl:credit.licenseUrl };
+const oldPhoto = (id: 'guilin' | 'shenzhen' | 'guangzhou', index = 0): Photo => {
+  const credit = oldCredits[id][index];
+  return { src:`./photos/${id}-${index+1}.jpg`, source:credit.creditUrl, author:credit.credit, license:credit.license, licenseUrl:credit.licenseUrl };
 };
-const photos: Record<string, Photo> = { ...springPhotos, guilin:oldPhoto('guilin'), shenzhen:oldPhoto('shenzhen'), guangzhou:oldPhoto('guangzhou') };
-const captions: Record<string,string> = { wall:'Mutianyu · a Nagy Fal', palace:'Peking · a Tiltott Város', terracotta:'Xi’an · a terrakotta hadsereg', chongqing:'Chongqing · Hongya Cave az esti fényekben', wulong:'Wulong · a természetes kőhidak vidéke', guilin:'Li-folyó · Guilin és Yangshuo karszthegyei', shenzhen:'Sencsen · Futian városnegyed', guangzhou:'Guangzhou · kantoni városkép' };
+const photos: Record<string, Photo> = { ...springPhotos, guilin:oldPhoto('guilin'), shenzhen:oldPhoto('shenzhen'), guangzhou:oldPhoto('guangzhou'), chen:oldPhoto('guangzhou',1) };
+const captions: Record<string,string> = { temple:'Peking · az Ég temploma', panda:'Chongqing Zoo · óriáspanda', cave:'Yangshuo · Silver Cave / Yinziyan', yulong:'Yulong-folyó · bambusztutajok', chen:'Guangzhou · Chen Clan Ancestral Hall', wall:'Mutianyu · a Nagy Fal', palace:'Peking · a Tiltott Város', terracotta:'Xi’an · a terrakotta hadsereg', chongqing:'Chongqing · Hongya Cave az esti fényekben', wulong:'Wulong · a természetes kőhidak vidéke', guilin:'Li-folyó · Guilin és Yangshuo karszthegyei', shenzhen:'Sencsen · Futian városnegyed', guangzhou:'Guangzhou · kantoni városkép' };
 const number = (value: number) => Math.round(value).toLocaleString('hu-HU').replaceAll('\u00a0',' ');
 const money = (range: Range, unit = 'Ft') => range[0] === range[1] ? `${number(range[0])} ${unit}` : `${number(range[0])}–${number(range[1])} ${unit}`;
 const date = (value: string) => new Date(`${value}T12:00:00Z`).toLocaleDateString('hu-HU',{month:'long',day:'numeric',timeZone:'UTC'});
