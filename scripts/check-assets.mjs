@@ -15,3 +15,11 @@ for (const id of ids) {
   }
 }
 console.log(`Verified ${ids.length * 2} local photos and exact source links.`);
+
+const spring = JSON.parse(await readFile('src/data/spring-photos.json', 'utf8'));
+for (const [id, photo] of Object.entries(spring)) {
+  if (!/^\.\/spring\/[a-z-]+\.jpg$/.test(photo.src)) throw new Error(`${id}: invalid spring photo path`);
+  const info = await stat(join('public', photo.src));
+  if (info.size < 10_000 || !photo.source.startsWith('https://commons.wikimedia.org/wiki/File:') || !photo.author || !photo.licenseUrl) throw new Error(`${id}: missing spring asset or attribution`);
+}
+console.log(`Verified ${Object.keys(spring).length} spring photos and attribution.`);

@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import "./spring.css";
 
 export const metadata: Metadata = {
-  title: "Mit nézzünk meg Shenzhen mellett? | Családi útvonaltervező",
-  description: "Shenzhen oda-vissza 2026. okt. 16–30., 8 és 10 éves gyerekkel: hova mehetünk a shenzheni és hongkongi bázisról vonattal vagy repülővel – fürdés, barlang, hajózás a városnézés mellé.",
+  title: "Két családi út Kínába · 2027 tavasz | Keleti Iránytű",
+  description: "Peking–Xi’an–Chongqing vagy Peking–Guilin–Yangshuo–Sencsen–Guangzhou: két részletes családi útiterv 2027 tavaszára, programokkal, utazási időkkel, költségekkel és beszámolókkal.",
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) { return <html lang="hu"><body>{children}</body></html>; }
