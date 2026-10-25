@@ -1,0 +1,74 @@
+{
+  "wall": {
+    "src": "./spring/wall.jpg",
+    "title": "Great Wall of China July 2006.JPG",
+    "source": "https://commons.wikimedia.org/wiki/File:Great_Wall_of_China_July_2006.JPG",
+    "author": "Velatrix",
+    "license": "CC0",
+    "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en"
+  },
+  "palace": {
+    "src": "./spring/palace.jpg",
+    "title": "Forbidden City Panorama, Beijing - panoramio.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Forbidden_City_Panorama,_Beijing_-_panoramio.jpg",
+    "author": "Petr Kraumann",
+    "license": "CC BY 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/3.0"
+  },
+  "terracotta": {
+    "src": "./spring/terracotta.jpg",
+    "title": "Qin Terracotta Army, Pit 1 03.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Qin_Terracotta_Army,_Pit_1_03.jpg",
+    "author": "Gary Lee Todd, Ph.D.",
+    "license": "CC0",
+    "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en"
+  },
+  "chongqing": {
+    "src": "./spring/chongqing.jpg",
+    "title": "202308 Hongya Cave at night from Qiansimen Bridge.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:202308_Hongya_Cave_at_night_from_Qiansimen_Bridge.jpg",
+    "author": "Jonashtand",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+  },
+  "wulong": {
+    "src": "./spring/wulong.jpg",
+    "title": "Three Natural Bridges CNS 2024 (5).png",
+    "source": "https://commons.wikimedia.org/wiki/File:Three_Natural_Bridges_CNS_2024_(5).png",
+    "author": "中国新闻社 (China News Service)",
+    "license": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0"
+  },
+  "temple": {
+    "src": "./spring/temple.jpg",
+    "title": "20200110 Temple of Heaven-1.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:20200110_Temple_of_Heaven-1.jpg",
+    "author": "\nBalon Greyjoy",
+    "license": "CC0",
+    "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en"
+  },
+  "panda": {
+    "src": "./spring/panda.jpg",
+    "title": "Giant Panda at Chongqing Zoo image 1.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Giant_Panda_at_Chongqing_Zoo_image_1.jpg",
+    "author": "TarnishedPath",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+  },
+  "cave": {
+    "src": "./spring/cave.jpg",
+    "title": "YinZiYan - 银子岩 - Silver Cave 46.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:YinZiYan_-_%E9%93%B6%E5%AD%90%E5%B2%A9_-_Silver_Cave_46.jpg",
+    "author": "Johannes Böckh",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+  },
+  "yulong": {
+    "src": "./spring/yulong.jpg",
+    "title": "Yulong River Bamboo raft boatmen - panoramio.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Yulong_River_Bamboo_raft_boatmen_-_panoramio.jpg",
+    "author": "Annette Teng",
+    "license": "CC BY 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/3.0"
+  }
+}

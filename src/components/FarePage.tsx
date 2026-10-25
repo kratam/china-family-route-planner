@@ -44,7 +44,7 @@ export function FarePage() {
       <header className="site-header fare-header">
         <a className="brand" href="../">KELETI <i>IRÁNYTŰ</i></a>
         <nav>
-          <a href="../">Vissza a főoldalra</a>
+          <a href="../archivum/">Vissza az archív útitervhez</a>
           <a href="#kapuk">Kapuk</a>
           <a href="#architekturak">Open-jaw</a>
           <a href="#kiterok">Belső szakaszok</a>
@@ -337,7 +337,7 @@ export function FarePage() {
       <footer>
         <div><strong>KELETI IRÁNYTŰ</strong><p>Repülőár-újramérés · {priceCheck.checkedOn}</p></div>
         <p>{priceCheck.note}</p>
-        <a href="../">← Vissza a főoldalra</a>
+        <a href="../archivum/">← Vissza az archív útitervhez</a>
       </footer>
     </>
   );

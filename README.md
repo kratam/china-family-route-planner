@@ -1,19 +1,28 @@
-# Keleti Iránytű – családi Kína + régiós útvonaltervező
+# Keleti Iránytű – családi kínai útitervek
 
-Magyar nyelvű, statikus utazási döntéstámogató oldal a 2026. október 16–30. közötti, két felnőtt és két (8 és 10 éves) gyerek részvételével tervezett úthoz. Két repülőkeret van versenyben: a **guangzhoui kapu** (3204 €) a Gyöngy-folyó deltájával, és a **shanghaji kapu** (4036 €) a tajvani blokkal.
+A főoldal két 2027. tavaszi utat hasonlít össze 2 felnőtt és 8, illetve 11 éves gyerek számára:
+
+- Peking–Xi’an–Chongqing, március 25. – április 7.
+- Peking–Guilin–Yangshuo–Sencsen–Guangzhou, március 25. – április 8.
+
+Napi programok, családi költségek, árfolyampróba, források, szabad licencű képek és útvonalanként két családi beszámoló. Szállás nélkül. Az árak 2026-os referenciák: a repülőképernyőképek egy utasra szóltak, a négyszerezés nem családi ajánlat. A Chongqing–Budapest hazaút ára hiányzik, ezért ott részösszeg jelenik meg. Vonatjegy még nem vásárolható a 2027-es napokra.
 
 Publikus oldal: <https://kratam.github.io/china-family-route-planner/>
 
-## Indítás
+## Adatok és frissítés
+
+- `src/data/spring2027.ts`: két napi terv, utazási minták, árak és források.
+- `src/lib/springBudget.ts`: napi programok + helyi közlekedés + távolsági vonatok + étkezés, egyszer számolva.
+- `src/data/spring-photos.json`, `public/spring/`: új képek és pontos szerző/licenc.
+- `src/components/SpringPlanner.tsx`, `src/app/spring.css`: tavaszi felület.
+- `/archivum/`: megőrzött 2026-os kutatás, külön archív jelöléssel.
+- `/repuloarak/`: kizárólag a korábbi, 2026-os repülőárak.
+
+## Fejlesztés és ellenőrzés
 
 ```bash
-npm install
+npm ci
 npm run dev
-```
-
-A helyi oldal alapértelmezetten a `http://localhost:3000` címen érhető el. Statikus build:
-
-```bash
 npm test -- --run
 npm run typecheck
 npm run lint
@@ -22,16 +31,11 @@ npm run build
 npm run check:links
 ```
 
-## Frissíthető adatok
+Statikus Next.js export. A meglévő GitHub Actions munkafolyamat a main ágat GitHub Pagesre publikálja. A GitHub Actions alatti build a repónévnek megfelelő basePath-t használja; a képek és archív linkek relatív útvonalak.
 
-- `src/data/destinations.ts` – 32 célpont (22 dél-kínai/délkelet-ázsiai + 10 tajvani), közlekedés, időjárás, programok, szállások, pontszámok és képek. Az elérés a `cluster` + `access` mezőkben van, bázispáronként.
-- `src/data/itineraries.ts` – teljes útvonalak, költségsávok, éjszakák, fürdős napok és rangsorok.
-- `src/data/flightPrices.ts` – konkrét, lekérdezett repülőárak (Google Flights, 2026. augusztus 27., 2 felnőtt + 2 gyerek), a `/repuloarak/` aloldal és az útvonalkártyák árai.
-- `src/data/sources.ts` – újrahasznált, változó forráslinkek.
-- `src/data/photo-credits.json` – minden kép pontos forrásoldala és háttérben tárolt kreditadata.
-- `public/photos/` – célpontonként két, helyi Wikimedia Commons-kép.
+## A korábbi kutatás dokumentációja · archív
 
-Októberig különösen változhat a pontos repülési nap/idő, a viteldíj, a kínai HSR-jegyek elérhetősége, az attrakciók szezonális nyitvatartása és a trópusi időjárás. A **repülőárak konkrét, lekérdezett végösszegek** (nem becslés), de dinamikusak; a szállás- és programköltségek továbbra is tervezési sávok.
+Az alábbi rész a 2026-os állapot történeti leírása, nem a tavaszi utazás aktuális adata.
 
 ## A repülőkeret – 2026. augusztus 30-i újramérés
 

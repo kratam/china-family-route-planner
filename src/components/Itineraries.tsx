@@ -27,7 +27,7 @@ export function Itineraries() {
         ahonnan hazaindul. A repülőár konkrét, lekérdezett végösszeg a teljes négyfős társaságra
         (2 felnőtt + 2 gyerek, 8 és 10 év), adókkal; ahol 3016 € szerepel, ott a kitérők
         végig vonattal mennek. A régiós költségsáv ezen felül értendő. Részletek a{" "}
-        <a href="./repuloarak/">repülőárak oldalon</a>.
+        <a href="../repuloarak/">repülőárak oldalon</a>.
       </p>
       <div className="itinerary-list">
         {itineraries.map((route) => (
